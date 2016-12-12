@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEstudioTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">  
+
+            <h:form id="EstudioCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{estudioController.selected != null}">                       
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" size="#{bundle.InputSize}" pattern="MM/dd/yyyy" value="#{estudioController.selected.fecha}" 
+                                    title="#{bundle.EditEstudioTitle_fecha}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_fecha}" 
+                                    showOn="button" showButtonPanel="true" navigator="true"/>
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_rmiId}" for="rmiId" />
+                        <p:inputText id="rmiId" size="#{bundle.InputSize}" value="#{estudioController.selected.rmiId}" title="#{bundle.CreateEstudioTitle_rmiId}" 
+                                     required="true" requiredMessage="#{bundle.CreateEstudioRequiredMessage_rmiId}"/>                        
+
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_historiaClinica}" for="historiaClinica" />
+                        <p:inputText id="historiaClinica" size="#{bundle.InputSize}" value="#{estudioController.selected.paciente.historiaClinica}" 
+                                     title="#{bundle.CreatePacienteTitle_historiaClinica}" required="true" 
+                                     requiredMessage="#{bundle.CreatePacienteRequiredMessage_historiaClinica}">
+                            <p:ajax event="blur" update="nombre, apellidos, edad, sexo" listener="#{estudioController.findPacienteByHistoriaClinicaListener}" />
+                        </p:inputText>            
+
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" size="#{bundle.InputSize}" value="#{estudioController.selected.paciente.nombre}" title="#{bundle.CreatePacienteTitle_nombre}" required="true"
+                                     requiredMessage="#{bundle.CreatePacienteRequiredMessage_nombre}"
+                                     disabled="#{not empty estudioController.selected.paciente.idPaciente}"/>
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" size="#{bundle.InputSize}" value="#{estudioController.selected.paciente.apellidos}" title="#{bundle.CreatePacienteTitle_apellidos}" required="true" 
+                                     requiredMessage="#{bundle.CreatePacienteRequiredMessage_apellidos}"
+                                     disabled="#{not empty estudioController.selected.paciente.idPaciente}"/>
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_edad}" for="edad" />
+                        <p:inputText id="edad" size="#{bundle.InputSize}" value="#{estudioController.selected.paciente.edad}" title="#{bundle.CreatePacienteTitle_edad}" required="true" 
+                                     requiredMessage="#{bundle.CreatePacienteRequiredMessage_edad}"
+                                     disabled="#{not empty estudioController.selected.paciente.idPaciente}"/>
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_sexo}" for="sexo" />
+                        <p:selectBooleanCheckbox id="sexo" value="#{estudioController.selected.paciente.sexo}" required="true" 
+                                                 requiredMessage="#{bundle.EditPacienteRequiredMessage_sexo}"
+                                                 disabled="#{not empty estudioController.selected.paciente.idPaciente}"/>
+
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_especialidad}" for="especialidad" />
+                        <p:autoComplete id="especialidad" size="#{bundle.InputSize}" value="#{estudioController.selected.especialidad.nombre}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_especialidad}"
+                                        completeMethod="#{especialidadController.autoCompleteQuery}" />
+
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_medico}" for="medico" />
+                        <p:autoComplete id="medico" size="#{bundle.InputSize}" value="#{estudioController.selected.medico.nombreApellidos}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_medico}"
+                                        completeMethod="#{medicoController.autoCompleteQuery}" />
+
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_procedencia}" for="procedencia" />                        
+                        <p:autoComplete id="procedencia" size="#{bundle.InputSize}" value="#{estudioController.selected.procedencia.nombre}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_procedencia}"
+                                        completeMethod="#{procedenciaController.autoCompleteQuery}" />
+
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_tipoEstudio}" for="tipoEstudio" />
+                        <p:autoComplete id="tipoEstudio" size="#{bundle.InputSize}" value="#{estudioController.selected.tipoEstudio.nombre}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_tipoEstudio}"
+                                        completeMethod="#{tipoEstudioController.autoCompleteQuery}" />                        
+
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_impresionDiagnostica}" for="impresionDiagnostica" />
+                        <p:inputTextarea rows="4" cols="60" id="impresionDiagnostica" value="#{estudioController.selected.impresionDiagnostica}" 
+                                         title="#{bundle.CreateEstudioTitle_impresionDiagnostica}" required="true" 
+                                         requiredMessage="#{bundle.CreateEstudioRequiredMessage_impresionDiagnostica}"/>
+
+                        
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_diagnostico}" for="diagnostico" />
+                        <p:autoComplete id="diagnostico" size="#{bundle.InputSize}" value="#{estudioController.selected.diagnostico.nombre}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_diagnostico}"
+                                        completeMethod="#{diagnosticoController.autoCompleteQuery}" />
+
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_positivo}" for="positivo" />
+                        <p:selectBooleanCheckbox id="positivo" value="#{estudioController.selected.positivo}" required="true" 
+                                                 requiredMessage="#{bundle.EditEstudioRequiredMessage_positivo}"/>
+
+                    </p:panelGrid>                    
+
+                    <p:commandButton action="#{estudioController.actionCreate}" value="#{bundle.Save}" ajax="false"/>                                        
+                    <p:commandButton immediate="true" action="#{estudioController.actionCancel}" value="#{bundle.Cancel}" />
+
+                </h:panelGroup>
+            </h:form>
+
+        </ui:define>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:utils="http://xmlns.jcp.org/jsf/composite/utils">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEstudioTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+
+            <utils:menu-crud id="MenuCrud" controller="#{estudioController}" 
+                             disabledValue="#{estudioController.selected.idEstudio}"
+                             datalist=":EstudioListForm:datalist"/>
+
+            <h:form id="EstudioListForm">
+
+                <utils:context-menu-crud id="ContextMenu" controller="#{estudioController}" 
+                                         disabledValue="#{estudioController.selected.idEstudio}"
+                                         datalist=":EstudioListForm:datalist"/>
+
+                <p:panel header="#{bundle.ListEstudioTitle}">
+                    <p:dataTable id="datalist" value="#{estudioController.items}" var="item"
+                                 selectionMode="single" selection="#{estudioController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idEstudio}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 reflow="true"
+                                 widgetVar="dtable"
+                                 emptyMessage="#{bundle.TableQueryNotFound}" 
+                                 filteredValue="#{estudioController.filtered}">
+
+                        <p:ajax event="rowSelect"   update=":MenuCrud:MenuForm, :EstudioListForm:ContextMenu:context-menu"/>
+                        <p:ajax event="rowUnselect" update=":MenuCrud:MenuForm, :EstudioListForm:ContextMenu:context-menu"/>
+
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4"></div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4"></div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                        <h:outputText value="Search all fields:" />
+                                        <p:inputText id="globalFilter" onkeyup="PF('dtable').filter()" placeholder="Enter keyword" style=""/>    
+                                    </div>
+                                </div>
+                            </p:outputPanel>
+                        </f:facet>
+
+                        <p:column filterBy="#{item.fecha}" sortBy="#{item.fecha}"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstudioTitle_fecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column filterBy="#{item.rmiId}" sortBy="#{item.rmiId}"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstudioTitle_rmiId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.rmiId}"/>
+                        </p:column>
+
+
+                        <p:column filterBy="#{item.paciente.nombre} #{item.paciente.apellidos}" 
+                                  sortBy="#{item.paciente.nombre} #{item.paciente.apellidos}"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstudioTitle_paciente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paciente.nombre} #{item.paciente.apellidos}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{item.paciente.edad}" sortBy="#{item.paciente.edad}"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CreatePacienteTitle_edad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paciente.edad}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{item.paciente.sexo}" sortBy="#{item.paciente.sexo}" filterMatchMode="equals">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.CreatePacienteTitle_sexo}"/>
+                            </f:facet>
+                            <f:facet name="filter">
+                                <p:selectOneButton onchange="PF('dtable').filter()">
+                                    <f:converter converterId="javax.faces.Boolean" />
+                                    <f:selectItem itemLabel="Todos" itemValue="" />
+                                    <f:selectItem itemLabel="M" itemValue="true" />
+                                    <f:selectItem itemLabel="F" itemValue="false" />
+                                </p:selectOneButton>
+                            </f:facet>
+                            <h:outputLabel value="#{bundle.CreatePacienteTitle_sexo_male}" rendered="#{item.paciente.sexo eq true}" /> 
+                            <h:outputLabel value="#{bundle.CreatePacienteTitle_sexo_female}" rendered="#{item.paciente.sexo eq false}" />                            
+                        </p:column>
+
+                        <p:column filterBy="#{item.paciente.historiaClinica}" sortBy="#{item.paciente.historiaClinica}"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.EditPacienteTitle_historiaClinica}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paciente.historiaClinica}"/>
+                        </p:column>
+
+
+                        <p:column filterBy="#{item.tipoEstudio.nombre}" sortBy="#{item.tipoEstudio.nombre}"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstudioTitle_tipoEstudio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoEstudio.nombre}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{item.diagnostico.nombre}" sortBy="#{item.diagnostico.nombre}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstudioTitle_diagnostico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.diagnostico.nombre}"/>
+                        </p:column> 
+
+                        <p:column filterBy="#{item.positivo}" sortBy="#{item.positivo}"  filterMatchMode="equals">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEstudioTitle_positivo}"/>
+                            </f:facet>
+                            <f:facet name="filter">
+                                <p:selectOneButton onchange="PF('dtable').filter()">
+                                    <f:converter converterId="javax.faces.Boolean" />
+                                    <f:selectItem itemLabel="Todos" itemValue="" />
+                                    <f:selectItem itemLabel="Si" itemValue="true" />
+                                    <f:selectItem itemLabel="No" itemValue="false" />
+                                </p:selectOneButton>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.positivo}" disabled="true"/>
+                        </p:column>   
+
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

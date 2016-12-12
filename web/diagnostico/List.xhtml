@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDiagnosticoTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+
+            <h:form id="MenuForm">  
+
+                <p:menubar>
+                    <p:menuitem id="createButton" icon="ui-icon-plus" value="#{bundle.Create}" action="#{diagnosticoController.actionPrepareCreate}" ajax="false"/>
+
+                    <p:menuitem id="viewButton" icon="ui-icon-search" value="#{bundle.View}" disabled="#{empty diagnosticoController.selected.idDiagnostico}" 
+                                action="#{diagnosticoController.actionView}" ajax="false"/>
+
+                    <p:menuitem id="editButton" icon="ui-icon-pencil" value="#{bundle.Edit}" disabled="#{empty diagnosticoController.selected.idDiagnostico}"
+                                action="#{diagnosticoController.actionPrepareEdit}" ajax="false"/>
+
+
+
+                    <p:menuitem id="deleteButton" icon="ui-icon-trash" value="#{bundle.Delete}" oncomplete="PF('confimDialog').show()"
+                                disabled="#{empty diagnosticoController.selected.idDiagnostico}" />
+
+
+                </p:menubar>
+            </h:form>
+
+            <p:dialog widgetVar="confimDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ConfirmDialogHeader}">
+                <h:form >
+                    <h:panelGroup>
+                        <p:panelGrid columns="1" rendered="#{diagnosticoController.selected != null}">
+                            <h:outputLabel value="#{bundle.ConfirmDialogBody}" />  
+                        </p:panelGrid>
+
+                        <p:commandButton id="confirm" value="#{bundle.ConfirmDialogYesButton}" update=":growl :DiagnosticoListForm:datalist :MenuForm" oncomplete="PF('confimDialog').hide()" 
+                                         actionListener="#{diagnosticoController.destroy}" />  
+                        <p:commandButton id="decline" value="#{bundle.ConfirmDialogNoButton}" onclick="PF('confimDialog').hide()" type="button" />  
+                    </h:panelGroup>
+                </h:form>
+            </p:dialog>
+
+            <h:form id="DiagnosticoListForm">
+                <p:panel header="#{bundle.ListDiagnosticoTitle}">
+                    <p:dataTable id="datalist" value="#{diagnosticoController.items}" var="item"
+                                 selectionMode="single" selection="#{diagnosticoController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idDiagnostico}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update=":MenuForm"/>
+                        <p:ajax event="rowUnselect" update=":MenuForm"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDiagnosticoTitle_idDiagnostico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDiagnostico}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDiagnosticoTitle_nombre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDiagnosticoTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

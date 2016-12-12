@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Facelet Title"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            Hello from Facelets
+            <br />
+            <h:link outcome="/diagnostico/List" value="Show All Diagnostico Items"/>
+            <br />
+            <h:link outcome="/especialidad/List" value="Show All Especialidad Items"/>
+            <br />
+            <br />
+            <h4><h:link outcome="/estudio/List" value="Show All Estudio Items"/></h4>
+            <br />
+            <br />
+            <h:link outcome="/medico/List" value="Show All Medico Items"/>
+            <br />
+            <h:link outcome="/paciente/List" value="Show All Paciente Items"/>
+            <br />
+            <h:link outcome="/procedencia/List" value="Show All Procedencia Items"/>
+            <br />
+            <h:link outcome="/rol/List" value="Show All Rol Items"/>
+            <br />
+            <h:link outcome="/tipoEstudio/List" value="Show All TipoEstudio Items"/>
+            <br />
+            <h:link outcome="/usuario/List" value="Show All Usuario Items"/>
+        </ui:define>
+
+        <!--        <ui:define name="footer">
+                    DIMELOOOO
+                </ui:define>-->
+
+    </ui:composition>
+</html>
+

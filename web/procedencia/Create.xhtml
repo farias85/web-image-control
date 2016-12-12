@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProcedenciaCreateDlg" widgetVar="ProcedenciaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProcedenciaTitle}">
+            <h:form id="ProcedenciaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{procedenciaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateProcedenciaLabel_idProcedencia}" for="idProcedencia" />
+                        <p:inputText id="idProcedencia" value="#{procedenciaController.selected.idProcedencia}" title="#{bundle.CreateProcedenciaTitle_idProcedencia}" required="true" requiredMessage="#{bundle.CreateProcedenciaRequiredMessage_idProcedencia}"/>
+                        <p:outputLabel value="#{bundle.CreateProcedenciaLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{procedenciaController.selected.nombre}" title="#{bundle.CreateProcedenciaTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProcedenciaRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.CreateProcedenciaLabel_descripcion}" for="descripcion" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{procedenciaController.selected.descripcion}" title="#{bundle.CreateProcedenciaTitle_descripcion}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{procedenciaController.create}" value="#{bundle.Save}" update="display,:ProcedenciaListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProcedenciaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProcedenciaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

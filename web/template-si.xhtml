@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"	
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+
+        <!-- Template CSS -->
+        <h:outputStylesheet library="css" name="animate.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="flexslider.css"/>
+        <h:outputStylesheet library="css" name="owl.carousel.css"/>
+        <h:outputStylesheet library="css" name="prettyPhoto.css"/>
+        <h:outputStylesheet library="css" name="style.css"/>
+
+        <h:outputScript library="js" name="jsfcrud.js"/>
+
+        <!-- Template JS -->
+        <h:outputScript library="js" name="animate.js"/>
+        <h:outputScript library="js" name="bootstrap.min.js"/>
+        <h:outputScript library="js" name="jquery.BlackAndWhite.js"/>
+        <h:outputScript library="js" name="jquery.flexslider-min.js"/>
+        <!--<h:outputScript library="js" name="jquery.min.js"/>-->
+        <h:outputScript library="js" name="jquery.nicescroll.min.js"/>
+        <h:outputScript library="js" name="jquery.prettyPhoto.js"/>
+        <h:outputScript library="js" name="myscript.js"/>
+        <h:outputScript library="js" name="owl.carousel.js"/>
+        <h:outputScript library="js" name="superfish.min.js"/>
+
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true">
+            
+            <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
+                <h:form id="menuForm">
+                    <p:menubar>
+                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                        <p:submenu label="#{bundle.Maintenance}">
+                            <p:menuitem value="Diagnostico" outcome="/diagnostico/List.xhtml" />
+                            <p:menuitem value="Especialidad" outcome="/especialidad/List.xhtml" />
+                            <p:menuitem value="Estudio" outcome="/estudio/List.xhtml" />
+                            <p:menuitem value="Medico" outcome="/medico/List.xhtml" />
+                            <p:menuitem value="Paciente" outcome="/paciente/List.xhtml" />
+                            <p:menuitem value="Procedencia" outcome="/procedencia/List.xhtml" />
+                            <p:menuitem value="Rol" outcome="/rol/List.xhtml" />
+                            <p:menuitem value="TipoEstudio" outcome="/tipoEstudio/List.xhtml" />
+                            <p:menuitem value="Usuario" outcome="/usuario/List.xhtml" />
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+            </p:layoutUnit>
+
+<!--            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>-->
+
+            <p:layoutUnit position="center">
+                <!-- PRELOADER -->
+                <h:graphicImage library="images" name="preloader.gif" id="preloader"/>
+                <!--<img id="preloader" src="images/preloader.gif" alt="" />-->
+                <!-- //PRELOADER -->
+                <div class="preloader_hide">
+
+                    <!-- PAGE -->
+                    <div id="page" class="single_page">
+
+                        <!-- HEADER -->
+                        <header>
+
+                            <!-- MENU BLOCK -->
+                            <div class="menu_block">
+
+                                <!-- CONTAINER -->
+                                <div class="container clearfix">
+
+                                    <!-- LOGO -->
+                                    <div class="logo pull-left">
+                                        <a href="index.html" ><span class="b1">w</span><span class="b2">h</span><span class="b3">i</span><span class="b4">t</span><span class="b5">e</span></a>
+                                    </div><!-- //LOGO -->
+
+                                    <!-- SEARCH FORM -->
+                                    <div id="search-form" class="pull-right">
+                                        <form method="get" action="#">
+                                            <input type="text" name="Search" value="Search" onFocus="if (this.value === 'Search')
+                                                        this.value = '';" onBlur="if (this.value === '')
+                                                                    this.value = 'Search';" />
+                                        </form>
+                                    </div><!-- SEARCH FORM -->
+
+                                    <!-- MENU -->
+                                    <div class="pull-right">
+                                        <nav class="navmenu center">
+                                            <ul>
+                                                <li class="first scroll_btn"><a href="index.html">Home</a></li>
+                                                <li class="scroll_btn"><a href="index.html#about">About Us</a></li>
+                                                <li class="scroll_btn"><a href="index.html#projects">Projects</a></li>
+                                                <li class="scroll_btn"><a href="index.html#team">Team</a></li>
+                                                <li class="scroll_btn"><a href="index.html#news">News</a></li>
+                                                <li class="scroll_btn last"><a href="index.html#contacts">Contacts</a></li>
+                                                <li class="sub-menu active">
+                                                    <a href="javascript:void(0);">Pages</a>
+                                                    <ul>
+                                                        <li><a href="blog.html">Blog</a></li>
+                                                        <li class="active"><a href="blog-post.html">Blog Post</a></li>
+                                                        <li><a href="portfolio-post.html">Portfolio Single Work</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div><!-- //MENU -->
+                                </div><!-- //MENU BLOCK -->
+                            </div><!-- //CONTAINER -->
+                        </header><!-- //HEADER -->
+
+
+                        <!-- BREADCRUMBS -->
+                        <section class="breadcrumbs_block clearfix parallax">
+                            <div class="container center">
+                                <h2><b>The</b> Blog</h2>
+                                <p>Publication of the latest news, articles, and free apps.</p>
+                            </div>
+                        </section><!-- //BREADCRUMBS -->
+
+
+                        <!-- BLOG -->
+                        <section id="blog">
+
+                            <!-- CONTAINER -->
+                            <div class="container">
+
+                                <!-- ROW -->
+                                <div class="row">
+
+                                    <!-- BLOG BLOCK -->
+                                    <div class="blog_block col-lg-9 col-md-9 padbot50">
+
+                                        <!-- SINGLE BLOG POST -->
+                                        <ui:insert name="body"/>
+                                    </div><!-- //BLOG BLOCK -->
+
+
+                                    <!-- SIDEBAR -->
+                                    <div class="sidebar col-lg-3 col-md-3 padbot50">
+
+                                        <!-- META WIDGET -->
+                                        <div class="sidepanel widget_meta">
+                                            <ul>
+                                                <li><a href="javascript:void(0);" >Advertising</a></li>
+                                                <li><a href="javascript:void(0);" >Fashion Trends</a></li>
+                                                <li><a href="javascript:void(0);" >Media Projects</a></li>
+                                                <li><a href="javascript:void(0);" >Small Business</a></li>
+                                                <li><a href="javascript:void(0);" >Creative</a></li>
+                                            </ul>
+                                        </div><!-- //META WIDGET -->
+
+                                        <hr></hr>
+
+                                            <!-- TEXT WIDGET -->
+                                            <div class="sidepanel widget_text">
+                                                <h3><b>About</b> Blog</h3>
+                                                <p>I must admit this particular defense set me on edge a little bit, for two reasons. The first is that she’s being held to a completely different standard than male politicians are held to.</p>
+                                            </div><!-- //TEXT WIDGET -->
+                                    </div><!-- //SIDEBAR -->
+                                </div><!-- //ROW -->
+                            </div><!-- //CONTAINER -->
+                        </section><!-- //BLOG -->
+                    </div><!-- //PAGE -->
+
+
+                    <!-- CONTACTS -->
+                    <section id="contacts">
+                    </section><!-- //CONTACTS -->
+
+                    <!-- FOOTER -->
+                    <footer>
+
+                        <!-- CONTAINER -->
+                        <div class="container">
+
+                            <!-- ROW -->
+                            <div class="row" data-appear-top-offset="-200" data-animated="fadeInUp">
+
+                                <div class="col-lg-4 col-md-4 col-sm-6 padbot30">
+                                    <h4><b>Featured</b> posts</h4>                            
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-sm-6 padbot30 foot_about_block">
+                                    <h4><b>About</b> us</h4>                            
+                                </div>
+
+                                <div class="respond_clear"></div>
+
+                                <div class="col-lg-4 col-md-4 padbot30">
+                                    <h4><b>Contacts</b> Us</h4>
+                                </div>
+                            </div><!-- //ROW -->
+                            <div class="row copyright">
+                                <div class="col-lg-12 text-center">
+
+                                    <p>Crafted with <i class="fa fa-heart"></i>, <a href="http://designscrazed.org/" >Designscrazed</a></p>
+                                </div>
+
+                            </div><!-- //ROW -->
+                        </div><!-- //CONTAINER -->
+                    </footer><!-- //FOOTER -->
+
+                </div>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

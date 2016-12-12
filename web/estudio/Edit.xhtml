@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEstudioTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body"> 
+
+
+            <h:form id="EstudioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{estudioController.selected != null}">                       
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{estudioController.selected.fecha}" 
+                                    title="#{bundle.EditEstudioTitle_fecha}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_fecha}" 
+                                    showOn="button" showButtonPanel="true" navigator="true"/>
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_rmiId}" for="rmiId" />
+                        <p:inputText id="rmiId" value="#{estudioController.selected.rmiId}" title="#{bundle.CreateEstudioTitle_rmiId}" 
+                                     required="true" requiredMessage="#{bundle.CreateEstudioRequiredMessage_rmiId}"/>                        
+
+
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_historiaClinica}" for="historiaClinica" />
+                        <p:inputText id="historiaClinica" value="#{estudioController.selected.paciente.historiaClinica}" 
+                                     title="#{bundle.CreatePacienteTitle_historiaClinica}" required="true" 
+                                     requiredMessage="#{bundle.CreatePacienteRequiredMessage_historiaClinica}">
+                            <p:ajax event="blur" update="nombre, apellidos, edad, sexo" listener="#{estudioController.findPacienteByHistoriaClinicaListener}" />
+                        </p:inputText>                        
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{estudioController.selected.paciente.nombre}" title="#{bundle.CreatePacienteTitle_nombre}" required="true"
+                                     requiredMessage="#{bundle.CreatePacienteRequiredMessage_nombre}"
+                                     disabled="#{not empty estudioController.selected.paciente.idPaciente}"/>
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{estudioController.selected.paciente.apellidos}" title="#{bundle.CreatePacienteTitle_apellidos}" required="true" 
+                                     requiredMessage="#{bundle.CreatePacienteRequiredMessage_apellidos}"
+                                     disabled="#{not empty estudioController.selected.paciente.idPaciente}"/>
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_edad}" for="edad" />
+                        <p:inputText id="edad" value="#{estudioController.selected.paciente.edad}" title="#{bundle.CreatePacienteTitle_edad}" required="true" 
+                                     requiredMessage="#{bundle.CreatePacienteRequiredMessage_edad}"
+                                     disabled="#{not empty estudioController.selected.paciente.idPaciente}"/>
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_sexo}" for="sexo" />
+                        <p:selectBooleanCheckbox id="sexo" value="#{estudioController.selected.paciente.sexo}" required="true" 
+                                                 requiredMessage="#{bundle.EditPacienteRequiredMessage_sexo}"
+                                                 disabled="#{not empty estudioController.selected.paciente.idPaciente}"/>
+
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_especialidad}" for="especialidad" />
+                        <p:selectOneMenu id="especialidad" value="#{estudioController.selected.especialidad}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_especialidad}">
+                            <f:selectItems value="#{especialidadController.itemsAvailableSelectOne}"
+                                           var="especialidadItem"
+                                           itemValue="#{especialidadItem}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_medico}" for="medico" />
+                        <p:selectOneMenu id="medico" value="#{estudioController.selected.medico}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_medico}">
+                            <f:selectItems value="#{medicoController.itemsAvailableSelectOne}"
+                                           var="medicoItem"
+                                           itemValue="#{medicoItem}"/>
+                        </p:selectOneMenu>
+
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_procedencia}" for="procedencia" />
+                        <p:selectOneMenu id="procedencia" value="#{estudioController.selected.procedencia}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_procedencia}">
+                            <f:selectItems value="#{procedenciaController.itemsAvailableSelectOne}"
+                                           var="procedenciaItem"
+                                           itemValue="#{procedenciaItem}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_tipoEstudio}" for="tipoEstudio" />
+                        <p:selectOneMenu id="tipoEstudio" value="#{estudioController.selected.tipoEstudio}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_tipoEstudio}">
+                            <f:selectItems value="#{tipoEstudioController.itemsAvailableSelectOne}"
+                                           var="tipoEstudioItem"
+                                           itemValue="#{tipoEstudioItem}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_impresionDiagnostica}" for="impresionDiagnostica" />
+                        <p:inputTextarea rows="4" cols="60" id="impresionDiagnostica" value="#{estudioController.selected.impresionDiagnostica}" 
+                                         title="#{bundle.CreateEstudioTitle_impresionDiagnostica}" required="true" 
+                                         requiredMessage="#{bundle.CreateEstudioRequiredMessage_impresionDiagnostica}"/>
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_diagnostico}" for="diagnostico" />
+                        <p:selectOneMenu id="diagnostico" value="#{estudioController.selected.diagnostico}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_diagnostico}">
+                            <f:selectItems value="#{diagnosticoController.itemsAvailableSelectOne}"
+                                           var="diagnosticoItem"
+                                           itemValue="#{diagnosticoItem}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_positivo}" for="positivo" />
+                        <p:selectBooleanCheckbox id="positivo" value="#{estudioController.selected.positivo}" required="true" 
+                                                 requiredMessage="#{bundle.EditEstudioRequiredMessage_positivo}"/>
+
+                    </p:panelGrid>
+
+                    <p:commandButton action="#{estudioController.actionEdit}" value="#{bundle.Save}" ajax="false"/>
+                    <p:commandButton immediate="true" action="#{estudioController.actionCancel}" value="#{bundle.Cancel}" />
+                </h:panelGroup>
+            </h:form>
+
+        </ui:define>
+
+    </ui:composition>
+</html>

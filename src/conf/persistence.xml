@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="wicPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>cu.cenpis.gps.wic.entity.TipoEstudio_1</class>
+    <class>cu.cenpis.gps.wic.entity.Paciente_1</class>
+    <class>cu.cenpis.gps.wic.entity.Especialidad_1</class>
+    <class>cu.cenpis.gps.wic.entity.Diagnostico_1</class>
+    <class>cu.cenpis.gps.wic.entity.Medico_1</class>
+    <class>cu.cenpis.gps.wic.entity.Procedencia_1</class>
+    <class>cu.cenpis.gps.wic.entity.Usuario_1</class>
+    <class>cu.cenpis.gps.wic.entity.Rol_1</class>
+    <class>cu.cenpis.gps.wic.entity.Estudio_1</class>
+    <class>cu.cenpis.gps.wic.data.entity.Usuario</class>
+    <class>cu.cenpis.gps.wic.data.entity.Estudio</class>
+    <class>cu.cenpis.gps.wic.data.entity.Medico</class>
+    <class>cu.cenpis.gps.wic.data.entity.Paciente</class>
+    <class>cu.cenpis.gps.wic.data.entity.Rol</class>
+    <class>cu.cenpis.gps.wic.data.entity.Diagnostico</class>
+    <class>cu.cenpis.gps.wic.data.entity.Especialidad</class>
+    <class>cu.cenpis.gps.wic.data.entity.TipoEstudio</class>
+    <class>cu.cenpis.gps.wic.data.entity.Procedencia</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/wic?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+    </properties>
+  </persistence-unit>
+</persistence>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EstudioEditDlg" widgetVar="EstudioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEstudioTitle}">
+            <h:form id="EstudioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{estudioController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEstudioLabel_idEstudio}" for="idEstudio" />
+                        <p:inputText id="idEstudio" value="#{estudioController.selected.idEstudio}" title="#{bundle.EditEstudioTitle_idEstudio}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_idEstudio}"/>
+                        <p:outputLabel value="#{bundle.EditEstudioLabel_rmiId}" for="rmiId" />
+                        <p:inputText id="rmiId" value="#{estudioController.selected.rmiId}" title="#{bundle.EditEstudioTitle_rmiId}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_rmiId}"/>
+                        <p:outputLabel value="#{bundle.EditEstudioLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{estudioController.selected.fecha}" title="#{bundle.EditEstudioTitle_fecha}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditEstudioLabel_impresionDiagnostica}" for="impresionDiagnostica" />
+                        <p:inputTextarea rows="4" cols="30" id="impresionDiagnostica" value="#{estudioController.selected.impresionDiagnostica}" title="#{bundle.EditEstudioTitle_impresionDiagnostica}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_impresionDiagnostica}"/>
+                        <p:outputLabel value="#{bundle.EditEstudioLabel_positivo}" for="positivo" />
+                        <p:selectBooleanCheckbox id="positivo" value="#{estudioController.selected.positivo}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_positivo}"/>
+                        <p:outputLabel value="#{bundle.EditEstudioLabel_diagnostico}" for="diagnostico" />
+                        <p:selectOneMenu id="diagnostico" value="#{estudioController.selected.diagnostico}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_diagnostico}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{diagnosticoController.itemsAvailableSelectOne}"
+                                           var="diagnosticoItem"
+                                           itemValue="#{diagnosticoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEstudioLabel_especialidad}" for="especialidad" />
+                        <p:selectOneMenu id="especialidad" value="#{estudioController.selected.especialidad}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_especialidad}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{especialidadController.itemsAvailableSelectOne}"
+                                           var="especialidadItem"
+                                           itemValue="#{especialidadItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEstudioLabel_medico}" for="medico" />
+                        <p:selectOneMenu id="medico" value="#{estudioController.selected.medico}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_medico}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{medicoController.itemsAvailableSelectOne}"
+                                           var="medicoItem"
+                                           itemValue="#{medicoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEstudioLabel_paciente}" for="paciente" />
+                        <p:selectOneMenu id="paciente" value="#{estudioController.selected.paciente}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_paciente}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{pacienteController.itemsAvailableSelectOne}"
+                                           var="pacienteItem"
+                                           itemValue="#{pacienteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEstudioLabel_procedencia}" for="procedencia" />
+                        <p:selectOneMenu id="procedencia" value="#{estudioController.selected.procedencia}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_procedencia}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{procedenciaController.itemsAvailableSelectOne}"
+                                           var="procedenciaItem"
+                                           itemValue="#{procedenciaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEstudioLabel_tipoEstudio}" for="tipoEstudio" />
+                        <p:selectOneMenu id="tipoEstudio" value="#{estudioController.selected.tipoEstudio}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_tipoEstudio}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoEstudioController.itemsAvailableSelectOne}"
+                                           var="tipoEstudioItem"
+                                           itemValue="#{tipoEstudioItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEstudioLabel_usuario}" for="usuario" />
+                        <p:selectOneMenu id="usuario" value="#{estudioController.selected.usuario}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_usuario}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="usuarioItem"
+                                           itemValue="#{usuarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{estudioController.update}" value="#{bundle.Save}" update="display,:EstudioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EstudioEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EstudioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

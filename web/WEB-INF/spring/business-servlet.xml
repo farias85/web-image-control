@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="diagnosticoService" class="cu.cenpis.gps.wic.data.service.impl.DiagnosticoServiceImpl" />
+
+    <bean id="diagnosticoController" class="cu.cenpis.gps.wic.controller.DiagnosticoController" scope="session">
+        <property name="diagnosticoService">
+            <ref bean="diagnosticoService" />
+        </property>
+    </bean>
+
+
+    <bean id="especialidadService" class="cu.cenpis.gps.wic.data.service.impl.EspecialidadServiceImpl" />
+
+    <bean id="especialidadController" class="cu.cenpis.gps.wic.controller.EspecialidadController" scope="session">
+        <property name="especialidadService">
+            <ref bean="especialidadService" />
+        </property>
+    </bean>
+
+
+    <bean id="estudioService" class="cu.cenpis.gps.wic.data.service.impl.EstudioServiceImpl" />
+
+    <bean id="estudioController" class="cu.cenpis.gps.wic.controller.EstudioController" scope="session">
+        <property name="estudioService">
+            <ref bean="estudioService" />
+        </property>
+    </bean>
+
+
+    <bean id="medicoService" class="cu.cenpis.gps.wic.data.service.impl.MedicoServiceImpl" />
+
+    <bean id="medicoController" class="cu.cenpis.gps.wic.controller.MedicoController" scope="session">
+        <property name="medicoService">
+            <ref bean="medicoService" />
+        </property>
+    </bean>
+
+
+    <bean id="pacienteService" class="cu.cenpis.gps.wic.data.service.impl.PacienteServiceImpl" />
+
+    <bean id="pacienteController" class="cu.cenpis.gps.wic.controller.PacienteController" scope="session">
+        <property name="pacienteService">
+            <ref bean="pacienteService" />
+        </property>
+    </bean>
+
+
+    <bean id="procedenciaService" class="cu.cenpis.gps.wic.data.service.impl.ProcedenciaServiceImpl" />
+
+    <bean id="procedenciaController" class="cu.cenpis.gps.wic.controller.ProcedenciaController" scope="session">
+        <property name="procedenciaService">
+            <ref bean="procedenciaService" />
+        </property>
+    </bean>
+
+
+    <bean id="rolService" class="cu.cenpis.gps.wic.data.service.impl.RolServiceImpl" />
+
+    <bean id="rolController" class="cu.cenpis.gps.wic.controller.RolController" scope="session">
+        <property name="rolService">
+            <ref bean="rolService" />
+        </property>
+    </bean>
+
+
+    <bean id="tipoEstudioService" class="cu.cenpis.gps.wic.data.service.impl.TipoEstudioServiceImpl" />
+
+    <bean id="tipoEstudioController" class="cu.cenpis.gps.wic.controller.TipoEstudioController" scope="session">
+        <property name="tipoEstudioService">
+            <ref bean="tipoEstudioService" />
+        </property>
+    </bean>
+
+
+    <bean id="usuarioService" class="cu.cenpis.gps.wic.data.service.impl.UsuarioServiceImpl" />
+
+    <bean id="usuarioController" class="cu.cenpis.gps.wic.controller.UsuarioController" scope="session">
+        <property name="usuarioService">
+            <ref bean="usuarioService" />
+        </property>
+    </bean>
+
+    <bean id="menuBacking" class="cu.cenpis.gps.wic.util.MenuBacking" scope="session"/>
+
+</beans>
