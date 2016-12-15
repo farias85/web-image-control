@@ -156,18 +156,27 @@ public class Main1 {
 //        for (Diagnostico list1 : list) {
 //            
 //        }
-        Usuario usuario = usuarioService.find(14L);
-        List<Rol> all = rolService.findAll();
+        Usuario usuario = usuarioService.find(23L);
+        //List<Rol> all = rolService.findAll();
         System.out.println("ESTOS SON LOS ROLES...");
         for (Rol value : usuario.getRolList()) {
             System.out.println(value.getNombre());
         }
         
-        List<String> ll = getItemsAsStringListNotIn(usuario.getRolList(), all);
-        System.out.println("ESTAS ES LA DIFERENCIA...");
-        for (String ll1 : ll) {
-            System.out.println(ll1);
-        }
+//        List<Rol> rl = usuario.getRolList();
+//        //List<Rol> rlCopy = new ArrayList<>(rl);
+//        List<Rol> rlCopy = new ArrayList<>();
+//        for (Rol r : rl) {
+//            rlCopy.add(r);
+//        }
+//        usuario.setRolList(rlCopy);
+//        usuarioService.edit(usuario);
+        
+//        List<String> ll = getItemsAsStringListNotIn(usuario.getRolList(), all);
+//        System.out.println("ESTAS ES LA DIFERENCIA...");
+//        for (String ll1 : ll) {
+//            System.out.println(ll1);
+//        }
     }
 
     public static List<String> getItemsAsStringListNotIn(List<Rol> pitems, List<Rol> all) {

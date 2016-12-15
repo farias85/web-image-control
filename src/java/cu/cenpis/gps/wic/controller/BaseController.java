@@ -247,6 +247,24 @@ public abstract class BaseController<T, I> implements Serializable, BaseConverte
         return result;
     }
 
+    public List<T> autoCompleteQueryItems(String query) {
+
+        List<T> result = new ArrayList<>();
+        try {
+            Method method = itemClass.getMethod(queryMethod);
+            for (int i = 0; i < getItems().size(); i++) {
+                T item = getItems().get(i);
+                String returnValue = String.valueOf(method.invoke(item));
+                if (Util.toSlug(returnValue).contains(Util.toSlug(query))) {
+                    result.add(item);
+                }
+            }
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+
     public List<String> getItemsAsStringList(String methodStr) {
         List<T> pitems = getItems();
         return getItemsAsStringList(pitems, methodStr);
