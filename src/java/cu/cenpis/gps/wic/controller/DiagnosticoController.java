@@ -21,7 +21,6 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
 
     public DiagnosticoController() {
         super(Diagnostico.class);
-        setQueryMethod("getNombre");
     }
 
     @PostConstruct
@@ -43,8 +42,8 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
     @Override
     public void destroy() {
 
-        EstudioController estudioController = getController(EstudioController.class);
-
+        EstudioController estudioController = getController(EstudioController.class);        
+        
         //EstudioController estudioController = (EstudioController)findController(EstudioController.class);
         List<Estudio> list = diagnosticoService.findEstudiosByDiagnostico(selected);
         for (Estudio var : list) {

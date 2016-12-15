@@ -30,11 +30,13 @@
 
 
                         <p:outputLabel value="#{bundle.CreatePacienteLabel_historiaClinica}" for="historiaClinica" />
-                        <p:inputText id="historiaClinica" value="#{estudioController.selected.paciente.historiaClinica}" 
-                                     title="#{bundle.CreatePacienteTitle_historiaClinica}" required="true" 
-                                     requiredMessage="#{bundle.CreatePacienteRequiredMessage_historiaClinica}">
-                            <p:ajax event="blur" update="nombre, apellidos, edad, sexo" listener="#{estudioController.findPacienteByHistoriaClinicaListener}" />
-                        </p:inputText>                        
+                        <p:inplace id="historiaClinica" editor="true">
+                            <p:inputText value="#{estudioController.selected.paciente.historiaClinica}"  label="text"
+                                         title="#{bundle.CreatePacienteTitle_historiaClinica}" required="true" 
+                                         requiredMessage="#{bundle.CreatePacienteRequiredMessage_historiaClinica}">
+                                <p:ajax event="blur" update="nombre, apellidos, edad, sexo" listener="#{estudioController.findPacienteByHistoriaClinicaListener}" />
+                            </p:inputText>
+                        </p:inplace>
 
                         <p:outputLabel value="#{bundle.CreatePacienteLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{estudioController.selected.paciente.nombre}" title="#{bundle.CreatePacienteTitle_nombre}" required="true"

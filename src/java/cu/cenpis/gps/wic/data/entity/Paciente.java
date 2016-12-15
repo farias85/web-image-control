@@ -165,7 +165,7 @@ public class Paciente implements Serializable {
 
     @Override
     public String toString() {
-        return "cu.cenpis.gps.wic.entity.Paciente[ idPaciente=" + idPaciente + " ]";
+        return nombre + apellidos;
     }
 
 }

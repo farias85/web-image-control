@@ -43,7 +43,7 @@ public class PacienteController extends BaseController<Paciente, java.lang.Long>
         
         List<Estudio> list = pacienteService.findEstudiosByPaciente(selected);
         for (int i = 0; i < list.size(); i++) {
-            estudioController.updateItem(list.get(i));
+            estudioController.refreshItem(list.get(i));
         }
     }
 

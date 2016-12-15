@@ -5,6 +5,8 @@
  */
 package cu.cenpis.gps.wic.main;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
+import cu.cenpis.gps.wic.controller.BaseController;
 import cu.cenpis.gps.wic.controller.ProcedenciaController;
 import cu.cenpis.gps.wic.data.dao.DiagnosticoDAO;
 import cu.cenpis.gps.wic.data.entity.Diagnostico;
@@ -13,6 +15,7 @@ import cu.cenpis.gps.wic.data.entity.Estudio;
 import cu.cenpis.gps.wic.data.entity.Medico;
 import cu.cenpis.gps.wic.data.entity.Paciente;
 import cu.cenpis.gps.wic.data.entity.Procedencia;
+import cu.cenpis.gps.wic.data.entity.Rol;
 import cu.cenpis.gps.wic.data.entity.TipoEstudio;
 import cu.cenpis.gps.wic.data.entity.Usuario;
 import cu.cenpis.gps.wic.data.service.DiagnosticoService;
@@ -24,8 +27,14 @@ import cu.cenpis.gps.wic.data.service.ProcedenciaService;
 import cu.cenpis.gps.wic.data.service.RolService;
 import cu.cenpis.gps.wic.data.service.TipoEstudioService;
 import cu.cenpis.gps.wic.data.service.UsuarioService;
+import cu.cenpis.gps.wic.util.Util;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.Query;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -45,19 +54,19 @@ public class Main1 {
         ApplicationContext context = new ClassPathXmlApplicationContext("cu/cenpis/gps/wic/config/mvc-dispatcher-servlet.xml");
 
         DiagnosticoService diagnosticoService = (DiagnosticoService) context.getBean("diagnosticoServiceImpl");
-
-//        EspecialidadService especialidadService = (EspecialidadService) context.getBean("especialidadServiceImpl");
-//        EstudioService estudioService = (EstudioService) context.getBean("estudioServiceImpl");
-//        MedicoService medicoService = (MedicoService) context.getBean("medicoServiceImpl");
-//        PacienteService pacienteService = (PacienteService) context.getBean("pacienteServiceImpl");
-//        ProcedenciaService procedenciaService = (ProcedenciaService) context.getBean("procedenciaServiceImpl");
-//        RolService rolService = (RolService) context.getBean("rolServiceImpl");
-//        TipoEstudioService tipoEstudioService = (TipoEstudioService) context.getBean("tipoEstudioServiceImpl");
-//        UsuarioService usuarioService = (UsuarioService) context.getBean("usuarioServiceImpl");
+        EspecialidadService especialidadService = (EspecialidadService) context.getBean("especialidadServiceImpl");
+        EstudioService estudioService = (EstudioService) context.getBean("estudioServiceImpl");
+        MedicoService medicoService = (MedicoService) context.getBean("medicoServiceImpl");
+        PacienteService pacienteService = (PacienteService) context.getBean("pacienteServiceImpl");
+        ProcedenciaService procedenciaService = (ProcedenciaService) context.getBean("procedenciaServiceImpl");
+        RolService rolService = (RolService) context.getBean("rolServiceImpl");
+        TipoEstudioService tipoEstudioService = (TipoEstudioService) context.getBean("tipoEstudioServiceImpl");
+        UsuarioService usuarioService = (UsuarioService) context.getBean("usuarioServiceImpl");
         List<Diagnostico> list = diagnosticoService.findNamedQuery("Diagnostico.findAll");
-        for (Diagnostico d : list) {
-            System.err.println(d.getNombre());
-        }
+
+//        for (Diagnostico d : list) {
+//            System.err.println(d.getNombre());
+//        }
 //        Diagnostico diagnostico = new Diagnostico(1L, "Diagnostico1");
 //        diagnosticoService.create(diagnostico);
 //        Diagnostico diagnostico = diagnosticoService.find(1);
@@ -116,8 +125,76 @@ public class Main1 {
 //        for (Estudio var : list3) {
 //            System.err.println(var.getMedico().getNombreApellidos());
 //        }
-
-
+        //muchos a muchos insertando desde el usuario
+//        Rol rol1 = rolService.find(1L);
+//        Rol rol2 = rolService.find(2L);
+//        List<Rol> rolList = new ArrayList<>();
+//        rolList.add(rol1);
+//        rolList.add(rol2);
+//        
+//        Usuario usuario = usuarioService.find(1L);
+//        usuario.setRolList(rolList);
+//        usuarioService.edit(usuario);
+//        Usuario usuario = usuarioService.find(2L);
+//        Rol rol3 = rolService.find(3L);
+//        usuario.getRolList().add(rol3);
+//        usuarioService.edit(usuario);
+//        for (Rol value : usuario.getRolList()) {
+//            System.out.println(value.getNombre());
+//        }
+        //muchos a muchos insertando desde el rol (si pincha)
+//        Usuario u1 = usuarioService.find(1L);
+//        Usuario u2 = usuarioService.find(2L);
+//        List<Usuario> uList = new ArrayList<>();
+//        uList.add(u1);
+//        uList.add(u2);
+//
+//        Rol rol = rolService.find(1L);
+//        rol.setUsuarioList(uList);
+//        rolService.edit(rol);
+//        Rol rol = rolService.find(1L);
+//        for (Diagnostico list1 : list) {
+//            
+//        }
+        Usuario usuario = usuarioService.find(14L);
+        List<Rol> all = rolService.findAll();
+        System.out.println("ESTOS SON LOS ROLES...");
+        for (Rol value : usuario.getRolList()) {
+            System.out.println(value.getNombre());
+        }
+        
+        List<String> ll = getItemsAsStringListNotIn(usuario.getRolList(), all);
+        System.out.println("ESTAS ES LA DIFERENCIA...");
+        for (String ll1 : ll) {
+            System.out.println(ll1);
+        }
     }
 
+    public static List<String> getItemsAsStringListNotIn(List<Rol> pitems, List<Rol> all) {
+
+        List<String> result = new ArrayList<>();
+        List<Rol> resultRol = new ArrayList<>(all);
+        
+        try {
+            Method method = Rol.class.getMethod("getNombre");
+            for (Rol itemI : pitems) {                
+                String valueI = String.valueOf(method.invoke(itemI));
+                for (Rol itemJ : all) {
+                    String valueJ = String.valueOf(method.invoke(itemJ));
+                    if (Util.toSlug(valueI).equalsIgnoreCase(Util.toSlug(valueJ))) {
+                        resultRol.remove(itemJ);
+                        break;
+                    }
+                }
+            }
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for (Rol rr : resultRol) {
+            result.add(rr.getNombre());
+        }
+        
+        return result;
+    }
 }

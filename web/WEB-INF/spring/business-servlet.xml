@@ -10,6 +10,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
         <property name="diagnosticoService">
             <ref bean="diagnosticoService" />
         </property>
+        <property name="queryMethod" value="getNombre"/>
     </bean>
 
 
@@ -19,6 +20,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
         <property name="especialidadService">
             <ref bean="especialidadService" />
         </property>
+        <property name="queryMethod" value="getNombre"/>
     </bean>
 
 
@@ -37,6 +39,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
         <property name="medicoService">
             <ref bean="medicoService" />
         </property>
+        <property name="queryMethod" value="getNombreApellidos"/>
     </bean>
 
 
@@ -46,6 +49,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
         <property name="pacienteService">
             <ref bean="pacienteService" />
         </property>
+        <property name="queryMethod" value="getNombre"/>
     </bean>
 
 
@@ -55,6 +59,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
         <property name="procedenciaService">
             <ref bean="procedenciaService" />
         </property>
+        <property name="queryMethod" value="getNombre"/>
     </bean>
 
 
@@ -64,6 +69,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
         <property name="rolService">
             <ref bean="rolService" />
         </property>
+        <property name="queryMethod" value="getNombre"/>
     </bean>
 
 
@@ -73,6 +79,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
         <property name="tipoEstudioService">
             <ref bean="tipoEstudioService" />
         </property>
+        <property name="queryMethod" value="getNombre"/>
     </bean>
 
 
@@ -82,6 +89,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
         <property name="usuarioService">
             <ref bean="usuarioService" />
         </property>
+        <property name="queryMethod" value="getEmail"/>
     </bean>
 
     <bean id="menuBacking" class="cu.cenpis.gps.wic.util.MenuBacking" scope="session"/>

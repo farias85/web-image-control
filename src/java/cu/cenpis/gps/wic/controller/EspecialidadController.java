@@ -19,7 +19,6 @@ public class EspecialidadController extends BaseController<Especialidad, java.la
 
     public EspecialidadController() {
         super(Especialidad.class);
-        setQueryMethod("getNombre");
     }
 
     @PostConstruct

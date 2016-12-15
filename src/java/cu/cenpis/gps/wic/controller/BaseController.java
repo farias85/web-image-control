@@ -56,11 +56,11 @@ public abstract class BaseController<T, I> implements Serializable, BaseConverte
     protected void update(String bundleMessage) {
         persist(PersistAction.UPDATE, bundleMessage);
 //        if (!JsfUtil.isValidationFailed()) {
-//            updateItem(selected);
+//            refreshItem(selected);
 //        }
     }
 
-    public void updateItem(T object) {
+    public void refreshItem(T object) {
         getItems().set(findItemPos(getIdValue(object)), object);
     }
 
@@ -236,7 +236,7 @@ public abstract class BaseController<T, I> implements Serializable, BaseConverte
             Method method = itemClass.getMethod(queryMethod);
             for (int i = 0; i < getItems().size(); i++) {
                 T item = getItems().get(i);
-                String returnValue = method.invoke(item).toString();
+                String returnValue = String.valueOf(method.invoke(item));
                 if (Util.toSlug(returnValue).contains(Util.toSlug(query))) {
                     result.add(returnValue);
                 }
@@ -247,13 +247,63 @@ public abstract class BaseController<T, I> implements Serializable, BaseConverte
         return result;
     }
 
+    public List<String> getItemsAsStringList(String methodStr) {
+        List<T> pitems = getItems();
+        return getItemsAsStringList(pitems, methodStr);
+    }
+
+    public List<String> getItemsAsStringList(List<T> pitems) {
+        return getItemsAsStringList(pitems, queryMethod);
+    }
+
+    public List<String> getItemsAsStringList() {
+        List<T> pitems = getItems();
+        return getItemsAsStringList(pitems);
+    }
+
+    public List<String> getItemsAsStringList(List<T> pitems, String methodStr) {
+        List<String> result = new ArrayList<>();
+        try {
+            Method method = itemClass.getMethod(methodStr);
+            for (int i = 0; i < pitems.size(); i++) {
+                result.add(String.valueOf(method.invoke(pitems.get(i))));
+            }
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+
+    public List<String> getItemsAsStringListNotIn(List<T> pitems) {
+
+        List<T> resultAux = new ArrayList<>(getItems());
+        try {
+            Method method = itemClass.getMethod(queryMethod);
+            for (T itemI : pitems) {
+
+                String valueI = String.valueOf(method.invoke(itemI));
+                for (T itemJ : getItems()) {
+                    String valueJ = String.valueOf(method.invoke(itemJ));
+                    if (Util.toSlug(valueI).equalsIgnoreCase(Util.toSlug(valueJ))) {
+                        resultAux.remove(itemJ);
+                        break;
+                    }
+                }
+            }
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return getItemsAsStringList(resultAux, queryMethod);
+    }
+
     public T findItemByStringMethod(String query, String methodStr) {
 
         try {
             Method method = itemClass.getMethod(methodStr);
             for (int i = 0; i < getItems().size(); i++) {
                 T item = getItems().get(i);
-                String returnValue = method.invoke(item).toString();
+                String returnValue = String.valueOf(method.invoke(item));
                 if (Util.toSlug(returnValue).equals(Util.toSlug(query))) {
                     return item;
                 }
@@ -262,6 +312,10 @@ public abstract class BaseController<T, I> implements Serializable, BaseConverte
             Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public T findItemByStringMethod(String query) {
+        return findItemByStringMethod(query, queryMethod);
     }
 
     public <Controller extends BaseController> Controller getController(Class<? extends Controller> type) {

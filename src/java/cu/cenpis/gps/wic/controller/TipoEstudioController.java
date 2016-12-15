@@ -18,8 +18,7 @@ public class TipoEstudioController extends BaseController<TipoEstudio, java.lang
     }
 
     public TipoEstudioController() {
-        super(TipoEstudio.class);
-        setQueryMethod("getNombre");
+        super(TipoEstudio.class);        
     }
 
     @PostConstruct

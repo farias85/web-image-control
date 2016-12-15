@@ -24,8 +24,7 @@ public class MedicoController extends BaseController<Medico, java.lang.Long> {
     @PostConstruct
     @Override
     public void init() {
-        super.setFacade(medicoService);
-        setQueryMethod("getNombreApellidos");
+        super.setFacade(medicoService);        
     }
 
     @Override

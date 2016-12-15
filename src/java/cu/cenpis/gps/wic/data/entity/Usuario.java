@@ -7,13 +7,17 @@ package cu.cenpis.gps.wic.data.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -62,8 +66,13 @@ public class Usuario implements Serializable {
     @NotNull
     @Size(min = 1, max = 200)
     private String contrasenna;
-    @ManyToMany(mappedBy = "usuarioList")
-    private List<Rol> rolList;
+        
+    @JoinTable(name = "usuario_rol", joinColumns = {
+        @JoinColumn(name = "usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
+        @JoinColumn(name = "rol", referencedColumnName = "id_rol")})
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Rol> rolList;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Estudio> estudioList;
 
@@ -123,11 +132,11 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public List<Rol> getRolList() {
+    public Set<Rol> getRolList() {
         return rolList;
     }
 
-    public void setRolList(List<Rol> rolList) {
+    public void setRolList(Set<Rol> rolList) {
         this.rolList = rolList;
     }
 
@@ -162,7 +171,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "cu.cenpis.gps.wic.entity.Usuario[ idUsuario=" + idUsuario + " ]";
+        return email;
     }
     
 }

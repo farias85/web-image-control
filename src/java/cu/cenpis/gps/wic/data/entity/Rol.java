@@ -8,8 +8,10 @@ package cu.cenpis.gps.wic.data.entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,10 +52,11 @@ public class Rol implements Serializable {
     @Lob
     @Size(max = 65535)
     private String descripcion;
+    
     @JoinTable(name = "usuario_rol", joinColumns = {
         @JoinColumn(name = "rol", referencedColumnName = "id_rol")}, inverseJoinColumns = {
         @JoinColumn(name = "usuario", referencedColumnName = "id_usuario")})
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Usuario> usuarioList;
 
     public Rol() {
@@ -123,7 +126,7 @@ public class Rol implements Serializable {
 
     @Override
     public String toString() {
-        return "cu.cenpis.gps.wic.entity.Rol[ idRol=" + idRol + " ]";
+        return nombre;
     }
     
 }

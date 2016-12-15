@@ -18,8 +18,7 @@ public class ProcedenciaController extends BaseController<Procedencia, java.lang
     }
 
     public ProcedenciaController() {
-        super(Procedencia.class);
-        setQueryMethod("getNombre");
+        super(Procedencia.class);        
     }
 
     @PostConstruct

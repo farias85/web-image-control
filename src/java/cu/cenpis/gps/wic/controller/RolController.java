@@ -42,4 +42,3 @@ public class RolController extends BaseController<Rol, java.lang.Long> {
         super.destroy(Bundle.getString("RolDeleted"));
     }
 }
-
