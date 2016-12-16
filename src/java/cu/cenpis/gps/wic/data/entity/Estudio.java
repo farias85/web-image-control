@@ -212,15 +212,12 @@ public class Estudio implements Serializable {
             return false;
         }
         Estudio other = (Estudio) object;
-        if ((this.idEstudio == null && other.idEstudio != null) || (this.idEstudio != null && !this.idEstudio.equals(other.idEstudio))) {
-            return false;
-        }
-        return true;
+        return !((this.idEstudio == null && other.idEstudio != null) || (this.idEstudio != null && !this.idEstudio.equals(other.idEstudio)));
     }
 
     @Override
     public String toString() {
-        return "cu.cenpis.gps.wic.entity.Estudio[ idEstudio=" + idEstudio + " ]";
+        return String.format("%s[id=%d]", getClass().getSimpleName(), getIdEstudio());
     }
     
 }

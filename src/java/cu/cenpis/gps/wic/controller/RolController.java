@@ -52,7 +52,7 @@ public class RolController extends BaseController<Rol, java.lang.Long> {
     protected void setEmbeddableKeys() {
         //selected.setUsuarioList(new HashSet<>(getModel().getTarget())); //Set
         
-        selected.setUsuarioList(new ArrayList(getModel().getTarget())); //List
+        selected.setUsuarioList(getModel().getTarget()); //List
 
 //        UsuarioController usuarioController = JsfUtil.getController(UsuarioController.class);
 //        selected.setUsuarioList(new HashSet<>(usuarioController.getFiltered()));
@@ -70,7 +70,7 @@ public class RolController extends BaseController<Rol, java.lang.Long> {
     }
 
     public void findUsuariosListener() {
-        getModel().setTarget(new ArrayList<>(selected.getUsuarioList()));
+        getModel().setTarget(selected.getUsuarioList());
 
 //        UsuarioController usuarioController = JsfUtil.getController(UsuarioController.class);        
 //        usuarioController.setFiltered(new ArrayList<>(selected.getUsuarioList()));

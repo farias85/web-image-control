@@ -43,6 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email"),
     @NamedQuery(name = "Usuario.findByContrasenna", query = "SELECT u FROM Usuario u WHERE u.contrasenna = :contrasenna")})
 public class Usuario implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,13 +67,13 @@ public class Usuario implements Serializable {
     @NotNull
     @Size(min = 1, max = 200)
     private String contrasenna;
-        
+
     @JoinTable(name = "usuario_rol", joinColumns = {
         @JoinColumn(name = "usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
         @JoinColumn(name = "rol", referencedColumnName = "id_rol")})
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    private Set<Rol> rolList;
-    
+    private List<Rol> rolList;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Estudio> estudioList;
 
@@ -132,11 +133,11 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public Set<Rol> getRolList() {
+    public List<Rol> getRolList() {
         return rolList;
     }
 
-    public void setRolList(Set<Rol> rolList) {
+    public void setRolList(List<Rol> rolList) {
         this.rolList = rolList;
     }
 
@@ -163,12 +164,12 @@ public class Usuario implements Serializable {
             return false;
         }
         Usuario other = (Usuario) object;
-        return !((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario)));
+        return !((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario)));        
     }
 
     @Override
     public String toString() {
-        return email;
+        return String.format("%s[id=%d]", getClass().getSimpleName(), getIdUsuario());
     }
-    
+
 }

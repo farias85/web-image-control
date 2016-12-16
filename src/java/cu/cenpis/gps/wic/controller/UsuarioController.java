@@ -48,7 +48,7 @@ public class UsuarioController extends BaseController<Usuario, java.lang.Long> {
     @Override
     protected void setEmbeddableKeys() {
         RolController rolController = JsfUtil.getController(RolController.class);
-        selected.setRolList(new HashSet<>(rolController.getFiltered()));
+        selected.setRolList(rolController.getFiltered());
         super.setEmbeddableKeys(); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -61,6 +61,6 @@ public class UsuarioController extends BaseController<Usuario, java.lang.Long> {
 
     public void findRolListener() {
         RolController rolController = JsfUtil.getController(RolController.class);
-        rolController.setFiltered(new ArrayList<>(selected.getRolList()));
+        rolController.setFiltered(selected.getRolList());
     }
 }

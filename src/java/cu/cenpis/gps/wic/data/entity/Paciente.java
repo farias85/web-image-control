@@ -157,15 +157,12 @@ public class Paciente implements Serializable {
             return false;
         }
         Paciente other = (Paciente) object;
-        if ((this.idPaciente == null && other.idPaciente != null) || (this.idPaciente != null && !this.idPaciente.equals(other.idPaciente))) {
-            return false;
-        }
-        return true;
+        return !((this.idPaciente == null && other.idPaciente != null) || (this.idPaciente != null && !this.idPaciente.equals(other.idPaciente)));
     }
 
     @Override
     public String toString() {
-        return nombre + apellidos;
+        return String.format("%s[id=%d]", getClass().getSimpleName(), getIdPaciente());
     }
 
 }

@@ -14,16 +14,16 @@
                     <p:panelGrid columns="2" rendered="#{estudioController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_idEstudio}" for="idEstudio" />
                         <p:inputText id="idEstudio" value="#{estudioController.selected.idEstudio}" title="#{bundle.CreateEstudioTitle_idEstudio}" required="true" requiredMessage="#{bundle.CreateEstudioRequiredMessage_idEstudio}"/>
-                        
+
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_rmiId}" for="rmiId" />
                         <p:inputText id="rmiId" value="#{estudioController.selected.rmiId}" title="#{bundle.CreateEstudioTitle_rmiId}" required="true" requiredMessage="#{bundle.CreateEstudioRequiredMessage_rmiId}"/>
-                        
+
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_fecha}" for="fecha" />
                         <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{estudioController.selected.fecha}" title="#{bundle.EditEstudioTitle_fecha}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_fecha}" showOn="button"/>
-                        
+
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_impresionDiagnostica}" for="impresionDiagnostica" />
                         <p:inputTextarea rows="4" cols="30" id="impresionDiagnostica" value="#{estudioController.selected.impresionDiagnostica}" title="#{bundle.CreateEstudioTitle_impresionDiagnostica}" required="true" requiredMessage="#{bundle.CreateEstudioRequiredMessage_impresionDiagnostica}"/>
-                        
+
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_positivo}" for="positivo" />
                         <p:selectBooleanCheckbox id="positivo" value="#{estudioController.selected.positivo}" required="true" 
                                                  requiredMessage="#{bundle.EditEstudioRequiredMessage_positivo}"/>
@@ -33,7 +33,7 @@
                                            var="diagnosticoItem"
                                            itemValue="#{diagnosticoItem}"/>
                         </p:selectOneMenu>
-                        
+
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_especialidad}" for="especialidad" />
                         <p:selectOneMenu id="especialidad" value="#{estudioController.selected.especialidad}" required="true" 
                                          requiredMessage="#{bundle.EditEstudioRequiredMessage_especialidad}" converter="omnifaces.SelectItemsConverter">
@@ -41,42 +41,41 @@
                                            var="especialidadItem"
                                            itemValue="#{especialidadItem}"/>
                         </p:selectOneMenu>
-                        
+
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_medico}" for="medico" />
                         <p:selectOneMenu id="medico" value="#{estudioController.selected.medico}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_medico}">
                             <f:selectItems value="#{medicoController.itemsAvailableSelectOne}"
                                            var="medicoItem"
                                            itemValue="#{medicoItem}"/>
                         </p:selectOneMenu>
-                        
+
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_paciente}" for="paciente" />
                         <p:selectOneMenu id="paciente" value="#{estudioController.selected.paciente}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_paciente}">
                             <f:selectItems value="#{pacienteController.itemsAvailableSelectOne}"
                                            var="pacienteItem"
                                            itemValue="#{pacienteItem}"/>
                         </p:selectOneMenu>
-                        
+
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_procedencia}" for="procedencia" />
                         <p:selectOneMenu id="procedencia" value="#{estudioController.selected.procedencia}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_procedencia}">
                             <f:selectItems value="#{procedenciaController.itemsAvailableSelectOne}"
                                            var="procedenciaItem"
                                            itemValue="#{procedenciaItem}"/>
                         </p:selectOneMenu>
-                        
+
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_tipoEstudio}" for="tipoEstudio" />
                         <p:selectOneMenu id="tipoEstudio" value="#{estudioController.selected.tipoEstudio}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_tipoEstudio}">
                             <f:selectItems value="#{tipoEstudioController.itemsAvailableSelectOne}"
                                            var="tipoEstudioItem"
                                            itemValue="#{tipoEstudioItem}"/>
                         </p:selectOneMenu>
-                        
+
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_usuario}" for="usuario" />
                         <p:selectOneMenu id="usuario" value="#{estudioController.selected.usuario}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_usuario}">
-                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
-                                           var="usuarioItem"
-                                           itemValue="#{usuarioItem}"/>
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}" var="usuarioItem"
+                                           itemValue="#{usuarioItem}" itemLabel="#{usuarioItem.nombre}"/>
                         </p:selectOneMenu>
-                        
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{estudioController.create}" value="#{bundle.Save}" update="display,:EstudioListForm:datalist,:growl" oncomplete="handleSubmit(args,'EstudioCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="EstudioCreateDialog.hide()"/>

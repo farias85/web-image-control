@@ -111,15 +111,12 @@ public class Procedencia implements Serializable {
             return false;
         }
         Procedencia other = (Procedencia) object;
-        if ((this.idProcedencia == null && other.idProcedencia != null) || (this.idProcedencia != null && !this.idProcedencia.equals(other.idProcedencia))) {
-            return false;
-        }
-        return true;
+        return !((this.idProcedencia == null && other.idProcedencia != null) || (this.idProcedencia != null && !this.idProcedencia.equals(other.idProcedencia)));
     }
 
     @Override
     public String toString() {
-        return nombre;
+        return String.format("%s[id=%d]", getClass().getSimpleName(), getIdProcedencia());
     }
     
 }
