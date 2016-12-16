@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"      
       xmlns:p="http://primefaces.org/ui"
       xmlns:o="http://omnifaces.org/ui">
 
@@ -13,7 +12,7 @@
             <h:form id="UsuarioCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
-                        
+
                         <p:outputLabel value="#{bundle.CreateUsuarioLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{usuarioController.selected.nombre}" title="#{bundle.CreateUsuarioTitle_nombre}" 
                                      required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_nombre}"/>
@@ -30,10 +29,11 @@
                         <p:inputText id="contrasenna" value="#{usuarioController.selected.contrasenna}" title="#{bundle.CreateUsuarioTitle_contrasenna}" 
                                      required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_contrasenna}"/>
 
-                        
-                        <p:outputLabel value="Multiple:" for="roles" />
-                        <p:autoComplete id="roles" multiple="true" value="#{usuarioController.selectedThemes}" completeMethod="#{usuarioController.completeTheme}"
-                                        var="theme" itemLabel="#{theme.nombre}" itemValue="#{theme}" forceSelection="true">
+
+                        <p:outputLabel value="Roles:" for="roles" />
+                        <p:autoComplete id="roles" multiple="true" value="#{rolController.filtered}" completeMethod="#{rolController.autoCompleteQueryItems}"
+                                        var="theme" itemLabel="#{theme.nombre}" itemValue="#{theme}" forceSelection="true" required="true"
+                                        requiredMessage="#{bundle.UsuarioRolNotEmpty}">
                             <o:converter converterId="omnifaces.ListConverter" list="#{rolController.items}" />
                             <p:column>
                                 <h:outputText value="#{theme.nombre}" />
@@ -42,9 +42,6 @@
                                 <h:outputText value="#{theme.descripcion}" />
                             </p:column>
                         </p:autoComplete>
-
-
-                        
 
                     </p:panelGrid>
                     <p:commandButton actionListener="#{usuarioController.create}" value="#{bundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsuarioCreateDialog');"/>
