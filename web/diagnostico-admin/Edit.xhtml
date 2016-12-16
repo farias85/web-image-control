@@ -12,8 +12,6 @@
             <h:form id="DiagnosticoEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{diagnosticoController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditDiagnosticoLabel_idDiagnostico}" for="idDiagnostico" />
-                        <p:inputText id="idDiagnostico" value="#{diagnosticoController.selected.idDiagnostico}" title="#{bundle.EditDiagnosticoTitle_idDiagnostico}" required="true" requiredMessage="#{bundle.EditDiagnosticoRequiredMessage_idDiagnostico}"/>
                         <p:outputLabel value="#{bundle.EditDiagnosticoLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{diagnosticoController.selected.nombre}" title="#{bundle.EditDiagnosticoTitle_nombre}" required="true" requiredMessage="#{bundle.EditDiagnosticoRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.EditDiagnosticoLabel_descripcion}" for="descripcion" />

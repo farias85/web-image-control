@@ -17,8 +17,6 @@
             <h:form id="DiagnosticoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{diagnosticoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewDiagnosticoLabel_idDiagnostico}"/>
-                        <h:outputText value="#{diagnosticoController.selected.idDiagnostico}" title="#{bundle.ViewDiagnosticoTitle_idDiagnostico}"/>
                         <h:outputText value="#{bundle.ViewDiagnosticoLabel_nombre}"/>
                         <h:outputText value="#{diagnosticoController.selected.nombre}" title="#{bundle.ViewDiagnosticoTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewDiagnosticoLabel_descripcion}"/>

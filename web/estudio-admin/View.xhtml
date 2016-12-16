@@ -11,9 +11,7 @@
         <p:dialog id="EstudioViewDlg" widgetVar="EstudioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEstudioTitle}">
             <h:form id="EstudioViewForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{estudioController.selected != null}">
-                        <h:outputText value="#{bundle.ViewEstudioLabel_idEstudio}"/>
-                        <h:outputText value="#{estudioController.selected.idEstudio}" title="#{bundle.ViewEstudioTitle_idEstudio}"/>
+                    <p:panelGrid columns="2" rendered="#{estudioController.selected != null}">                        
                         <h:outputText value="#{bundle.ViewEstudioLabel_rmiId}"/>
                         <h:outputText value="#{estudioController.selected.rmiId}" title="#{bundle.ViewEstudioTitle_rmiId}"/>
                         <h:outputText value="#{bundle.ViewEstudioLabel_fecha}"/>

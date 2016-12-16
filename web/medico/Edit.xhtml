@@ -12,8 +12,6 @@
             <h:form id="MedicoEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{medicoController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditMedicoLabel_idMedico}" for="idMedico" />
-                        <p:inputText id="idMedico" value="#{medicoController.selected.idMedico}" title="#{bundle.EditMedicoTitle_idMedico}" required="true" requiredMessage="#{bundle.EditMedicoRequiredMessage_idMedico}"/>
                         <p:outputLabel value="#{bundle.EditMedicoLabel_nombreApellidos}" for="nombreApellidos" />
                         <p:inputText id="nombreApellidos" value="#{medicoController.selected.nombreApellidos}" title="#{bundle.EditMedicoTitle_nombreApellidos}" required="true" requiredMessage="#{bundle.EditMedicoRequiredMessage_nombreApellidos}"/>
                         <p:outputLabel value="#{bundle.EditMedicoLabel_descripcion}" for="descripcion" />

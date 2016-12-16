@@ -12,8 +12,6 @@
             <h:form id="MedicoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{medicoController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateMedicoLabel_idMedico}" for="idMedico" />
-                        <p:inputText id="idMedico" value="#{medicoController.selected.idMedico}" title="#{bundle.CreateMedicoTitle_idMedico}" required="true" requiredMessage="#{bundle.CreateMedicoRequiredMessage_idMedico}"/>
                         <p:outputLabel value="#{bundle.CreateMedicoLabel_nombreApellidos}" for="nombreApellidos" />
                         <p:inputText id="nombreApellidos" value="#{medicoController.selected.nombreApellidos}" title="#{bundle.CreateMedicoTitle_nombreApellidos}" required="true" requiredMessage="#{bundle.CreateMedicoRequiredMessage_nombreApellidos}"/>
                         <p:outputLabel value="#{bundle.CreateMedicoLabel_descripcion}" for="descripcion" />
