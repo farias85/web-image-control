@@ -91,7 +91,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
         </property>
         <property name="queryMethod" value="getEmail"/>
     </bean>
-
-    <bean id="menuBacking" class="cu.cenpis.gps.wic.util.MenuBacking" scope="session"/>
+    
+    <bean id="destroyController" class="cu.cenpis.gps.wic.controller.DestroyController" scope="session"/>
 
 </beans>

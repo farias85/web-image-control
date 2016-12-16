@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -494,15 +493,5 @@ public abstract class BaseController<T, I>
 
     public T findItemByStringMethod(String query) {
         return findItemByStringMethod(query, queryMethod);
-    }
-
-    public <Controller extends BaseController> Controller getController(Class<? extends Controller> type) {
-        String className = type.getSimpleName();
-        String paramName = Character.toLowerCase(className.charAt(0)) + className.substring(1);
-        return getContext().getApplication().evaluateExpressionGet(getContext(), "#{" + paramName + "}", type);
-    }
-
-    public FacesContext getContext() {
-        return FacesContext.getCurrentInstance();
     }
 }

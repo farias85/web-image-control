@@ -38,9 +38,9 @@ public class PacienteController extends BaseController<Paciente, java.lang.Long>
     @Override
     public void update() {
         super.update(Bundle.getString("PacienteUpdated"));
-        
-        EstudioController estudioController = getController(EstudioController.class);
-        
+
+        EstudioController estudioController = JsfUtil.getController(EstudioController.class);
+
         List<Estudio> list = pacienteService.findEstudiosByPaciente(selected);
         for (int i = 0; i < list.size(); i++) {
             estudioController.refreshItem(list.get(i));

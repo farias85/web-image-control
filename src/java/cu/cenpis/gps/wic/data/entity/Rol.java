@@ -7,6 +7,7 @@ package cu.cenpis.gps.wic.data.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -56,7 +57,7 @@ public class Rol implements Serializable {
     @JoinTable(name = "usuario_rol", joinColumns = {
         @JoinColumn(name = "rol", referencedColumnName = "id_rol")}, inverseJoinColumns = {
         @JoinColumn(name = "usuario", referencedColumnName = "id_usuario")})
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<Usuario> usuarioList;
 
     public Rol() {

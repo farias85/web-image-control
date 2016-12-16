@@ -1,5 +1,6 @@
 package cu.cenpis.gps.wic.util;
 
+import cu.cenpis.gps.wic.controller.BaseController;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -66,5 +67,15 @@ public class JsfUtil {
         CREATE,
         DELETE,
         UPDATE
+    }
+    
+    public static <Controller extends BaseController> Controller getController(Class<? extends Controller> type) {
+        String className = type.getSimpleName();
+        String paramName = Character.toLowerCase(className.charAt(0)) + className.substring(1);
+        return getContext().getApplication().evaluateExpressionGet(getContext(), "#{" + paramName + "}", type);
+    }
+
+    public static FacesContext getContext() {
+        return FacesContext.getCurrentInstance();
     }
 }

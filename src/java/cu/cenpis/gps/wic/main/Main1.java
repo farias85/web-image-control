@@ -32,6 +32,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -156,12 +157,12 @@ public class Main1 {
 //        for (Diagnostico list1 : list) {
 //            
 //        }
-        Usuario usuario = usuarioService.find(23L);
-        //List<Rol> all = rolService.findAll();
-        System.out.println("ESTOS SON LOS ROLES...");
-        for (Rol value : usuario.getRolList()) {
-            System.out.println(value.getNombre());
-        }
+//        Usuario usuario = usuarioService.find(23L);
+//        //List<Rol> all = rolService.findAll();
+//        System.out.println("ESTOS SON LOS ROLES...");
+//        for (Rol value : usuario.getRolList()) {
+//            System.out.println(value.getNombre());
+//        }
         
 //        List<Rol> rl = usuario.getRolList();
 //        //List<Rol> rlCopy = new ArrayList<>(rl);
@@ -177,6 +178,34 @@ public class Main1 {
 //        for (String ll1 : ll) {
 //            System.out.println(ll1);
 //        }
+        
+//        Usuario usuario = new Usuario(Long.MIN_VALUE, "UserXXX", "ApellidosXXX", "MailXXX", "PasswordXXX");
+//        Rol rol1 = rolService.find(1L);
+//        Rol rol2 = rolService.find(2L);
+//        Rol rol3 = rolService.find(3L);
+//        
+//        List<Rol> rl = new ArrayList<>();
+//        rl.add(rol1);
+//        rl.add(rol2);
+//        rl.add(rol3);
+//        usuario.setRolList(new HashSet<>(rl));
+//        
+//        usuarioService.create(usuario);
+        
+//        Rol rol = new Rol(Long.MIN_VALUE, "RolXXX");
+//        rol.setDescripcion("DescripcionXXX");
+//        
+//        Usuario usuario1 = usuarioService.find(1L);
+//        Usuario usuario2 = usuarioService.find(2L);
+//        Usuario usuario3 = usuarioService.find(3L);
+//        
+//        List<Usuario> lu = new ArrayList<>();
+//        lu.add(usuario1);
+//        lu.add(usuario2);
+//        lu.add(usuario3);
+//        rol.setUsuarioList(new HashSet<>(lu));
+//        
+//        rolService.create(rol);
     }
 
     public static List<String> getItemsAsStringListNotIn(List<Rol> pitems, List<Rol> all) {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"      
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
 
     <ui:composition>
 
@@ -12,12 +12,20 @@
             <h:form id="RolCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{rolController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateRolLabel_idRol}" for="idRol" />
-                        <p:inputText id="idRol" value="#{rolController.selected.idRol}" title="#{bundle.CreateRolTitle_idRol}" required="true" requiredMessage="#{bundle.CreateRolRequiredMessage_idRol}"/>
+                        
                         <p:outputLabel value="#{bundle.CreateRolLabel_nombre}" for="nombre" />
-                        <p:inputText id="nombre" value="#{rolController.selected.nombre}" title="#{bundle.CreateRolTitle_nombre}" required="true" requiredMessage="#{bundle.CreateRolRequiredMessage_nombre}"/>
+                        <p:inputText id="nombre" value="#{rolController.selected.nombre}" title="#{bundle.CreateRolTitle_nombre}" required="true" 
+                                     requiredMessage="#{bundle.CreateRolRequiredMessage_nombre}"/>
+
                         <p:outputLabel value="#{bundle.CreateRolLabel_descripcion}" for="descripcion" />
                         <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{rolController.selected.descripcion}" title="#{bundle.CreateRolTitle_descripcion}" />
+
+                        <p:outputLabel value="Usuarios" for="usuarios" />
+                        <p:pickList id="usuarios" value="#{rolController.model}" var="usuario" itemValue="#{usuario}" itemLabel="#{usuario.nombre} #{usuario.apellidos} #{usuario.email}"
+                                    required="true" requiredMessage="#{bundle.RolUsuarioNotEmpty}">
+                            <o:converter converterId="omnifaces.ListConverter" list="#{usuarioController.items}" />
+                        </p:pickList>
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{rolController.create}" value="#{bundle.Save}" update="display,:RolListForm:datalist,:growl" oncomplete="handleSubmit(args,'RolCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="RolCreateDialog.hide()"/>

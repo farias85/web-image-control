@@ -9,6 +9,7 @@ import cu.cenpis.gps.wic.data.entity.Paciente;
 import cu.cenpis.gps.wic.data.entity.Procedencia;
 import cu.cenpis.gps.wic.data.entity.TipoEstudio;
 import cu.cenpis.gps.wic.util.Bundle;
+import cu.cenpis.gps.wic.util.JsfUtil;
 import javax.annotation.PostConstruct;
 
 public class EstudioController extends BaseController<Estudio, java.lang.Long> {
@@ -63,7 +64,7 @@ public class EstudioController extends BaseController<Estudio, java.lang.Long> {
     protected void setEmbeddableKeys() {
 
         if (selected.getEspecialidad().getIdEspacialidad() == null) {
-            EspecialidadController especialidadController = getController(EspecialidadController.class);
+            EspecialidadController especialidadController = JsfUtil.getController(EspecialidadController.class);
             Especialidad especialidad = especialidadController.findItemByStringMethod(selected.getEspecialidad().getNombre(),
                     especialidadController.getQueryMethod());
             if (especialidad != null) {
@@ -72,7 +73,7 @@ public class EstudioController extends BaseController<Estudio, java.lang.Long> {
         }
 
         if (selected.getMedico().getIdMedico() == null) {
-            MedicoController medicoController = getController(MedicoController.class);
+            MedicoController medicoController = JsfUtil.getController(MedicoController.class);
             Medico medico = medicoController.findItemByStringMethod(selected.getMedico().getNombreApellidos(),
                     medicoController.getQueryMethod());
             if (medico != null) {
@@ -81,7 +82,7 @@ public class EstudioController extends BaseController<Estudio, java.lang.Long> {
         }
 
         if (selected.getProcedencia().getIdProcedencia() == null) {
-            ProcedenciaController procedenciaController = getController(ProcedenciaController.class);
+            ProcedenciaController procedenciaController = JsfUtil.getController(ProcedenciaController.class);
             Procedencia procedencia = procedenciaController.findItemByStringMethod(selected.getMedico().getNombreApellidos(),
                     procedenciaController.getQueryMethod());
             if (procedencia != null) {
@@ -90,7 +91,7 @@ public class EstudioController extends BaseController<Estudio, java.lang.Long> {
         }
 
         if (selected.getTipoEstudio().getIdTipoEstudio() == null) {
-            TipoEstudioController tipoEstudioController = getController(TipoEstudioController.class);
+            TipoEstudioController tipoEstudioController = JsfUtil.getController(TipoEstudioController.class);
             TipoEstudio tp = tipoEstudioController.findItemByStringMethod(selected.getTipoEstudio().getNombre(),
                     tipoEstudioController.getQueryMethod());
             if (tp != null) {
@@ -99,7 +100,7 @@ public class EstudioController extends BaseController<Estudio, java.lang.Long> {
         }
 
         if (selected.getDiagnostico().getIdDiagnostico() == null) {
-            DiagnosticoController diagnosticoController = getController(DiagnosticoController.class);
+            DiagnosticoController diagnosticoController = JsfUtil.getController(DiagnosticoController.class);
             Diagnostico diagnostico = diagnosticoController.findItemByStringMethod(selected.getDiagnostico().getNombre(),
                     diagnosticoController.getQueryMethod());
             if (diagnostico != null) {

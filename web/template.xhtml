@@ -34,6 +34,7 @@
                             <p:menuitem value="TipoEstudio" outcome="/tipoEstudio/List.xhtml" />
                             <p:menuitem value="Usuario" outcome="/usuario/List.xhtml" />
                         </p:submenu>
+                        <p:menuitem value="Eliminar datos en memoria" action="#{destroyController.destroySession}" ajax="false" />
                     </p:menubar>
                 </h:form>
             </p:layoutUnit>

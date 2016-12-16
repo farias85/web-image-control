@@ -4,6 +4,7 @@ import cu.cenpis.gps.wic.data.service.DiagnosticoService;
 import cu.cenpis.gps.wic.data.entity.Diagnostico;
 import cu.cenpis.gps.wic.data.entity.Estudio;
 import cu.cenpis.gps.wic.util.Bundle;
+import cu.cenpis.gps.wic.util.JsfUtil;
 import javax.annotation.PostConstruct;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
     @Override
     public void destroy() {
 
-        EstudioController estudioController = getController(EstudioController.class);        
+        EstudioController estudioController = JsfUtil.getController(EstudioController.class);        
         
         //EstudioController estudioController = (EstudioController)findController(EstudioController.class);
         List<Estudio> list = diagnosticoService.findEstudiosByDiagnostico(selected);

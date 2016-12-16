@@ -36,14 +36,14 @@
 
                         <p:outputLabel value="Roles:" for="roles" />
                         <p:autoComplete id="roles" multiple="true" value="#{rolController.filtered}" completeMethod="#{rolController.autoCompleteQueryItems}"
-                                        var="theme" itemLabel="#{theme.nombre}" itemValue="#{theme}" forceSelection="true" required="true"
+                                        var="rol" itemLabel="#{rol.nombre}" itemValue="#{rol}" forceSelection="true" required="true"
                                         requiredMessage="#{bundle.UsuarioRolNotEmpty}">
                             <o:converter converterId="omnifaces.ListConverter" list="#{rolController.items}" />
                             <p:column>
-                                <h:outputText value="#{theme.nombre}" />
+                                <h:outputText value="#{rol.nombre}" />
                             </p:column>
                             <p:column>
-                                <h:outputText value="#{theme.descripcion}" />
+                                <h:outputText value="#{rol.descripcion}" />
                             </p:column>
                         </p:autoComplete>
 
