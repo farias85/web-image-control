@@ -19,7 +19,7 @@
 
                         <p:outputLabel value="#{bundle.CreateRolLabel_descripcion}" for="descripcion" />
                         <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{rolController.selected.descripcion}" title="#{bundle.CreateRolTitle_descripcion}" />
-
+                        
                         <p:outputLabel value="Usuarios" for="usuarios" />
                         <p:pickList id="usuarios" value="#{rolController.model}" var="usuario" itemValue="#{usuario}" itemLabel="#{usuario.nombre} #{usuario.apellidos} #{usuario.email}"
                                     required="true" requiredMessage="#{bundle.RolUsuarioNotEmpty}">

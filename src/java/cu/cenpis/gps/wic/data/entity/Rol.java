@@ -39,7 +39,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r"),
     @NamedQuery(name = "Rol.findByIdRol", query = "SELECT r FROM Rol r WHERE r.idRol = :idRol"),
-    @NamedQuery(name = "Rol.findByIdUsuario", query = "SELECT DISTINCT r FROM Rol r join r.usuarioList u WHERE u.idUsuario = :idUsuario"),    
+    @NamedQuery(name = "Rol.findByIdUsuario", query = "SELECT DISTINCT r FROM Rol r join r.usuarioList u WHERE u.idUsuario = :idUsuario"),
+    @NamedQuery(name = "Rol.findByIdUsuarioNotIn", query = "SELECT r FROM Rol r WHERE r.idRol NOT IN("
+            + "SELECT r2 FROM Rol r2 join r2.usuarioList u2 WHERE u2.idUsuario = :idUsuario)"),
     @NamedQuery(name = "Rol.findByNombre", query = "SELECT r FROM Rol r WHERE r.nombre = :nombre")})
 public class Rol implements Serializable {
 
@@ -60,8 +62,8 @@ public class Rol implements Serializable {
     @JoinTable(name = "usuario_rol", joinColumns = {
         @JoinColumn(name = "rol", referencedColumnName = "id_rol")}, inverseJoinColumns = {
         @JoinColumn(name = "usuario", referencedColumnName = "id_usuario")})
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    private List<Usuario> usuarioList;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Usuario> usuarioList;
 
     public Rol() {
     }
@@ -100,11 +102,11 @@ public class Rol implements Serializable {
     }
 
     @XmlTransient
-    public List<Usuario> getUsuarioList() {
+    public Set<Usuario> getUsuarioList() {
         return usuarioList;
     }
 
-    public void setUsuarioList(List<Usuario> usuarioList) {
+    public void setUsuarioList(Set<Usuario> usuarioList) {
         this.usuarioList = usuarioList;
     }
 
@@ -122,7 +124,7 @@ public class Rol implements Serializable {
             return false;
         }
         Rol other = (Rol) object;
-        return !((this.idRol == null && other.idRol != null) || (this.idRol != null && !this.idRol.equals(other.idRol)));        
+        return !((this.idRol == null && other.idRol != null) || (this.idRol != null && !this.idRol.equals(other.idRol)));
     }
 
     @Override
