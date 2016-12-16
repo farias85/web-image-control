@@ -163,11 +163,11 @@ public class Main1 {
             System.out.println(value.getNombre());
         }
         
-        List<String> ll = getItemsAsStringListNotIn(usuario.getRolList(), all);
-        System.out.println("ESTAS ES LA DIFERENCIA...");
-        for (String ll1 : ll) {
-            System.out.println(ll1);
-        }
+        //List<String> ll = getItemsAsStringListNotIn(usuario.getRolList(), all);
+        //System.out.println("ESTAS ES LA DIFERENCIA...");
+        //for (String ll1 : ll) {
+        //    System.out.println(ll1);
+        //}
     }
 
     public static List<String> getItemsAsStringListNotIn(List<Rol> pitems, List<Rol> all) {

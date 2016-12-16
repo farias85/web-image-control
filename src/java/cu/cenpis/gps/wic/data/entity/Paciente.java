@@ -63,10 +63,10 @@ public class Paciente implements Serializable {
     private String apellidos;
     @Basic(optional = false)
     @NotNull
-    private int edad;
+    private Integer edad;
     @Basic(optional = false)
     @NotNull
-    private boolean sexo;
+    private Boolean sexo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "paciente")
     private List<Estudio> estudioList;
 
@@ -77,7 +77,7 @@ public class Paciente implements Serializable {
         this.idPaciente = idPaciente;
     }
 
-    public Paciente(Long idPaciente, String historiaClinica, String nombre, String apellidos, int edad, boolean sexo) {
+    public Paciente(Long idPaciente, String historiaClinica, String nombre, String apellidos, Integer edad, Boolean sexo) {
         this.idPaciente = idPaciente;
         this.historiaClinica = historiaClinica;
         this.nombre = nombre;
@@ -118,19 +118,19 @@ public class Paciente implements Serializable {
         this.apellidos = apellidos;
     }
 
-    public int getEdad() {
+    public Integer getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(Integer edad) {
         this.edad = edad;
     }
 
-    public boolean getSexo() {
+    public Boolean getSexo() {
         return sexo;
     }
 
-    public void setSexo(boolean sexo) {
+    public void setSexo(Boolean sexo) {
         this.sexo = sexo;
     }
 
