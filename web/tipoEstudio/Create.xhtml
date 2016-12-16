@@ -12,8 +12,6 @@
             <h:form id="TipoEstudioCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoEstudioController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateTipoEstudioLabel_idTipoEstudio}" for="idTipoEstudio" />
-                        <p:inputText id="idTipoEstudio" value="#{tipoEstudioController.selected.idTipoEstudio}" title="#{bundle.CreateTipoEstudioTitle_idTipoEstudio}" required="true" requiredMessage="#{bundle.CreateTipoEstudioRequiredMessage_idTipoEstudio}"/>
                         <p:outputLabel value="#{bundle.CreateTipoEstudioLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{tipoEstudioController.selected.nombre}" title="#{bundle.CreateTipoEstudioTitle_nombre}" required="true" requiredMessage="#{bundle.CreateTipoEstudioRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateTipoEstudioLabel_descripcion}" for="descripcion" />
