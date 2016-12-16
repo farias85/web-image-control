@@ -93,5 +93,11 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
     </bean>
     
     <bean id="destroyController" class="cu.cenpis.gps.wic.controller.DestroyController" scope="session"/>
+    
+    <bean id="loginController" class="cu.cenpis.gps.wic.controller.LoginController" scope="session">
+        <property name="usuarioService">
+            <ref bean="usuarioService" />
+        </property>
+    </bean>
 
 </beans>

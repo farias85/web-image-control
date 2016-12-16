@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:utils="http://xmlns.jcp.org/jsf/composite/utils">
 
     <ui:composition template="/template.xhtml">
 
@@ -14,7 +15,17 @@
         </ui:define>
 
         <ui:define name="body">
+
+            <utils:menu-crud id="MenuCrud" controller="#{especialidadController}" 
+                             disabledValue="#{especialidadController.selected.idEspacialidad}"
+                             datalist=":EspecialidadListForm:datalist"/>
+
             <h:form id="EspecialidadListForm">
+
+                <utils:context-menu-crud id="ContextMenu" controller="#{especialidadController}" 
+                                         disabledValue="#{especialidadController.selected.idEspacialidad}"
+                                         datalist=":EspecialidadListForm:datalist"/>
+
                 <p:panel header="#{bundle.ListEspecialidadTitle}">
                     <p:dataTable id="datalist" value="#{especialidadController.items}" var="item"
                                  selectionMode="single" selection="#{especialidadController.selected}"
@@ -22,42 +33,45 @@
                                  rowKey="#{item.idEspacialidad}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
-                                 >
+                                 reflow="true"
+                                 widgetVar="dtable"
+                                 emptyMessage="#{bundle.TableQueryNotFound}" 
+                                 filteredValue="#{especialidadController.filtered}">
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowSelect"   update=":MenuCrud:MenuForm, :EspecialidadListForm:ContextMenu:context-menu"/>
+                        <p:ajax event="rowUnselect" update=":MenuCrud:MenuForm, :EspecialidadListForm:ContextMenu:context-menu"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEspecialidadTitle_idEspacialidad}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idEspacialidad}"/>
-                        </p:column>
-                        <p:column>
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4"></div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4"></div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                        <h:outputText value="Search all fields:" />
+                                        <p:inputText id="globalFilter" onkeyup="PF('dtable').filter()" placeholder="Enter keyword" style=""/>    
+                                    </div>
+                                </div>
+                            </p:outputPanel>
+                        </f:facet>
+
+                        <p:column filterBy="#{item.nombre}" sortBy="#{item.nombre}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEspecialidadTitle_nombre}"/>
                             </f:facet>
-                            <h:outputText value="#{item.nombre}"/>
+                            <h:outputText value="#{item.nombre}"> </h:outputText>
                         </p:column>
-                        <p:column>
+
+                        <p:column filterBy="#{item.descripcion}" sortBy="#{item.descripcion}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEspecialidadTitle_descripcion}"/>
                             </f:facet>
-                            <h:outputText value="#{item.descripcion}"/>
+                            <h:outputText value="#{item.descripcion}"> </h:outputText>
                         </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{especialidadController.prepareCreate}" update=":EspecialidadCreateForm" oncomplete="PF('EspecialidadCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EspecialidadViewForm" oncomplete="PF('EspecialidadViewDialog').show()" disabled="#{empty especialidadController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":EspecialidadEditForm" oncomplete="PF('EspecialidadEditDialog').show()" disabled="#{empty especialidadController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{especialidadController.destroy}" update=":growl,datalist" disabled="#{empty especialidadController.selected}"/>
-                        </f:facet>
+
                     </p:dataTable>
                 </p:panel>
             </h:form>
 
-            <ui:include src="Create.xhtml"/>
-            <ui:include src="Edit.xhtml"/>
-            <ui:include src="View.xhtml"/>
         </ui:define>
     </ui:composition>
 

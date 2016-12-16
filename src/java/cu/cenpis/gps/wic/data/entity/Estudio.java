@@ -51,7 +51,7 @@ public class Estudio implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "rmi_id")
-    private int rmiId;
+    private Integer rmiId;
     @Basic(optional = false)
     @NotNull
     @Temporal(TemporalType.DATE)
@@ -64,7 +64,7 @@ public class Estudio implements Serializable {
     private String impresionDiagnostica;
     @Basic(optional = false)
     @NotNull
-    private boolean positivo;
+    private Boolean positivo;
     @JoinColumn(name = "diagnostico", referencedColumnName = "id_diagnostico")
     @ManyToOne(optional = false)
     private Diagnostico diagnostico;
@@ -94,7 +94,7 @@ public class Estudio implements Serializable {
         this.idEstudio = idEstudio;
     }
 
-    public Estudio(Long idEstudio, int rmiId, Date fecha, String impresionDiagnostica, boolean positivo) {
+    public Estudio(Long idEstudio, Integer rmiId, Date fecha, String impresionDiagnostica, Boolean positivo) {
         this.idEstudio = idEstudio;
         this.rmiId = rmiId;
         this.fecha = fecha;
@@ -110,11 +110,11 @@ public class Estudio implements Serializable {
         this.idEstudio = idEstudio;
     }
 
-    public int getRmiId() {
+    public Integer getRmiId() {
         return rmiId;
     }
 
-    public void setRmiId(int rmiId) {
+    public void setRmiId(Integer rmiId) {
         this.rmiId = rmiId;
     }
 
@@ -134,11 +134,11 @@ public class Estudio implements Serializable {
         this.impresionDiagnostica = impresionDiagnostica;
     }
 
-    public boolean getPositivo() {
+    public Boolean getPositivo() {
         return positivo;
     }
 
-    public void setPositivo(boolean positivo) {
+    public void setPositivo(Boolean positivo) {
         this.positivo = positivo;
     }
 
