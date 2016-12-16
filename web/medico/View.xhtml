@@ -12,8 +12,6 @@
             <h:form id="MedicoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{medicoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewMedicoLabel_idMedico}"/>
-                        <h:outputText value="#{medicoController.selected.idMedico}" title="#{bundle.ViewMedicoTitle_idMedico}"/>
                         <h:outputText value="#{bundle.ViewMedicoLabel_nombreApellidos}"/>
                         <h:outputText value="#{medicoController.selected.nombreApellidos}" title="#{bundle.ViewMedicoTitle_nombreApellidos}"/>
                         <h:outputText value="#{bundle.ViewMedicoLabel_descripcion}"/>

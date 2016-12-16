@@ -12,8 +12,6 @@
             <h:form id="ProcedenciaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{procedenciaController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditProcedenciaLabel_idProcedencia}" for="idProcedencia" />
-                        <p:inputText id="idProcedencia" value="#{procedenciaController.selected.idProcedencia}" title="#{bundle.EditProcedenciaTitle_idProcedencia}" required="true" requiredMessage="#{bundle.EditProcedenciaRequiredMessage_idProcedencia}"/>
                         <p:outputLabel value="#{bundle.EditProcedenciaLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{procedenciaController.selected.nombre}" title="#{bundle.EditProcedenciaTitle_nombre}" required="true" requiredMessage="#{bundle.EditProcedenciaRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.EditProcedenciaLabel_descripcion}" for="descripcion" />

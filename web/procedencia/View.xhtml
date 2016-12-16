@@ -11,9 +11,7 @@
         <p:dialog id="ProcedenciaViewDlg" widgetVar="ProcedenciaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProcedenciaTitle}">
             <h:form id="ProcedenciaViewForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{procedenciaController.selected != null}">
-                        <h:outputText value="#{bundle.ViewProcedenciaLabel_idProcedencia}"/>
-                        <h:outputText value="#{procedenciaController.selected.idProcedencia}" title="#{bundle.ViewProcedenciaTitle_idProcedencia}"/>
+                    <p:panelGrid columns="2" rendered="#{procedenciaController.selected != null}">                        
                         <h:outputText value="#{bundle.ViewProcedenciaLabel_nombre}"/>
                         <h:outputText value="#{procedenciaController.selected.nombre}" title="#{bundle.ViewProcedenciaTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewProcedenciaLabel_descripcion}"/>

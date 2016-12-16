@@ -12,8 +12,6 @@
             <h:form id="EstudioEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{estudioController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditEstudioLabel_idEstudio}" for="idEstudio" />
-                        <p:inputText id="idEstudio" value="#{estudioController.selected.idEstudio}" title="#{bundle.EditEstudioTitle_idEstudio}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_idEstudio}"/>
                         <p:outputLabel value="#{bundle.EditEstudioLabel_rmiId}" for="rmiId" />
                         <p:inputText id="rmiId" value="#{estudioController.selected.rmiId}" title="#{bundle.EditEstudioTitle_rmiId}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_rmiId}"/>
                         <p:outputLabel value="#{bundle.EditEstudioLabel_fecha}" for="fecha" />

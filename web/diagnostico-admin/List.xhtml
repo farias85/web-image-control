@@ -27,14 +27,7 @@
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-
-                        
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDiagnosticoTitle_idDiagnostico}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idDiagnostico}"/>
-                        </p:column>
+                       
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDiagnosticoTitle_nombre}"/>

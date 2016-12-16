@@ -12,8 +12,6 @@
             <h:form id="PacienteCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{pacienteController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreatePacienteLabel_idPaciente}" for="idPaciente" />
-                        <p:inputText id="idPaciente" value="#{pacienteController.selected.idPaciente}" title="#{bundle.CreatePacienteTitle_idPaciente}" required="true" requiredMessage="#{bundle.CreatePacienteRequiredMessage_idPaciente}"/>
                         <p:outputLabel value="#{bundle.CreatePacienteLabel_historiaClinica}" for="historiaClinica" />
                         <p:inputText id="historiaClinica" value="#{pacienteController.selected.historiaClinica}" title="#{bundle.CreatePacienteTitle_historiaClinica}" required="true" requiredMessage="#{bundle.CreatePacienteRequiredMessage_historiaClinica}"/>
                         <p:outputLabel value="#{bundle.CreatePacienteLabel_nombre}" for="nombre" />

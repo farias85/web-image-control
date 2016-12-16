@@ -12,8 +12,7 @@
             <h:form id="EstudioCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{estudioController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateEstudioLabel_idEstudio}" for="idEstudio" />
-                        <p:inputText id="idEstudio" value="#{estudioController.selected.idEstudio}" title="#{bundle.CreateEstudioTitle_idEstudio}" required="true" requiredMessage="#{bundle.CreateEstudioRequiredMessage_idEstudio}"/>
+                        
 
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_rmiId}" for="rmiId" />
                         <p:inputText id="rmiId" value="#{estudioController.selected.rmiId}" title="#{bundle.CreateEstudioTitle_rmiId}" required="true" requiredMessage="#{bundle.CreateEstudioRequiredMessage_rmiId}"/>
