@@ -12,6 +12,8 @@
             <h:form id="EstudioCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{estudioController.selected != null}">
+                        
+
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_rmiId}" for="rmiId" />
                         <p:inputText id="rmiId" value="#{estudioController.selected.rmiId}" title="#{bundle.CreateEstudioTitle_rmiId}" required="true" requiredMessage="#{bundle.CreateEstudioRequiredMessage_rmiId}"/>
 
@@ -69,9 +71,8 @@
 
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_usuario}" for="usuario" />
                         <p:selectOneMenu id="usuario" value="#{estudioController.selected.usuario}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_usuario}">
-                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
-                                           var="usuarioItem"
-                                           itemValue="#{usuarioItem}"/>
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}" var="usuarioItem"
+                                           itemValue="#{usuarioItem}" itemLabel="#{usuarioItem.nombre}"/>
                         </p:selectOneMenu>
 
                     </p:panelGrid>

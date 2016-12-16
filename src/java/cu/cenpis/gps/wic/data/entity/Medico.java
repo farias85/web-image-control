@@ -112,15 +112,12 @@ public class Medico implements Serializable {
             return false;
         }
         Medico other = (Medico) object;
-        if ((this.idMedico == null && other.idMedico != null) || (this.idMedico != null && !this.idMedico.equals(other.idMedico))) {
-            return false;
-        }
-        return true;
+        return !((this.idMedico == null && other.idMedico != null) || (this.idMedico != null && !this.idMedico.equals(other.idMedico)));
     }
 
     @Override
     public String toString() {
-        return nombreApellidos;
+        return String.format("%s[id=%d]", getClass().getSimpleName(), getIdMedico());
     }
     
 }

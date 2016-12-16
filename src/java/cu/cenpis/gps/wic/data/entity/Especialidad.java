@@ -111,15 +111,12 @@ public class Especialidad implements Serializable {
             return false;
         }
         Especialidad other = (Especialidad) object;
-        if ((this.idEspacialidad == null && other.idEspacialidad != null) || (this.idEspacialidad != null && !this.idEspacialidad.equals(other.idEspacialidad))) {
-            return false;
-        }
-        return true;
+        return !((this.idEspacialidad == null && other.idEspacialidad != null) || (this.idEspacialidad != null && !this.idEspacialidad.equals(other.idEspacialidad)));
     }
 
     @Override
     public String toString() {
-        return nombre;
+        return String.format("%s[id=%d]", getClass().getSimpleName(), getIdEspacialidad());
     }
     
 }

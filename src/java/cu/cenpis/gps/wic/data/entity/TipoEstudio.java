@@ -111,15 +111,12 @@ public class TipoEstudio implements Serializable {
             return false;
         }
         TipoEstudio other = (TipoEstudio) object;
-        if ((this.idTipoEstudio == null && other.idTipoEstudio != null) || (this.idTipoEstudio != null && !this.idTipoEstudio.equals(other.idTipoEstudio))) {
-            return false;
-        }
-        return true;
+        return !((this.idTipoEstudio == null && other.idTipoEstudio != null) || (this.idTipoEstudio != null && !this.idTipoEstudio.equals(other.idTipoEstudio)));
     }
 
     @Override
     public String toString() {
-        return nombre;
+        return String.format("%s[id=%d]", getClass().getSimpleName(), getIdTipoEstudio());
     }
     
 }

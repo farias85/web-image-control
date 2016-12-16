@@ -7,6 +7,7 @@ package cu.cenpis.gps.wic.data.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -38,8 +39,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r"),
     @NamedQuery(name = "Rol.findByIdRol", query = "SELECT r FROM Rol r WHERE r.idRol = :idRol"),
+    @NamedQuery(name = "Rol.findByIdUsuario", query = "SELECT DISTINCT r FROM Rol r join r.usuarioList u WHERE u.idUsuario = :idUsuario"),    
     @NamedQuery(name = "Rol.findByNombre", query = "SELECT r FROM Rol r WHERE r.nombre = :nombre")})
 public class Rol implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,7 +56,7 @@ public class Rol implements Serializable {
     @Lob
     @Size(max = 65535)
     private String descripcion;
-    
+
     @JoinTable(name = "usuario_rol", joinColumns = {
         @JoinColumn(name = "rol", referencedColumnName = "id_rol")}, inverseJoinColumns = {
         @JoinColumn(name = "usuario", referencedColumnName = "id_usuario")})
@@ -119,15 +122,12 @@ public class Rol implements Serializable {
             return false;
         }
         Rol other = (Rol) object;
-        if ((this.idRol == null && other.idRol != null) || (this.idRol != null && !this.idRol.equals(other.idRol))) {
-            return false;
-        }
-        return true;
+        return !((this.idRol == null && other.idRol != null) || (this.idRol != null && !this.idRol.equals(other.idRol)));        
     }
 
     @Override
     public String toString() {
-        return nombre;
+        return String.format("%s[id=%d]", getClass().getSimpleName(), getIdRol());
     }
-    
+
 }
