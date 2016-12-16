@@ -65,14 +65,21 @@ public class Main1 {
         UsuarioService usuarioService = (UsuarioService) context.getBean("usuarioServiceImpl");
         List<Diagnostico> list = diagnosticoService.findNamedQuery("Diagnostico.findAll");
 
+        
+        Rol rol = rolService.find(4L);
+//        List<Usuario> lu = rolService.getUsuarioList(rol);
+        List<Usuario> lu = rolService.getUsuarioListNotIn(rol);
+        for (Usuario value : lu) {
+            System.out.println(value.getIdUsuario());
+        }
+        
+                
 //        Usuario usuario = usuarioService.find(34L);
 //        List<Rol> rl = rolService.findNamedQuery("Rol.findByIdUsuario", "idUsuario", usuario.getIdUsuario());
-        
-        List<Rol> rl = rolService.getRolListNotIn();
-        for (Rol value : rl) {
-            System.out.println(value.getIdRol());
-        }
-
+//        List<Rol> rl = rolService.getRolListNotIn(usuario);        
+//        for (Rol value : rl) {
+//            System.out.println(value.getIdRol());
+//        }
 //        for (Diagnostico d : list) {
 //            System.err.println(d.getNombre());
 //        }

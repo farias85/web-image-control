@@ -12,7 +12,7 @@
         <p:dialog id="UsuarioEditDlg" widgetVar="UsuarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditUsuarioTitle}">
             <h:form id="UsuarioEditForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{usuarioController.keys}">
+                    <p:panelGrid columns="2" rendered="#{usuarioController.editRendered}">
 
                         
                         <p:outputLabel value="#{bundle.EditUsuarioLabel_nombre}" for="nombre" />
@@ -32,7 +32,7 @@
                                      required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_contrasenna}"/>
 
                         <p:outputLabel value="Roles:" for="roles" />
-                        <p:autoComplete id="roles" multiple="true" value="#{rolController.selected.rolList}" completeMethod="#{rolController.autoCompleteQueryItems}"
+                        <p:autoComplete id="roles" multiple="true" value="#{rolController.filtered}" completeMethod="#{rolController.autoCompleteQueryItems}"
                                         var="rol" itemLabel="#{rol.nombre}" itemValue="#{rol}" forceSelection="true" required="true"
                                         requiredMessage="#{bundle.UsuarioRolNotEmpty}">
                             <o:converter converterId="omnifaces.ListConverter" list="#{rolController.items}" />

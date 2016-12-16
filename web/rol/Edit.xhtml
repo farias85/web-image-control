@@ -4,18 +4,28 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
 
     <ui:composition>
 
         <p:dialog id="RolEditDlg" widgetVar="RolEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRolTitle}">
             <h:form id="RolEditForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{rolController.selected != null}">
+                    <p:panelGrid columns="2" rendered="#{rolController.editRendered}">                        
                         <p:outputLabel value="#{bundle.EditRolLabel_nombre}" for="nombre" />
-                        <p:inputText id="nombre" value="#{rolController.selected.nombre}" title="#{bundle.EditRolTitle_nombre}" required="true" requiredMessage="#{bundle.EditRolRequiredMessage_nombre}"/>
+                        <p:inputText id="nombre" value="#{rolController.selected.nombre}" title="#{bundle.EditRolTitle_nombre}" required="true" 
+                                     requiredMessage="#{bundle.EditRolRequiredMessage_nombre}"/>
+
                         <p:outputLabel value="#{bundle.EditRolLabel_descripcion}" for="descripcion" />
                         <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{rolController.selected.descripcion}" title="#{bundle.EditRolTitle_descripcion}" />
+
+                        <p:outputLabel value="Usuarios" for="usuarios" />
+                        <p:pickList id="usuarios" value="#{rolController.model}" var="usuario" itemValue="#{usuario}" itemLabel="#{usuario.nombre} #{usuario.apellidos} #{usuario.email}"
+                                    required="true" requiredMessage="#{bundle.RolUsuarioNotEmpty}">
+                            <o:converter converterId="omnifaces.ListConverter" list="#{usuarioController.items}" />
+                        </p:pickList>
+
                     </p:panelGrid>
                     <p:commandButton actionListener="#{rolController.update}" value="#{bundle.Save}" update="display,:RolListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RolEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="RolEditDialog.hide()"/>

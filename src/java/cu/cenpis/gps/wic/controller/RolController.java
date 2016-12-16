@@ -15,13 +15,7 @@ public class RolController extends BaseController<Rol, java.lang.Long> {
 
     private RolService rolService;
 
-    public RolService getRolService() {
-        return rolService;
-    }
-
-    public void setRolService(RolService rolService) {
-        this.rolService = rolService;
-    }
+    private DualListModel<Usuario> model;
 
     public RolController() {
         super(Rol.class);
@@ -50,33 +44,48 @@ public class RolController extends BaseController<Rol, java.lang.Long> {
 
     @Override
     protected void setEmbeddableKeys() {
-        //selected.setUsuarioList(new HashSet<>(getModel().getTarget())); //Set
+        selected.setUsuarioList(new HashSet<>(model.getTarget()));
         
-        selected.setUsuarioList(getModel().getTarget()); //List
-
 //        UsuarioController usuarioController = JsfUtil.getController(UsuarioController.class);
 //        selected.setUsuarioList(new HashSet<>(usuarioController.getFiltered()));
+        
         super.setEmbeddableKeys(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     protected void initializeEmbeddableKey() {
-        UsuarioController usuarioController = JsfUtil.getController(UsuarioController.class);
-        getModel().setTarget(new ArrayList<>());
-        getModel().setSource(usuarioController.getItems());
-
+        
+//        UsuarioController usuarioController = JsfUtil.getController(UsuarioController.class);
 //        usuarioController.setFiltered(new ArrayList<>());
+        
+        UsuarioController usuarioController = JsfUtil.getController(UsuarioController.class);
+        model = new DualListModel<>(usuarioController.getItems(), new ArrayList<>());
         super.initializeEmbeddableKey(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void findUsuariosListener() {
-        getModel().setTarget(selected.getUsuarioList());
+    public boolean getEditRendered() {
+        if (selected == null) {
+            return false;
+        }
 
-//        UsuarioController usuarioController = JsfUtil.getController(UsuarioController.class);        
-//        usuarioController.setFiltered(new ArrayList<>(selected.getUsuarioList()));
+        List<Usuario> target = rolService.getUsuarioList(selected);
+        List<Usuario> source = rolService.getUsuarioListNotIn(selected);
+        model = new DualListModel<>(source, target);        
+        
+//        UsuarioController usuarioController = JsfUtil.getController(UsuarioController.class);
+//        List<Usuario> ul = rolService.getUsuarioList(selected);
+//        usuarioController.setFiltered(ul);
+
+        return true;
     }
 
-    private DualListModel<Usuario> model;
+    public RolService getRolService() {
+        return rolService;
+    }
+
+    public void setRolService(RolService rolService) {
+        this.rolService = rolService;
+    }
 
     public DualListModel<Usuario> getModel() {
         if (model == null) {
@@ -94,12 +103,6 @@ public class RolController extends BaseController<Rol, java.lang.Long> {
 }
 
 //                        <p:outputLabel value="Usuarios" for="usuarios" />
-//                        <p:pickList id="usuarios" value="#{rolController.model}" var="usuario" itemValue="#{usuario}" itemLabel="#{usuario.idUsuario}"
-//                                    required="true" requiredMessage="#{bundle.RolUsuarioNotEmpty}">
-//                            <o:converter converterId="omnifaces.ListConverter" list="#{usuarioController.items}" />
-//                        </p:pickList>
-//						
-//			  <p:outputLabel value="Usuarios" for="usuarios" />
 //                        <p:autoComplete id="usuarios" multiple="true" value="#{usuarioController.filtered}" completeMethod="#{usuarioController.autoCompleteQueryItems}"
 //                                        var="usuario" itemLabel="#{usuario.nombre}" itemValue="#{usuario}" forceSelection="true" required="true"
 //                                        requiredMessage="#{bundle.RolUsuarioNotEmpty}">
@@ -111,3 +114,8 @@ public class RolController extends BaseController<Rol, java.lang.Long> {
 //                                <h:outputText value="#{usuario.apellidos}" />
 //                            </p:column>
 //                        </p:autoComplete>
+
+//                        <p:pickList id="usuarios" value="#{rolController.model}" var="usuario" itemValue="#{usuario}" itemLabel="#{usuario.nombre} #{usuario.apellidos} #{usuario.email}"
+//                                    required="true" requiredMessage="#{bundle.RolUsuarioNotEmpty}">
+//                            <o:converter converterId="omnifaces.ListConverter" list="#{usuarioController.items}" />
+//                        </p:pickList>

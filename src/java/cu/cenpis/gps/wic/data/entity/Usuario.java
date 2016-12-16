@@ -40,7 +40,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
     @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
     @NamedQuery(name = "Usuario.findByApellidos", query = "SELECT u FROM Usuario u WHERE u.apellidos = :apellidos"),
-    @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email"),
+    @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email"),    
+    @NamedQuery(name = "Usuario.findByIdRol", query = "SELECT DISTINCT u FROM Usuario u join u.rolList r WHERE r.idRol = :idRol"),
+    @NamedQuery(name = "Usuario.findByIdRolNotIn", query = "SELECT u FROM Usuario u WHERE u.idUsuario NOT IN("
+            + "SELECT u2 FROM Usuario u2 join u2.rolList r2 WHERE r2.idRol = :idRol)"),
     @NamedQuery(name = "Usuario.findByContrasenna", query = "SELECT u FROM Usuario u WHERE u.contrasenna = :contrasenna")})
 public class Usuario implements Serializable {
 
@@ -72,7 +75,7 @@ public class Usuario implements Serializable {
         @JoinColumn(name = "usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
         @JoinColumn(name = "rol", referencedColumnName = "id_rol")})
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Rol> rolList;
+    private Set<Rol> rolList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Estudio> estudioList;
@@ -133,11 +136,11 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public List<Rol> getRolList() {
+    public Set<Rol> getRolList() {
         return rolList;
     }
 
-    public void setRolList(List<Rol> rolList) {
+    public void setRolList(Set<Rol> rolList) {
         this.rolList = rolList;
     }
 
