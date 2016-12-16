@@ -65,6 +65,14 @@ public class Main1 {
         UsuarioService usuarioService = (UsuarioService) context.getBean("usuarioServiceImpl");
         List<Diagnostico> list = diagnosticoService.findNamedQuery("Diagnostico.findAll");
 
+//        Usuario usuario = usuarioService.find(34L);
+//        List<Rol> rl = rolService.findNamedQuery("Rol.findByIdUsuario", "idUsuario", usuario.getIdUsuario());
+        
+        List<Rol> rl = rolService.getRolListNotIn();
+        for (Rol value : rl) {
+            System.out.println(value.getIdRol());
+        }
+
 //        for (Diagnostico d : list) {
 //            System.err.println(d.getNombre());
 //        }
@@ -163,7 +171,6 @@ public class Main1 {
 //        for (Rol value : usuario.getRolList()) {
 //            System.out.println(value.getNombre());
 //        }
-        
 //        List<Rol> rl = usuario.getRolList();
 //        //List<Rol> rlCopy = new ArrayList<>(rl);
 //        List<Rol> rlCopy = new ArrayList<>();
@@ -172,13 +179,11 @@ public class Main1 {
 //        }
 //        usuario.setRolList(rlCopy);
 //        usuarioService.edit(usuario);
-        
 //        List<String> ll = getItemsAsStringListNotIn(usuario.getRolList(), all);
 //        System.out.println("ESTAS ES LA DIFERENCIA...");
 //        for (String ll1 : ll) {
 //            System.out.println(ll1);
 //        }
-        
 //        Usuario usuario = new Usuario(Long.MIN_VALUE, "UserXXX", "ApellidosXXX", "MailXXX", "PasswordXXX");
 //        Rol rol1 = rolService.find(1L);
 //        Rol rol2 = rolService.find(2L);
@@ -191,7 +196,6 @@ public class Main1 {
 //        usuario.setRolList(new HashSet<>(rl));
 //        
 //        usuarioService.create(usuario);
-        
 //        Rol rol = new Rol(Long.MIN_VALUE, "RolXXX");
 //        rol.setDescripcion("DescripcionXXX");
 //        
@@ -212,10 +216,10 @@ public class Main1 {
 
         List<String> result = new ArrayList<>();
         List<Rol> resultRol = new ArrayList<>(all);
-        
+
         try {
             Method method = Rol.class.getMethod("getNombre");
-            for (Rol itemI : pitems) {                
+            for (Rol itemI : pitems) {
                 String valueI = String.valueOf(method.invoke(itemI));
                 for (Rol itemJ : all) {
                     String valueJ = String.valueOf(method.invoke(itemJ));
@@ -228,11 +232,11 @@ public class Main1 {
         } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
             Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         for (Rol rr : resultRol) {
             result.add(rr.getNombre());
         }
-        
+
         return result;
     }
 }

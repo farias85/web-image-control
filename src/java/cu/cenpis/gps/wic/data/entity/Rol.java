@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Rol.findAll", query = "SELECT r FROM Rol r"),
     @NamedQuery(name = "Rol.findByIdRol", query = "SELECT r FROM Rol r WHERE r.idRol = :idRol"),
+    @NamedQuery(name = "Rol.findByIdUsuario", query = "SELECT DISTINCT r FROM Rol r join r.usuarioList u WHERE u.idUsuario = :idUsuario"),    
     @NamedQuery(name = "Rol.findByNombre", query = "SELECT r FROM Rol r WHERE r.nombre = :nombre")})
 public class Rol implements Serializable {
 

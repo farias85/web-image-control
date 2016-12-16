@@ -23,7 +23,7 @@ public class UsuarioController extends BaseController<Usuario, java.lang.Long> {
     public UsuarioController() {
         super(Usuario.class);
     }
-    
+
     @PostConstruct
     @Override
     public void init() {
@@ -44,23 +44,13 @@ public class UsuarioController extends BaseController<Usuario, java.lang.Long> {
     public void destroy() {
         super.destroy(Bundle.getString("UsuarioDeleted"));
     }
-    
-    @Override
-    protected void setEmbeddableKeys() {
-        RolController rolController = JsfUtil.getController(RolController.class);
-        selected.setRolList(rolController.getFiltered());
-        super.setEmbeddableKeys(); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    protected void initializeEmbeddableKey() {    
-        RolController rolController = JsfUtil.getController(RolController.class);
-        rolController.setFiltered(new ArrayList<>());
-        super.initializeEmbeddableKey(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void findRolListener() {
-        RolController rolController = JsfUtil.getController(RolController.class);
-        rolController.setFiltered(selected.getRolList());
+    public boolean getKeys() {
+        if (selected == null) {
+            return false;
+        }
+//        RolController rolController = JsfUtil.getController(RolController.class);
+//        rolController.setFiltered(selected.getRolList());
+        return true;
     }
 }

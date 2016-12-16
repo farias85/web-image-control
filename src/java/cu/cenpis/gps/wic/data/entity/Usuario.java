@@ -71,7 +71,7 @@ public class Usuario implements Serializable {
     @JoinTable(name = "usuario_rol", joinColumns = {
         @JoinColumn(name = "usuario", referencedColumnName = "id_usuario")}, inverseJoinColumns = {
         @JoinColumn(name = "rol", referencedColumnName = "id_rol")})
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Rol> rolList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
