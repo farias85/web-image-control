@@ -12,8 +12,6 @@
             <h:form id="PacienteEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{pacienteController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditPacienteLabel_idPaciente}" for="idPaciente" />
-                        <p:inputText id="idPaciente" value="#{pacienteController.selected.idPaciente}" title="#{bundle.EditPacienteTitle_idPaciente}" required="true" requiredMessage="#{bundle.EditPacienteRequiredMessage_idPaciente}"/>
                         <p:outputLabel value="#{bundle.EditPacienteLabel_historiaClinica}" for="historiaClinica" />
                         <p:inputText id="historiaClinica" value="#{pacienteController.selected.historiaClinica}" title="#{bundle.EditPacienteTitle_historiaClinica}" required="true" requiredMessage="#{bundle.EditPacienteRequiredMessage_historiaClinica}"/>
                         <p:outputLabel value="#{bundle.EditPacienteLabel_nombre}" for="nombre" />

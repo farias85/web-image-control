@@ -37,13 +37,7 @@
 
                         <p:ajax event="rowSelect"   update=":MenuCrud:MenuForm, :PacienteListForm:ContextMenu:context-menu"/>
                         <p:ajax event="rowUnselect" update=":MenuCrud:MenuForm, :PacienteListForm:ContextMenu:context-menu"/>
-
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPacienteTitle_idPaciente}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idPaciente}"/>
-                        </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPacienteTitle_historiaClinica}"/>
