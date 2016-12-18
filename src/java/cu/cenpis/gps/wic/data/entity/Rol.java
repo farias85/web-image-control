@@ -62,7 +62,7 @@ public class Rol implements Serializable {
     @JoinTable(name = "usuario_rol", joinColumns = {
         @JoinColumn(name = "rol", referencedColumnName = "id_rol")}, inverseJoinColumns = {
         @JoinColumn(name = "usuario", referencedColumnName = "id_usuario")})
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     private Set<Usuario> usuarioList;
 
     public Rol() {

@@ -32,7 +32,7 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
 
     @Override
     public void create() {
-        
+
         super.create(Bundle.getString("DiagnosticoCreated"));
     }
 
@@ -44,13 +44,17 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
     @Override
     public void destroy() {
 
-        EstudioController estudioController = JsfUtil.getController(EstudioController.class);        
-        
+        EstudioController estudioController = JsfUtil.getController(EstudioController.class);
+
         //EstudioController estudioController = (EstudioController)findController(EstudioController.class);
         List<Estudio> list = diagnosticoService.findEstudiosByDiagnostico(selected);
         for (Estudio var : list) {
             estudioController.getItems().remove(var);
         }
         super.destroy(Bundle.getString("DiagnosticoDeleted"));
+    }
+
+    public String onDetailCancel() {
+        return "index.jsf";
     }
 }
