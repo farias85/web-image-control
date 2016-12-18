@@ -18,7 +18,7 @@
                         <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{procedenciaController.selected.descripcion}" title="#{bundle.CreateProcedenciaTitle_descripcion}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{procedenciaController.create}" value="#{bundle.Save}" update="display,:ProcedenciaListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProcedenciaCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="ProcedenciaCreateDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}"  immediate="true" onclick="ProcedenciaCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

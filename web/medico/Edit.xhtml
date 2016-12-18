@@ -18,7 +18,7 @@
                         <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{medicoController.selected.descripcion}" title="#{bundle.EditMedicoTitle_descripcion}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{medicoController.update}" value="#{bundle.Save}" update="display,:MedicoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MedicoEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="MedicoEditDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Cancel}" immediate="true"  onclick="MedicoEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
