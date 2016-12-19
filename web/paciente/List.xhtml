@@ -31,8 +31,9 @@
                                  selectionMode="single" selection="#{pacienteController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idPaciente}"
-                                 rows="10"
+                                 rows="10"                                 
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 reflow="true"
                                  >
 
                         <p:ajax event="rowSelect"   update=":MenuCrud:MenuForm, :PacienteListForm:ContextMenu:context-menu"/>

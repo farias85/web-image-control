@@ -20,19 +20,15 @@
                                  selectionMode="single" selection="#{especialidadController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idEspacialidad}"
+                                 reflow="true"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 reflow="true"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEspecialidadTitle_idEspacialidad}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idEspacialidad}"/>
-                        </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEspecialidadTitle_nombre}"/>

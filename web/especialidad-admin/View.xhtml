@@ -12,8 +12,6 @@
             <h:form id="EspecialidadViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{especialidadController.selected != null}">
-                        <h:outputText value="#{bundle.ViewEspecialidadLabel_idEspacialidad}"/>
-                        <h:outputText value="#{especialidadController.selected.idEspacialidad}" title="#{bundle.ViewEspecialidadTitle_idEspacialidad}"/>
                         <h:outputText value="#{bundle.ViewEspecialidadLabel_nombre}"/>
                         <h:outputText value="#{especialidadController.selected.nombre}" title="#{bundle.ViewEspecialidadTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewEspecialidadLabel_descripcion}"/>

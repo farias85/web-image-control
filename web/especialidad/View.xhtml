@@ -17,15 +17,13 @@
             <h:form id="EspecialidadViewForm">
                 <h:panelGroup id="display">                    
                     <p:panelGrid columns="2" rendered="#{especialidadController.selected != null}">
-                        <h:outputText value="#{bundle.ViewEspecialidadLabel_idEspacialidad}"/>
-                        <h:outputText value="#{especialidadController.selected.idEspacialidad}" title="#{bundle.ViewEspecialidadTitle_idEspacialidad}"/>
                         <h:outputText value="#{bundle.ViewEspecialidadLabel_nombre}"/>
                         <h:outputText value="#{especialidadController.selected.nombre}" title="#{bundle.ViewEspecialidadTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewEspecialidadLabel_descripcion}"/>
                         <h:outputText value="#{especialidadController.selected.descripcion}" title="#{bundle.ViewEspecialidadTitle_descripcion}"/>
                     </p:panelGrid>
                     <p:commandButton immediate="true" action="#{especialidadController.actionCancel}" value="#{bundle.Cancel}" />
-                    
+
                 </h:panelGroup>
             </h:form>
 

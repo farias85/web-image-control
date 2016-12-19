@@ -14,21 +14,19 @@
 
         <ui:define name="body">
 
-            
-                <h:form id="EspecialidadEditForm">
-                    <h:panelGroup id="display">
-                        <p:panelGrid columns="2" rendered="#{especialidadController.selected != null}">
-                            <p:outputLabel value="#{bundle.EditEspecialidadLabel_idEspacialidad}" for="idEspacialidad" />
-                            <p:inputText id="idEspacialidad" value="#{especialidadController.selected.idEspacialidad}" title="#{bundle.EditEspecialidadTitle_idEspacialidad}" required="true" requiredMessage="#{bundle.EditEspecialidadRequiredMessage_idEspacialidad}"/>
-                            <p:outputLabel value="#{bundle.EditEspecialidadLabel_nombre}" for="nombre" />
-                            <p:inputText id="nombre" value="#{especialidadController.selected.nombre}" title="#{bundle.EditEspecialidadTitle_nombre}" required="true" requiredMessage="#{bundle.EditEspecialidadRequiredMessage_nombre}"/>
-                            <p:outputLabel value="#{bundle.EditEspecialidadLabel_descripcion}" for="descripcion" />
-                            <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{especialidadController.selected.descripcion}" title="#{bundle.EditEspecialidadTitle_descripcion}" />
-                        </p:panelGrid>
-                        <p:commandButton action="#{especialidadController.actionEdit}" value="#{bundle.Save}" ajax="false"/>
+
+            <h:form id="EspecialidadEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{especialidadController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEspecialidadLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{especialidadController.selected.nombre}" title="#{bundle.EditEspecialidadTitle_nombre}" required="true" requiredMessage="#{bundle.EditEspecialidadRequiredMessage_nombre}"/>
+                        <p:outputLabel value="#{bundle.EditEspecialidadLabel_descripcion}" for="descripcion" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{especialidadController.selected.descripcion}" title="#{bundle.EditEspecialidadTitle_descripcion}" />
+                    </p:panelGrid>
+                    <p:commandButton action="#{especialidadController.actionEdit}" value="#{bundle.Save}" ajax="false"/>
                     <p:commandButton immediate="true" action="#{especialidadController.actionCancel}" value="#{bundle.Cancel}" />
-                    </h:panelGroup>
-                </h:form>            
+                </h:panelGroup>
+            </h:form>            
 
         </ui:define>
     </ui:composition>

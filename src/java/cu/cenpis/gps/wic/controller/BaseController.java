@@ -155,6 +155,8 @@ public abstract class BaseController<T, I>
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
+            
+           //filtered.remove(selected);
 //            getItems().remove(selected);
 //            selected = null;
         }
