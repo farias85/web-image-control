@@ -34,7 +34,7 @@ public class LoginController {
     public String login() {
         boolean result = usuarioService.permisoLogin(usuario);
         if (result) {
-            return "index";
+            return "/index.xhtml";
         } else {
             JsfUtil.addErrorMessage("Usuario y/o contraseña incorrecta! Pruebe de nuevo!");            
             return "login";

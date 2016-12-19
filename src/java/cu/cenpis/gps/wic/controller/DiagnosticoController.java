@@ -32,7 +32,6 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
 
     @Override
     public void create() {
-
         super.create(Bundle.getString("DiagnosticoCreated"));
     }
 
@@ -56,5 +55,16 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
 
     public String onDetailCancel() {
         return "index.jsf";
+    }
+    
+    @Override
+    public String actionCreate()
+    {
+        if (diagnosticoService.existe(selected)) {
+            JsfUtil.addErrorMessage("Existe un diagnóstico con este nombre!");
+            return null;
+        } else {
+            return super.actionCreate();
+        }
     }
 }

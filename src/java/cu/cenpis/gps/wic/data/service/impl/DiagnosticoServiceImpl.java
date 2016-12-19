@@ -29,4 +29,17 @@ public class DiagnosticoServiceImpl extends BaseServiceImpl<Diagnostico, java.la
     public List<Estudio> findEstudiosByDiagnostico(Diagnostico diagnostico) {
         return estudioDAO.findNamedQuery("Estudio.findByDiagnostico", "idDiagnostico", diagnostico.getIdDiagnostico());
     }
+
+    @Override
+    public boolean existe(Diagnostico diagnostico) {
+        List<Diagnostico> diagnosticos = findNamedQuery("Diagnostico.findByNombre", "nombre", diagnostico.getNombre());
+        for (Diagnostico u : diagnosticos) {
+            if (u.getNombre().equals(diagnostico.getNombre())) {
+                return true;
+            } /*else {
+                return false;
+            }*/
+        }
+        return false;
+    }    
 }

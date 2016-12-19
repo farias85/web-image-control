@@ -18,8 +18,6 @@
             <h:form id="PacienteViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{pacienteController.selected != null}">
-                        <h:outputText value="#{bundle.ViewPacienteLabel_idPaciente}"/>
-                        <h:outputText value="#{pacienteController.selected.idPaciente}" title="#{bundle.ViewPacienteTitle_idPaciente}"/>
                         <h:outputText value="#{bundle.ViewPacienteLabel_historiaClinica}"/>
                         <h:outputText value="#{pacienteController.selected.historiaClinica}" title="#{bundle.ViewPacienteTitle_historiaClinica}"/>
                         <h:outputText value="#{bundle.ViewPacienteLabel_nombre}"/>

@@ -12,8 +12,6 @@
             <h:form id="EspecialidadCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{especialidadController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateEspecialidadLabel_idEspacialidad}" for="idEspacialidad" />
-                        <p:inputText id="idEspacialidad" value="#{especialidadController.selected.idEspacialidad}" title="#{bundle.CreateEspecialidadTitle_idEspacialidad}" required="true" requiredMessage="#{bundle.CreateEspecialidadRequiredMessage_idEspacialidad}"/>
                         <p:outputLabel value="#{bundle.CreateEspecialidadLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{especialidadController.selected.nombre}" title="#{bundle.CreateEspecialidadTitle_nombre}" required="true" requiredMessage="#{bundle.CreateEspecialidadRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateEspecialidadLabel_descripcion}" for="descripcion" />
