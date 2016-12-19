@@ -63,17 +63,73 @@ public class Main1 {
         RolService rolService = (RolService) context.getBean("rolServiceImpl");
         TipoEstudioService tipoEstudioService = (TipoEstudioService) context.getBean("tipoEstudioServiceImpl");
         UsuarioService usuarioService = (UsuarioService) context.getBean("usuarioServiceImpl");
-        List<Diagnostico> list = diagnosticoService.findNamedQuery("Diagnostico.findAll");
 
+//        List<Diagnostico> list = diagnosticoService.findNamedQuery("Diagnostico.findAll");
+//        Rol rol = rolService.find(1L);
+//        List<Usuario> lu = new ArrayList<>();
+//        lu.add(usuarioService.find(1L));
+//        lu.add(usuarioService.find(2L));
+//        rol.setUsuarioList(new HashSet<>(lu));
+//        rolService.edit(rol);
+//        
+//        Rol rol2 = rolService.find(2L);
+//        List<Usuario> lu2 = new ArrayList<>();
+//        lu2.add(usuarioService.find(2L));
+//        lu2.add(usuarioService.find(3L));
+//        rol2.setUsuarioList(new HashSet<>(lu2));
+//        rolService.edit(rol2);
+//        
+//        Rol rol3 = rolService.find(3L);
+//        List<Usuario> lu3 = new ArrayList<>();
+//        lu3.add(usuarioService.find(3L));
+//        lu3.add(usuarioService.find(4L));
+//        rol3.setUsuarioList(new HashSet<>(lu3));
+//        rolService.edit(rol3);
         
-        Rol rol = rolService.find(4L);
-//        List<Usuario> lu = rolService.getUsuarioList(rol);
-        List<Usuario> lu = rolService.getUsuarioListNotIn(rol);
-        for (Usuario value : lu) {
-            System.out.println(value.getIdUsuario());
-        }
+//        rolService.removeById(1l); //la despingazon, ver cascadetype en rol (se resuelve con CascadeType.MERGE)
         
-                
+//        Usuario usuario = usuarioService.find(1L);
+//        List<Rol> rl = new ArrayList<>();
+//        rl.add(rolService.find(1L));
+//        rl.add(rolService.find(2L));
+//        usuario.setRolList(new HashSet<>(rl));
+//        usuarioService.edit(usuario);
+//        
+//        Usuario usuario2 = usuarioService.find(2L);
+//        List<Rol> rl2 = new ArrayList<>();
+//        rl2.add(rolService.find(2L));
+//        rl2.add(rolService.find(3L));
+//        usuario2.setRolList(new HashSet<>(rl2));
+//        usuarioService.edit(usuario2);
+//        
+//        Usuario usuario3 = usuarioService.find(3L);
+//        List<Rol> rl3 = new ArrayList<>();
+//        rl3.add(rolService.find(3L));
+//        rl3.add(rolService.find(4L));
+//        usuario3.setRolList(new HashSet<>(rl3));
+//        usuarioService.edit(usuario3);
+//        List<Estudio> le = estudioService.findAll();
+//        for (Estudio var : le) {
+//            estudioService.remove(var);
+//        }
+//        
+        usuarioService.removeById(9L);
+        
+//        List<Rol> rl = rolService.findAll();
+//        for (Rol var : rl) {
+//            rolService.remove(var);
+//        }
+//        
+//        List<Usuario> ul = usuarioService.findAll();
+//        for (Usuario var : ul) {
+//            usuarioService.remove(var);
+//        }
+//        Rol rol = rolService.find(4L);
+////        List<Usuario> lu = rolService.getUsuarioList(rol);
+//        List<Usuario> lu = rolService.getUsuarioListNotIn(rol);
+//        for (Usuario value : lu) {
+//            System.out.println(value.getIdUsuario());
+//        }
 //        Usuario usuario = usuarioService.find(34L);
 //        List<Rol> rl = rolService.findNamedQuery("Rol.findByIdUsuario", "idUsuario", usuario.getIdUsuario());
 //        List<Rol> rl = rolService.getRolListNotIn(usuario);        

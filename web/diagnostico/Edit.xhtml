@@ -23,7 +23,7 @@
                         <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{diagnosticoController.selected.descripcion}" title="#{bundle.EditDiagnosticoTitle_descripcion}" />
                     </p:panelGrid>
                     <p:commandButton action="#{diagnosticoController.actionEdit}" value="#{bundle.Save}" ajax="false"/>
-                    <p:commandButton immediate="true" action="#{diagnosticoController.actionCancel}" value="#{bundle.Cancel}" />
+                    <p:commandButton action="#{diagnosticoController.actionCancel}" immediate="true" value="#{bundle.Cancel}" />
                 </h:panelGroup>
             </h:form>
 
