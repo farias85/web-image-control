@@ -99,5 +99,11 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
             <ref bean="usuarioService" />
         </property>
     </bean>
+    
+    <bean id="loginManager" class="cu.cenpis.gps.wic.controller.LoginManager" scope="session">
+        <property name="usuarioService">
+            <ref bean="usuarioService" />
+        </property>
+    </bean>
 
 </beans>

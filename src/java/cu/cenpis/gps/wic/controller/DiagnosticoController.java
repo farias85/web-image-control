@@ -32,7 +32,6 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
 
     @Override
     public void create() {
-
         super.create(Bundle.getString("DiagnosticoCreated"));
     }
 

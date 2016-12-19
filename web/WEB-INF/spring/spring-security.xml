@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!-- Enable security annotations usage -->
+
+    <bean id="myAuthenticationDetailsSource"
+          class="cu.cenpis.gps.wic.security.MyAuthenticationDetailsSource">
+    </bean>
+
+    <bean id="myAuthenticationProvider"
+          class="cu.cenpis.gps.wic.security.MyAuthenticationProvider">
+    </bean>
+
+    <security:authentication-manager>
+        <!-- create a custom AuthenticationProvider class to tune the login process -->
+        <security:authentication-provider
+                ref="myAuthenticationProvider"/>
+    </security:authentication-manager>
+
+    <security:http use-expressions="true">
+        <!-- refers to http://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html -->
+        <security:intercept-url pattern="/login.jsf" access="anonymous"/>
+        <security:intercept-url pattern="/css/**" access="anonymous"/>    
+            
+        <!-- <security:intercept-url pattern="/logoutSuccess*" access="anonymous" /> -->        
+        <!-- <security:intercept-url pattern="/**" access="anonymous" /> -->
+        <!-- <security:intercept-url pattern="/**" access="authenticated" /> -->
+
+        <security:intercept-url pattern="/protected1.jsf" access="hasRole('ROLE_ADMIN')"/>
+
+        <security:intercept-url pattern="/protected2.jsf" access="hasRole('ROLE_USER')"/>
+
+         <security:access-denied-handler error-page="/error.jsf"/>
+
+        <security:form-login login-page="/login.jsf"
+                             authentication-failure-url="/login.jsf?error=1"
+                             default-target-url="/index.jsf"
+                             authentication-details-source-ref="myAuthenticationDetailsSource"
+                             username-parameter="username" password-parameter="password"/>
+                             
+        <security:logout logout-success-url="/logoutSuccess.jsf" />
+        
+    </security:http>
+
+</beans>
