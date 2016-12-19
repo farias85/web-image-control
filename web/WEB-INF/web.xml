@@ -5,6 +5,10 @@
     
     <display-name>Web Image Control</display-name>
 
+    <icon>
+        <small-icon>/resources/images/wico.png</small-icon>
+    </icon>
+
     <listener>
         <listener-class>
             org.springframework.web.context.ContextLoaderListener

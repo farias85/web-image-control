@@ -207,8 +207,8 @@ blockquote:before {content:'“'; position:absolute; left:15px; top:13px; font-s
 
 /* __________ breadcrumb __________ */
 .breadcrumbs_block {
-	padding:81px 0;
-	background-image:url(../images/clean_code_bg.jpg);
+	padding:81px 0;	
+        background-image:url("#{resource['images/clean_code_bg.jpg']}");
 	background-repeat:no-repeat;
 	background-size:cover;
 }

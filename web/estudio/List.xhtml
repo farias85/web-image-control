@@ -74,7 +74,7 @@
                         <p:column filterBy="#{item.paciente.nombre} #{item.paciente.apellidos}" 
                                   sortBy="#{item.paciente.nombre} #{item.paciente.apellidos}"  filterMatchMode="contains">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEstudioTitle_paciente}"/>
+                                <h:outputText value="Nombre"/>
                             </f:facet>
                             <h:outputText value="#{item.paciente.nombre} #{item.paciente.apellidos}"/>
                         </p:column>
@@ -93,7 +93,7 @@
                             <f:facet name="filter">
                                 <p:selectOneButton onchange="PF('dtable').filter()">
                                     <f:converter converterId="javax.faces.Boolean" />
-                                    <f:selectItem itemLabel="Todos" itemValue="" />
+                                    <f:selectItem itemLabel="T" itemValue="" />
                                     <f:selectItem itemLabel="M" itemValue="true" />
                                     <f:selectItem itemLabel="F" itemValue="false" />
                                 </p:selectOneButton>
@@ -131,7 +131,7 @@
                             <f:facet name="filter">
                                 <p:selectOneButton onchange="PF('dtable').filter()">
                                     <f:converter converterId="javax.faces.Boolean" />
-                                    <f:selectItem itemLabel="Todos" itemValue="" />
+                                    <f:selectItem itemLabel="T" itemValue="" />
                                     <f:selectItem itemLabel="Si" itemValue="true" />
                                     <f:selectItem itemLabel="No" itemValue="false" />
                                 </p:selectOneButton>
