@@ -26,8 +26,8 @@
 
     <security:http use-expressions="true">
         <!-- refers to http://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html -->
-        <security:intercept-url pattern="/WEB-INF/static/login.jsf" access="anonymous"/>
-        <security:intercept-url pattern="/WEB-INF/static/logout-success.jsf" access="anonymous" />         
+        <security:intercept-url pattern="/static/login.jsf" access="anonymous"/>
+        <security:intercept-url pattern="/static/logout-success.jsf" access="anonymous" />         
         <security:intercept-url pattern="/css/**" access="anonymous"/>    
          
         <!-- <security:intercept-url pattern="/**" access="anonymous" /> -->
@@ -37,15 +37,15 @@
 
         <security:intercept-url pattern="/protected2.jsf" access="hasRole('ROLE_USER')"/>
 
-        <security:access-denied-handler error-page="/WEB-INF/static/error403.jsf"/>
+        <security:access-denied-handler error-page="/static/error403.jsf"/>
 
-        <security:form-login login-page="/WEB-INF/static/login.jsf"
-                             authentication-failure-url="/WEB-INF/static/login.jsf?error=1"
+        <security:form-login login-page="/static/login.jsf"
+                             authentication-failure-url="/static/login.jsf?error=1"
                              default-target-url="/index.jsf"
                              authentication-details-source-ref="myAuthenticationDetailsSource"
                              username-parameter="username" password-parameter="password"/>
                              
-        <security:logout logout-success-url="/WEB-INF/static/logout-success.jsf" />
+        <security:logout logout-success-url="/static/logout-success.jsf" />
         
     </security:http>
 

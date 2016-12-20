@@ -12,7 +12,7 @@
     -->
     <error-page>
         <error-code>404</error-code>
-        <location>/WEB-INF/static/error404.xhtml</location>
+        <location>/static/error404.xhtml</location>
     </error-page>
     
     <filter>

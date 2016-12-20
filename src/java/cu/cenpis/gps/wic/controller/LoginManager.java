@@ -12,16 +12,6 @@ import javax.servlet.ServletResponse;
 
 public class LoginManager implements Serializable {
 
-    private UsuarioService usuarioService;
-
-    public UsuarioService getUsuarioService() {
-        return usuarioService;
-    }
-
-    public void setUsuarioService(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
-    }
-
     public String doLogin() {
         return doSpringRequest("/j_spring_security_check");
     }

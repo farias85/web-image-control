@@ -10,7 +10,7 @@
 
 
         <ui:define name="title">
-            <h:outputText value="Spring-Security - Login"></h:outputText>
+            <h:outputText value="Security - Login"></h:outputText>
         </ui:define>
 
         <ui:define name="body">
@@ -37,8 +37,7 @@
                                              requiredMessage="#{bundle.EditUsuarioRequiredMessage_email}"/>
 
                                 <p:outputLabel value="#{bundle.CreateUsuarioLabel_contrasenna}" for="password" />
-                                <p:inputText id="password" size="100" placeholder="#{bundle.CreateUsuarioLabel_contrasenna}" 
-                                             title="#{bundle.CreateUsuarioTitle_contrasenna}" required="true" 
+                                <p:password id="password" size="100" title="#{bundle.CreateUsuarioTitle_contrasenna}" required="true" feedback="false"
                                              requiredMessage="#{bundle.CreateUsuarioRequiredMessage_contrasenna}"/>
 
                                 <p:commandButton id="btnLoginId" value="Entrar" type="submit" ajax="false"
@@ -50,8 +49,6 @@
                 </div>
                 <div class="ui-g-12 ui-lg-4"></div>
             </div>
-
-
 
         </ui:define>
 
