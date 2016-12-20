@@ -16,6 +16,7 @@ public class MyAuthenticationDetailsSource implements AuthenticationDetailsSourc
      * returns the {@link WebAuthenticationDetails} according to LuxFact rule
      * 
      * @param context
+     * @return 
      */
     @Override
     public WebAuthenticationDetails buildDetails(final HttpServletRequest context) {    	

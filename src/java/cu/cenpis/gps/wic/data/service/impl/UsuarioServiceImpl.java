@@ -20,7 +20,7 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario, java.lang.Long,
 
     @Autowired
     RolDAO rolDAO;
-    
+
     public UsuarioServiceImpl() {
         System.out.println("UsuarioServiceImpl()");
     }
@@ -30,16 +30,21 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario, java.lang.Long,
 
         List<Usuario> usuarios = findNamedQuery("Usuario.findByEmail", "email", usuario.getEmail());
         for (Usuario u : usuarios) {
-            if (u.getContrasenna().equals(usuario.getContrasenna())) {
+            if (u.getContrasenna().equalsIgnoreCase(usuario.getContrasenna())) {
                 return true;
-            } 
+            }
         }
         return false;
     }
 
     @Override
+    public Usuario userAuthentication(Usuario usuario) {
+        return dao.userAuthentication(usuario);
+    }
+
+    @Override
     public List<Rol> getRolList(Usuario usuario) {
-        return rolDAO.findNamedQuery("Rol.findByIdUsuario", "idUsuario", usuario.getIdUsuario());        
+        return rolDAO.findNamedQuery("Rol.findByIdUsuario", "idUsuario", usuario.getIdUsuario());
     }
 
     @Override
