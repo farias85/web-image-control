@@ -14,60 +14,47 @@
         </ui:define>
 
         <ui:define name="body">
-            <div>
-                <h:form id="loginFormId" prependId="false">
-                    
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-                    
-                    <div class="full-box" style="text-align: center">
-                        <div class="child-box box-c3">
-                            <h3>Login</h3>
 
-                            <div class="fluid-row">
-                                <div class="fluid-column fluid-c12">
-                                    <div class="forLabel" style="width: 30%">
-                                        <h:outputLabel for="username" value="User"/>
-                                    </div>
-                                    <div class="forField" style="width: 65%">
-                                        <h:inputText id="username" required="true"
-                                                     requiredMessage="Please enter username (or go to hell...)"/>
-                                        <h:messages for="username"/>
-                                    </div>
-                                </div>
-                                <div class="fluid-column fluid-c12">
-                                    <div class="forLabel" style="width: 30%">
-                                        <h:outputLabel for="password" value="Password"/>
-                                    </div>
-                                    <div class="forField" style="width: 65%">
-                                        <h:inputSecret id="password" required="true"
-                                                       requiredMessage="Please enter password (otherwise you'll die!!)"
-                                                       name="password"/>
-                                        <h:messages for="password"/>
-                                    </div>
-                                </div>
-                                <div class="fluid-column fluid-c12">
-                                    <div class="forLabel" style="width: 30%">
-                                        <h:outputText value="Authentication"/>
-                                    </div>
-                                    <div class="forField" style="width: 65%">
-                                        <h:selectBooleanCheckbox id="method" name="method"/>
-                                        <h:outputLabel for="method" value="LDAP"/>
-                                    </div>
-                                </div>
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-6 ui-lg-4"></div>
+                <div class="ui-g-12 ui-md-6 ui-lg-4">
+                    <h:form id="loginFormId" prependId="false">
+
+                        <ui:fragment rendered="${!empty param['error']}">
+                            <div class="alert alert-warning alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>Advertencia!</strong> Conexión rechazada: email y/o contraseña incorrectos.
                             </div>
-                            <ui:fragment rendered="${!empty param['error']}">
-                                <div>Connection failed: user and/or password are wrong.</div>
-                            </ui:fragment>
-                            <div id="loginBtnPanelId">
-                                <h:commandButton id="btnLoginId" value="Login" type="submit"
-                                                 action="#{loginManager.doLogin()}" styleClass="loginPanelBtn"/>
-                            </div>
-                        </div>
-                    </div>                    
-                </h:form>
+                        </ui:fragment>
+
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+
+                        <h:panelGroup id="display">
+                            <p:panelGrid columns="1">
+
+                                <p:outputLabel value="#{bundle.EditUsuarioLabel_email}" for="username" />
+                                <p:inputText id="username" size="100" placeholder="#{bundle.EditUsuarioLabel_email}" title="#{bundle.EditUsuarioLabel_email}" required="true" 
+                                             requiredMessage="#{bundle.EditUsuarioRequiredMessage_email}"/>
+
+                                <p:outputLabel value="#{bundle.CreateUsuarioLabel_contrasenna}" for="password" />
+                                <p:inputText id="password" size="100" placeholder="#{bundle.CreateUsuarioLabel_contrasenna}" 
+                                             title="#{bundle.CreateUsuarioTitle_contrasenna}" required="true" 
+                                             requiredMessage="#{bundle.CreateUsuarioRequiredMessage_contrasenna}"/>
+
+                                <p:commandButton id="btnLoginId" value="Entrar" type="submit" ajax="false"
+                                                 action="#{loginManager.doLogin()}" />
+
+                            </p:panelGrid>
+                        </h:panelGroup>
+                    </h:form>
+                </div>
+                <div class="ui-g-12 ui-lg-4"></div>
             </div>
+
+
+
         </ui:define>
-        
+
     </ui:composition>
 
 </html>

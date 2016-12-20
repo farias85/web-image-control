@@ -31,7 +31,7 @@
         <h:outputScript library="js" name="myscript.js"/>
         <h:outputScript library="js" name="owl.carousel.js"/>
         <h:outputScript library="js" name="superfish.min.js"/>
-        
+
         <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/wico.png']}"/>
 
     </h:head>
@@ -86,10 +86,15 @@
                                                     </ul>
                                                 </li>
                                                 <li class="sub-menu active">
-                                                    <a href="javascript:void(0);">Otros</a>
+                                                    <a href="javascript:void(0);">Usuario</a>
                                                     <ul>
-                                                        <li class="active"><h:link value="Rol" outcome="/rol/List.xhtml" /></li>                                                        
-                                                        <li class="active"><h:link value="Usuario" outcome="/usuario/List.xhtml" /></li>
+                                                        <li class="active"><h:link value="Roles" outcome="/rol/List.xhtml" /></li>                                                        
+                                                        <li class="active"><h:link value="Usuarios" outcome="/usuario/List.xhtml" /></li>
+                                                        <li class="active">
+                                                            <h:form prependId="false">
+                                                                <h:commandLink action="#{loginManager.doLogout()}" value="Salir"/>
+                                                            </h:form>       
+                                                        </li>
                                                     </ul>
                                                 </li>
                                             </ul>

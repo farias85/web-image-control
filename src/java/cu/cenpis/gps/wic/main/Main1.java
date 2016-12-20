@@ -27,9 +27,12 @@ import cu.cenpis.gps.wic.data.service.ProcedenciaService;
 import cu.cenpis.gps.wic.data.service.RolService;
 import cu.cenpis.gps.wic.data.service.TipoEstudioService;
 import cu.cenpis.gps.wic.data.service.UsuarioService;
+import cu.cenpis.gps.wic.security.SecuredPassword;
 import cu.cenpis.gps.wic.util.Util;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -48,8 +51,10 @@ public class Main1 {
 
     /**
      * @param args the command line arguments
+     * @throws java.security.NoSuchAlgorithmException
+     * @throws java.security.spec.InvalidKeySpecException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException {
         // TODO code application logic here
 
         ApplicationContext context = new ClassPathXmlApplicationContext("cu/cenpis/gps/wic/config/mvc-dispatcher-servlet.xml");
@@ -64,6 +69,26 @@ public class Main1 {
         TipoEstudioService tipoEstudioService = (TipoEstudioService) context.getBean("tipoEstudioServiceImpl");
         UsuarioService usuarioService = (UsuarioService) context.getBean("usuarioServiceImpl");
 
+        Usuario usuario = new Usuario();
+        usuario.setEmail("adipiscing@Cum.org");        
+
+        usuario = usuarioService.userAuthentication(usuario);
+        if (usuario != null) {
+            boolean valid = SecuredPassword.validatePassword("adipiscing@Cum.org", usuario.getContrasenna());
+            System.out.println(valid);
+            System.out.println(usuario.getEmail());
+            System.out.println(usuario.getContrasenna());
+        }
+
+//        List<Usuario> lu = usuarioService.findAll();
+//        for (Usuario var : lu) {
+//            try {
+//                var.setContrasenna(SecuredPassword.generateStorngPasswordHash(var.getEmail()));
+//            } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+//                Logger.getLogger(Main1.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            usuarioService.edit(var);
+//        }
 //        List<Diagnostico> list = diagnosticoService.findNamedQuery("Diagnostico.findAll");
 //        Rol rol = rolService.find(1L);
 //        List<Usuario> lu = new ArrayList<>();
@@ -85,9 +110,7 @@ public class Main1 {
 //        lu3.add(usuarioService.find(4L));
 //        rol3.setUsuarioList(new HashSet<>(lu3));
 //        rolService.edit(rol3);
-        
 //        rolService.removeById(1l); //la despingazon, ver cascadetype en rol (se resuelve con CascadeType.MERGE)
-        
 //        Usuario usuario = usuarioService.find(1L);
 //        List<Rol> rl = new ArrayList<>();
 //        rl.add(rolService.find(1L));
@@ -114,7 +137,7 @@ public class Main1 {
 //        }
 //        
         usuarioService.removeById(9L);
-        
+
 //        List<Rol> rl = rolService.findAll();
 //        for (Rol var : rl) {
 //            rolService.remove(var);

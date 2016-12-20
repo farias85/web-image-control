@@ -12,14 +12,16 @@
           class="cu.cenpis.gps.wic.security.MyAuthenticationDetailsSource">
     </bean>
 
-    <bean id="myAuthenticationProvider"
-          class="cu.cenpis.gps.wic.security.MyAuthenticationProvider">
+    <bean id="myAuthenticationProvider" class="cu.cenpis.gps.wic.security.MyAuthenticationProvider">
+        <property name="usuarioService">
+            <ref bean="usuarioService" />
+        </property>
     </bean>
 
     <security:authentication-manager>
         <!-- create a custom AuthenticationProvider class to tune the login process -->
         <security:authentication-provider
-                ref="myAuthenticationProvider"/>
+            ref="myAuthenticationProvider"/>
     </security:authentication-manager>
 
     <security:http use-expressions="true">
@@ -35,7 +37,7 @@
 
         <security:intercept-url pattern="/protected2.jsf" access="hasRole('ROLE_USER')"/>
 
-         <security:access-denied-handler error-page="/error.jsf"/>
+        <security:access-denied-handler error-page="/error.jsf"/>
 
         <security:form-login login-page="/login.jsf"
                              authentication-failure-url="/login.jsf?error=1"
