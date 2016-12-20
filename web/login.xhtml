@@ -1,52 +1,73 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">       
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <h:head>
-        <title>My Login</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </h:head>
-    <h:body>
-        <h:form id="loginForm">
-            
-            <p:growl id="msg" showDetail="true" life="3000" />
-            <p:panel header="Login" style="width: 360px;">
+    <ui:composition template="/template.xhtml">
 
-                <h:panelGrid id="loginPanel" columns="2">
 
-                    <h:outputText value="Correo" />
+        <ui:define name="title">
+            <h:outputText value="Spring-Security - Login"></h:outputText>
+        </ui:define>
 
-                    <p:inputText id="usercorreo" value="#{loginController.usuario.email}" required="True" requiredMessage="Campo Obligatorio"></p:inputText>
+        <ui:define name="body">
+            <div>
+                <h:form id="loginFormId" prependId="false">
+                    
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+                    
+                    <div class="full-box" style="text-align: center">
+                        <div class="child-box box-c3">
+                            <h3>Login</h3>
 
-                    <p:spacer></p:spacer>
+                            <div class="fluid-row">
+                                <div class="fluid-column fluid-c12">
+                                    <div class="forLabel" style="width: 30%">
+                                        <h:outputLabel for="username" value="User"/>
+                                    </div>
+                                    <div class="forField" style="width: 65%">
+                                        <h:inputText id="username" required="true"
+                                                     requiredMessage="Please enter username (or go to hell...)"/>
+                                        <h:messages for="username"/>
+                                    </div>
+                                </div>
+                                <div class="fluid-column fluid-c12">
+                                    <div class="forLabel" style="width: 30%">
+                                        <h:outputLabel for="password" value="Password"/>
+                                    </div>
+                                    <div class="forField" style="width: 65%">
+                                        <h:inputSecret id="password" required="true"
+                                                       requiredMessage="Please enter password (otherwise you'll die!!)"
+                                                       name="password"/>
+                                        <h:messages for="password"/>
+                                    </div>
+                                </div>
+                                <div class="fluid-column fluid-c12">
+                                    <div class="forLabel" style="width: 30%">
+                                        <h:outputText value="Authentication"/>
+                                    </div>
+                                    <div class="forField" style="width: 65%">
+                                        <h:selectBooleanCheckbox id="method" name="method"/>
+                                        <h:outputLabel for="method" value="LDAP"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <ui:fragment rendered="${!empty param['error']}">
+                                <div>Connection failed: user and/or password are wrong.</div>
+                            </ui:fragment>
+                            <div id="loginBtnPanelId">
+                                <h:commandButton id="btnLoginId" value="Login" type="submit"
+                                                 action="#{loginManager.doLogin()}" styleClass="loginPanelBtn"/>
+                            </div>
+                        </div>
+                    </div>                    
+                </h:form>
+            </div>
+        </ui:define>
+        
+    </ui:composition>
 
-                    <p:message for="usercorreo" ></p:message>
-
-                    <h:outputText value="Contraseña"/>
-
-                    <p:password id="password" value="#{loginController.usuario.contrasenna}"  feedback="false" required="True" requiredMessage="Campo Obligatorio"></p:password>
-
-                    <p:spacer></p:spacer>
- 
-                    <p:message for="password"></p:message>
-
-                    <p:spacer></p:spacer>
-
-                    <p:commandButton action="#{loginController.login}" value="Login" ajax="false"></p:commandButton>
-
-                </h:panelGrid>
-
-            </p:panel>
-
-        </h:form>
-    </h:body>
 </html>
