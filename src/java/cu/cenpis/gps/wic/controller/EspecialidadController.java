@@ -3,6 +3,7 @@ package cu.cenpis.gps.wic.controller;
 import cu.cenpis.gps.wic.data.service.EspecialidadService;
 import cu.cenpis.gps.wic.data.entity.Especialidad;
 import cu.cenpis.gps.wic.util.Bundle;
+import cu.cenpis.gps.wic.util.JsfUtil;
 import javax.annotation.PostConstruct;
 
 public class EspecialidadController extends BaseController<Especialidad, java.lang.Long> {
@@ -29,17 +30,39 @@ public class EspecialidadController extends BaseController<Especialidad, java.la
 
     @Override
     public void create() {
-        super.create(Bundle.getString("EspecialidadCreated"));
+        if (validarExiste() != (null)) {
+            super.create(Bundle.getString("EspecialidadCreated"));
+        }
     }
 
     @Override
     public void update() {
-        super.update(Bundle.getString("EspecialidadUpdated"));
+        if (validarExiste() != (null)) {
+            super.update(Bundle.getString("EspecialidadUpdated"));
+        }
     }
 
     @Override
     public void destroy() {
         super.destroy(Bundle.getString("EspecialidadDeleted"));
+    }
+
+    @Override
+    public String actionCreate() {
+        return (validarExiste() != (null)) ? super.actionCreate() : null;
+    }
+
+    @Override
+    public String actionEdit() {
+        return (validarExiste() != (null)) ? super.actionEdit() : null;        
+    }
+
+    private String validarExiste() {
+        if (especialidadService.existe(selected)) {
+            JsfUtil.addErrorMessage(Bundle.getString("ExisteEspecialidad"));
+            return null;
+        }
+        return " ";
     }
 
 }

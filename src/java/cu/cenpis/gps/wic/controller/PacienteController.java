@@ -32,12 +32,16 @@ public class PacienteController extends BaseController<Paciente, java.lang.Long>
 
     @Override
     public void create() {
-        super.create(Bundle.getString("PacienteCreated"));
+        if (validarExiste() != (null)) {
+            super.create(Bundle.getString("PacienteCreated"));
+        }
     }
 
     @Override
     public void update() {
-        super.update(Bundle.getString("PacienteUpdated"));
+        if (validarExiste() != (null)) {
+            super.update(Bundle.getString("PacienteUpdated"));
+        }
 
         EstudioController estudioController = JsfUtil.getController(EstudioController.class);
 
@@ -86,5 +90,25 @@ public class PacienteController extends BaseController<Paciente, java.lang.Long>
     public String actionCancel() {
         exist = false;
         return super.actionCancel(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String actionCreate() {
+        //return (validarExiste() != (null)) ? super.actionCreate() : null;
+        return super.actionCreate();
+    }
+
+    @Override
+    public String actionEdit() {
+        //return (validarExiste() != (null)) ? super.actionEdit() : null;
+        return super.actionEdit();
+    }
+
+    private String validarExiste() {
+        if (pacienteService.existe(selected)) {
+            JsfUtil.addErrorMessage(Bundle.getString("ExistePaciente"));
+            return null;
+        }
+        return " ";
     }
 }

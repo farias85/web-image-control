@@ -6,6 +6,7 @@ import cu.cenpis.gps.wic.data.dao.DiagnosticoDAO;
 import cu.cenpis.gps.wic.data.dao.EstudioDAO;
 import cu.cenpis.gps.wic.data.entity.Estudio;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class DiagnosticoServiceImpl extends BaseServiceImpl<Diagnostico, java.la
         implements DiagnosticoService {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Autowired
     protected EstudioDAO estudioDAO;
 
@@ -33,11 +34,11 @@ public class DiagnosticoServiceImpl extends BaseServiceImpl<Diagnostico, java.la
     @Override
     public boolean existe(Diagnostico diagnostico) {
         List<Diagnostico> diagnosticos = findNamedQuery("Diagnostico.findByNombre", "nombre", diagnostico.getNombre());
-        for (Diagnostico u : diagnosticos) {
-            if (u.getNombre().equals(diagnostico.getNombre())) {
+        for (Diagnostico d : diagnosticos) {
+            if (d.getNombre().equals(diagnostico.getNombre()) && !Objects.equals(diagnostico.getIdDiagnostico(), d.getIdDiagnostico())) {
                 return true;
-            } 
+            }
         }
         return false;
-    }    
+    }
 }
