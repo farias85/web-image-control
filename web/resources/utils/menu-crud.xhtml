@@ -33,7 +33,7 @@
                             <h:outputText value="#{bundle.ConfirmDialogBody}" title="#{bundle.ConfirmDialogBody}"/>   
                         </p:panelGrid>
 
-                        <p:commandButton id="confirm" value="#{bundle.ConfirmDialogYesButton}" update=":growl #{cc.attrs.datalist} :MenuCrud:MenuForm" oncomplete="PF('confirmDialog').hide()" 
+                        <p:commandButton id="confirm" value="#{bundle.ConfirmDialogYesButton}" update=":growl #{cc.attrs.datalist} :MenuCrud:MenuForm" oncomplete="PF('confirmDialog').hide();  PF('dtable').filter();" 
                                          actionListener="#{cc.attrs.controller.destroy}" />  
                         <p:commandButton id="decline" value="#{bundle.ConfirmDialogNoButton}" onclick="PF('confirmDialog').hide()" type="button" />  
                     </h:panelGroup>

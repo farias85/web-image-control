@@ -36,9 +36,7 @@ public class DiagnosticoServiceImpl extends BaseServiceImpl<Diagnostico, java.la
         for (Diagnostico u : diagnosticos) {
             if (u.getNombre().equals(diagnostico.getNombre())) {
                 return true;
-            } /*else {
-                return false;
-            }*/
+            } 
         }
         return false;
     }    
