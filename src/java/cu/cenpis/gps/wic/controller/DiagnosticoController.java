@@ -72,6 +72,6 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
             JsfUtil.addErrorMessage("Existe un diagnóstico con este nombre!");
             return null;
         }
-        return "LLeno";
+        return " ";
     }
 }
