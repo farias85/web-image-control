@@ -32,12 +32,16 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
 
     @Override
     public void create() {
-        super.create(Bundle.getString("DiagnosticoCreated"));
+        if (validarExiste() != (null)) {
+            super.create(Bundle.getString("DiagnosticoCreated"));
+        }
     }
 
     @Override
     public void update() {
-        super.update(Bundle.getString("DiagnosticoUpdated"));
+        if (validarExiste() != (null)) {
+            super.update(Bundle.getString("DiagnosticoUpdated"));
+        }
     }
 
     @Override
@@ -64,12 +68,12 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
 
     @Override
     public String actionEdit() {
-        return (validarExiste() != (null)) ? super.actionEdit() : null;
+        return (validarExiste() != (null)) ? super.actionEdit() : null;        
     }
 
     private String validarExiste() {
         if (diagnosticoService.existe(selected)) {
-            JsfUtil.addErrorMessage("Existe un diagnóstico con este nombre!");
+            JsfUtil.addErrorMessage(Bundle.getString("ExisteDiagnostico"));
             return null;
         }
         return " ";

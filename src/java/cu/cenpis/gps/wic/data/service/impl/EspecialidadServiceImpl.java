@@ -6,6 +6,7 @@ import cu.cenpis.gps.wic.data.entity.Especialidad;
 import cu.cenpis.gps.wic.data.dao.EspecialidadDAO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,5 +30,11 @@ public class EspecialidadServiceImpl extends BaseServiceImpl<Especialidad, java.
             result.add(row[0].toString());
         }
         return result;
+    }
+
+    @Override
+    public boolean existe(Especialidad especialidad) {               
+        List<Especialidad> especialidades = findNamedQuery("Especialidad.findByNombre", "nombre", especialidad.getNombre());
+        return especialidades.stream().anyMatch((e) -> (e.getNombre().equals(especialidad.getNombre()) && !Objects.equals(especialidad.getIdEspacialidad(), e.getIdEspacialidad())));
     }
 }

@@ -7,6 +7,8 @@ import java.util.List;
 public interface PacienteService extends BaseService<Paciente, java.lang.Long> {
 
     public List<Estudio> findEstudiosByPaciente(Paciente diagnostico);
-    
+
     public Paciente findPacienteByHistoriaClinica(String hc);
+
+    public boolean existe(Paciente paciente);
 }
