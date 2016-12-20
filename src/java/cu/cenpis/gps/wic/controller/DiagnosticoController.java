@@ -56,15 +56,22 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
     public String onDetailCancel() {
         return "index.jsf";
     }
-    
+
     @Override
-    public String actionCreate()
-    {
+    public String actionCreate() {
+        return (validarExiste() != (null)) ? super.actionCreate() : null;
+    }
+
+    @Override
+    public String actionEdit() {
+        return (validarExiste() != (null)) ? super.actionEdit() : null;
+    }
+
+    private String validarExiste() {
         if (diagnosticoService.existe(selected)) {
             JsfUtil.addErrorMessage("Existe un diagnóstico con este nombre!");
             return null;
-        } else {
-            return super.actionCreate();
         }
+        return "LLeno";
     }
 }

@@ -32,9 +32,7 @@ public class UsuarioServiceImpl extends BaseServiceImpl<Usuario, java.lang.Long,
         for (Usuario u : usuarios) {
             if (u.getContrasenna().equals(usuario.getContrasenna())) {
                 return true;
-            } /*else {
-                return false;
-            }*/
+            } 
         }
         return false;
     }
