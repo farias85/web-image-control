@@ -69,26 +69,26 @@ public class Main1 {
         TipoEstudioService tipoEstudioService = (TipoEstudioService) context.getBean("tipoEstudioServiceImpl");
         UsuarioService usuarioService = (UsuarioService) context.getBean("usuarioServiceImpl");
 
-        Usuario usuario = new Usuario();
-        usuario.setEmail("adipiscing@Cum.org");        
-
-        usuario = usuarioService.userAuthentication(usuario);
-        if (usuario != null) {
-            boolean valid = SecuredPassword.validatePassword("adipiscing@Cum.org", usuario.getContrasenna());
-            System.out.println(valid);
-            System.out.println(usuario.getEmail());
-            System.out.println(usuario.getContrasenna());
-        }
-
-//        List<Usuario> lu = usuarioService.findAll();
-//        for (Usuario var : lu) {
-//            try {
-//                var.setContrasenna(SecuredPassword.generateStorngPasswordHash(var.getEmail()));
-//            } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-//                Logger.getLogger(Main1.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            usuarioService.edit(var);
+//        Usuario usuario = new Usuario();
+//        usuario.setEmail("adipiscing@Cum.org");        
+//
+//        usuario = usuarioService.userAuthentication(usuario);
+//        if (usuario != null) {
+//            boolean valid = SecuredPassword.validatePassword("adipiscing@Cum.org", usuario.getContrasenna());
+//            System.out.println(valid);
+//            System.out.println(usuario.getEmail());
+//            System.out.println(usuario.getContrasenna());
 //        }
+
+        List<Usuario> lu = usuarioService.findAll();
+        for (Usuario var : lu) {
+            try {
+                var.setContrasenna(SecuredPassword.generateStorngPasswordHash(var.getEmail()));
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+                Logger.getLogger(Main1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            usuarioService.edit(var);
+        }
 //        List<Diagnostico> list = diagnosticoService.findNamedQuery("Diagnostico.findAll");
 //        Rol rol = rolService.find(1L);
 //        List<Usuario> lu = new ArrayList<>();

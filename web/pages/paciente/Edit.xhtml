@@ -20,29 +20,28 @@
                         
                         <p:outputLabel value="#{bundle.CreatePacienteLabel_historiaClinica}" for="historiaClinica" />
                         <p:inputText id="historiaClinica" value="#{pacienteController.selected.historiaClinica}" title="#{bundle.CreatePacienteTitle_historiaClinica}" 
-                                     required="true" requiredMessage="#{bundle.CreatePacienteRequiredMessage_historiaClinica}">
-                            <p:ajax event="blur" update="submit, nombre, apellidos, edad, sexo, :growl" listener="#{pacienteController.findPacienteByHistoriaClinicaListener}" />
+                                     required="true" requiredMessage="#{bundle.CreatePacienteRequiredMessage_historiaClinica}">                           
                         </p:inputText>
 
                         <p:outputLabel value="#{bundle.CreatePacienteLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{pacienteController.selected.nombre}" title="#{bundle.CreatePacienteTitle_nombre}" 
-                                     required="true" requiredMessage="#{bundle.CreatePacienteRequiredMessage_nombre}" disabled="#{pacienteController.exist}"/>
+                                     required="true" requiredMessage="#{bundle.CreatePacienteRequiredMessage_nombre}"/>
 
                         <p:outputLabel value="#{bundle.CreatePacienteLabel_apellidos}" for="apellidos" />
                         <p:inputText id="apellidos" value="#{pacienteController.selected.apellidos}" title="#{bundle.CreatePacienteTitle_apellidos}" 
-                                     required="true" requiredMessage="#{bundle.CreatePacienteRequiredMessage_apellidos}" disabled="#{pacienteController.exist}"/>
+                                     required="true" requiredMessage="#{bundle.CreatePacienteRequiredMessage_apellidos}"/>
 
                         <p:outputLabel value="#{bundle.CreatePacienteLabel_edad}" for="edad" />
                         <p:inputText id="edad" value="#{pacienteController.selected.edad}" title="#{bundle.CreatePacienteTitle_edad}" 
-                                     required="true" requiredMessage="#{bundle.CreatePacienteRequiredMessage_edad}" disabled="#{pacienteController.exist}"/>
+                                     required="true" requiredMessage="#{bundle.CreatePacienteRequiredMessage_edad}"/>
 
                         <p:outputLabel value="#{bundle.CreatePacienteLabel_sexo}" for="sexo" />
-                        <p:selectBooleanCheckbox id="sexo" value="#{pacienteController.selected.sexo}" disabled="#{pacienteController.exist}" 
+                        <p:selectBooleanCheckbox id="sexo" value="#{pacienteController.selected.sexo}" 
                                                  required="true" requiredMessage="#{bundle.EditPacienteRequiredMessage_sexo}"/>
                         
                     </p:panelGrid>
                     
-                    <p:commandButton id="submit" action="#{pacienteController.actionEdit}" value="#{bundle.Save}" ajax="false" disabled="#{pacienteController.exist}"/>
+                    <p:commandButton id="submit" action="#{pacienteController.actionEdit}" value="#{bundle.Save}" ajax="false"/>
                     <p:commandButton immediate="true" action="#{pacienteController.actionCancel}" value="#{bundle.Cancel}" />
                     
                 </h:panelGroup>

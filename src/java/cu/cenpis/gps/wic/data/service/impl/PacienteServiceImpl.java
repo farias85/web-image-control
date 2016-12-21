@@ -29,17 +29,11 @@ public class PacienteServiceImpl extends BaseServiceImpl<Paciente, java.lang.Lon
     @Override
     public List<Estudio> findEstudiosByPaciente(Paciente paciente) {
         return estudioDAO.findNamedQuery("Estudio.findByPaciente", "idPaciente", paciente.getIdPaciente());
-    }
-
-    @Override
-    public Paciente findPacienteByHistoriaClinica(String hc) {
-        List<Paciente> list = dao.findNamedQuery("Paciente.findByHistoriaClinica", "historiaClinica", hc);
-        return list.size() > 0 ? list.get(0) : null;
-    }
+    }   
 
     @Override
     public boolean existe(Paciente paciente) {
-        Paciente findPaciente = findPacienteByHistoriaClinica(paciente.getHistoriaClinica());
-        return !Objects.equals(paciente.getHistoriaClinica(), findPaciente.getHistoriaClinica());
+        List<Paciente> pacientes = findNamedQuery("Paciente.findByHistoriaClinica", "historiaClinica", paciente.getHistoriaClinica());
+        return pacientes.stream().anyMatch((p) -> (p.getHistoriaClinica().equals(paciente.getHistoriaClinica()) && !Objects.equals(paciente.getIdPaciente(), p.getIdPaciente())));
     }
 }

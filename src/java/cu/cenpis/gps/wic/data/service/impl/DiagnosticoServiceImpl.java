@@ -34,11 +34,6 @@ public class DiagnosticoServiceImpl extends BaseServiceImpl<Diagnostico, java.la
     @Override
     public boolean existe(Diagnostico diagnostico) {
         List<Diagnostico> diagnosticos = findNamedQuery("Diagnostico.findByNombre", "nombre", diagnostico.getNombre());
-        for (Diagnostico d : diagnosticos) {
-            if (d.getNombre().equals(diagnostico.getNombre()) && !Objects.equals(diagnostico.getIdDiagnostico(), d.getIdDiagnostico())) {
-                return true;
-            }
-        }
-        return false;
+        return diagnosticos.stream().anyMatch((d) -> (d.getNombre().equals(diagnostico.getNombre()) && !Objects.equals(diagnostico.getIdDiagnostico(), d.getIdDiagnostico())));
     }
 }

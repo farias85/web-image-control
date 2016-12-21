@@ -31,39 +31,41 @@
                                  selectionMode="single" selection="#{pacienteController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idPaciente}"
-                                 rows="10"                                 
+                                 rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  reflow="true"
-                                 >
+                                 widgetVar="dtable"
+                                 emptyMessage="#{bundle.TableQueryNotFound}" 
+                                 filteredValue="#{pacienteController.filtered}">
 
                         <p:ajax event="rowSelect"   update=":MenuCrud:MenuForm, :PacienteListForm:ContextMenu:context-menu"/>
                         <p:ajax event="rowUnselect" update=":MenuCrud:MenuForm, :PacienteListForm:ContextMenu:context-menu"/>
                         
-                        <p:column>
+                        <p:column filterBy="#{item.historiaClinica}" sortBy="#{item.historiaClinica}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPacienteTitle_historiaClinica}"/>
                             </f:facet>
                             <h:outputText value="#{item.historiaClinica}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="#{item.nombre}" sortBy="#{item.nombre}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPacienteTitle_nombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="#{item.apellidos}" sortBy="#{item.apellidos}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPacienteTitle_apellidos}"/>
                             </f:facet>
                             <h:outputText value="#{item.apellidos}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="#{item.edad}" sortBy="#{item.edad}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPacienteTitle_edad}"/>
                             </f:facet>
                             <h:outputText value="#{item.edad}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="#{item.sexo}" sortBy="#{item.sexo}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPacienteTitle_sexo}"/>
                             </f:facet>
