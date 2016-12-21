@@ -31,7 +31,7 @@ public class MedicoController extends BaseController<Medico, java.lang.Long> {
     @Override
     public void create() {
         if (validarExiste() != (null)) {
-            super.create(Bundle.getString("MedicoCreated"));
+            super.create(Bundle.getString("MedicoCreated"));            
         }
     }
 

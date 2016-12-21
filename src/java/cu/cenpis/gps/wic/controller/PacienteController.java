@@ -56,52 +56,26 @@ public class PacienteController extends BaseController<Paciente, java.lang.Long>
         super.destroy(Bundle.getString("PacienteDeleted"));
     }
 
-    private Boolean exist;
-
-    public Boolean getExist() {
-        return exist;
-    }
-
-    public void setExist(Boolean exist) {
-        this.exist = exist;
-    }
-
-    private String hcEdit = "";
-
-    public void findPacienteByHistoriaClinicaListener() {
-
-        if (!hcEdit.equalsIgnoreCase(selected.getHistoriaClinica())) {
-            Paciente p = pacienteService.findPacienteByHistoriaClinica(selected.getHistoriaClinica());
-            exist = p != null;
-
-            if (exist) {
-                JsfUtil.addErrorMessage(Bundle.getString("HCExist"));
-            }
-        }
-    }
-
     @Override
-    public String actionPrepareEdit() {
-        hcEdit = selected.getHistoriaClinica();
+    public String actionPrepareEdit() {       
         return super.actionPrepareEdit(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String actionCancel() {
-        exist = false;
+    public String actionCancel() {        
         return super.actionCancel(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public String actionCreate() {
-        //return (validarExiste() != (null)) ? super.actionCreate() : null;
-        return super.actionCreate();
+        return (validarExiste() != (null)) ? super.actionCreate() : null;
+        //return super.actionCreate();
     }
 
     @Override
     public String actionEdit() {
-        //return (validarExiste() != (null)) ? super.actionEdit() : null;
-        return super.actionEdit();
+        return (validarExiste() != (null)) ? super.actionEdit() : null;
+        //return super.actionEdit();
     }
 
     private String validarExiste() {
