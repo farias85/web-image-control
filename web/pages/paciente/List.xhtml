@@ -65,11 +65,20 @@
                             </f:facet>
                             <h:outputText value="#{item.edad}"/>
                         </p:column>
-                        <p:column filterBy="#{item.sexo}" sortBy="#{item.sexo}"  filterMatchMode="contains">
+                        <p:column filterBy="#{item.sexo}" sortBy="#{item.sexo}" filterMatchMode="equals">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPacienteTitle_sexo}"/>
+                                <h:outputText value="#{bundle.CreatePacienteTitle_sexo}"/>
                             </f:facet>
-                            <p:selectBooleanCheckbox value="#{item.sexo}" disabled="true"/>
+                            <f:facet name="filter">
+                                <p:selectOneButton onchange="PF('dtable').filter()">
+                                    <f:converter converterId="javax.faces.Boolean" />
+                                    <f:selectItem itemLabel="T" itemValue="" />
+                                    <f:selectItem itemLabel="M" itemValue="true" />
+                                    <f:selectItem itemLabel="F" itemValue="false" />
+                                </p:selectOneButton>
+                            </f:facet>
+                            <h:outputLabel value="#{bundle.CreatePacienteTitle_sexo_male}" rendered="#{item.sexo eq true}" /> 
+                            <h:outputLabel value="#{bundle.CreatePacienteTitle_sexo_female}" rendered="#{item.sexo eq false}" />                            
                         </p:column>                        
                     </p:dataTable>
                 </p:panel>
