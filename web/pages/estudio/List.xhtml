@@ -135,8 +135,9 @@
                                     <f:selectItem itemLabel="Si" itemValue="true" />
                                     <f:selectItem itemLabel="No" itemValue="false" />
                                 </p:selectOneButton>
-                            </f:facet>
-                            <p:selectBooleanCheckbox value="#{item.positivo}" disabled="true"/>
+                            </f:facet>                            
+                            <h:outputText value="#{bundle.EstudioPositivoSi}" rendered="#{item.positivo eq true}" /> 
+                            <h:outputText value="#{bundle.EstudioPositivoNo}" rendered="#{item.positivo eq false}" />
                         </p:column>   
 
                     </p:dataTable>

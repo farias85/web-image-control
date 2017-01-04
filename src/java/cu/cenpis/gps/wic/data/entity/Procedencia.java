@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Procedencia.findByIdProcedencia", query = "SELECT p FROM Procedencia p WHERE p.idProcedencia = :idProcedencia"),
     @NamedQuery(name = "Procedencia.findByNombre", query = "SELECT p FROM Procedencia p WHERE p.nombre = :nombre")})
 public class Procedencia implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -118,5 +119,5 @@ public class Procedencia implements Serializable {
     public String toString() {
         return String.format("%s[id=%d]", getClass().getSimpleName(), getIdProcedencia());
     }
-    
+
 }

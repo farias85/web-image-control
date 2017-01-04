@@ -25,52 +25,49 @@
 
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_rmiId}" for="rmiId" />
                         <p:inputText id="rmiId" value="#{estudioController.selected.rmiId}" title="#{bundle.CreateEstudioTitle_rmiId}" 
-                                     required="true" requiredMessage="#{bundle.CreateEstudioRequiredMessage_rmiId}"/>                        
-
-
+                                     required="true" requiredMessage="#{bundle.CreateEstudioRequiredMessage_rmiId}"/>
 
                         <p:outputLabel value="#{bundle.CreatePacienteLabel_historiaClinica}" for="historiaClinica" />
-                        <p:inplace id="historiaClinica" editor="true">
-                            <p:inputText value="#{estudioController.selected.paciente.historiaClinica}"  label="text"
-                                         title="#{bundle.CreatePacienteTitle_historiaClinica}" required="true" 
-                                         requiredMessage="#{bundle.CreatePacienteRequiredMessage_historiaClinica}">
-                                <p:ajax event="blur" update="nombre, apellidos, edad, sexo" listener="#{estudioController.findPacienteByHistoriaClinicaListener}" />
-                            </p:inputText>
-                        </p:inplace>
+                        <p:inputText id="historiaClinica" value="#{estudioController.selected.paciente.historiaClinica}" title="#{bundle.CreatePacienteTitle_historiaClinica}" 
+                                     disabled="#{not empty estudioController.selected.paciente.idPaciente}"/>
 
                         <p:outputLabel value="#{bundle.CreatePacienteLabel_nombre}" for="nombre" />
-                        <p:inputText id="nombre" value="#{estudioController.selected.paciente.nombre}" title="#{bundle.CreatePacienteTitle_nombre}" required="true"
-                                     requiredMessage="#{bundle.CreatePacienteRequiredMessage_nombre}"
+                        <p:inputText id="nombre" value="#{estudioController.selected.paciente.nombre}" title="#{bundle.CreatePacienteTitle_nombre}" 
                                      disabled="#{not empty estudioController.selected.paciente.idPaciente}"/>
 
                         <p:outputLabel value="#{bundle.CreatePacienteLabel_apellidos}" for="apellidos" />
-                        <p:inputText id="apellidos" value="#{estudioController.selected.paciente.apellidos}" title="#{bundle.CreatePacienteTitle_apellidos}" required="true" 
-                                     requiredMessage="#{bundle.CreatePacienteRequiredMessage_apellidos}"
+                        <p:inputText id="apellidos" value="#{estudioController.selected.paciente.apellidos}" title="#{bundle.CreatePacienteTitle_apellidos}" 
                                      disabled="#{not empty estudioController.selected.paciente.idPaciente}"/>
 
                         <p:outputLabel value="#{bundle.CreatePacienteLabel_edad}" for="edad" />
-                        <p:inputText id="edad" value="#{estudioController.selected.paciente.edad}" title="#{bundle.CreatePacienteTitle_edad}" required="true" 
-                                     requiredMessage="#{bundle.CreatePacienteRequiredMessage_edad}"
+                        <p:inputText id="edad" value="#{estudioController.selected.paciente.edad}" title="#{bundle.CreatePacienteTitle_edad}" 
                                      disabled="#{not empty estudioController.selected.paciente.idPaciente}"/>
 
-                        <p:outputLabel value="#{bundle.CreatePacienteLabel_sexo}" for="sexo" />
-                        <p:selectBooleanCheckbox id="sexo" value="#{estudioController.selected.paciente.sexo}" required="true" 
-                                                 requiredMessage="#{bundle.EditPacienteRequiredMessage_sexo}"
-                                                 disabled="#{not empty estudioController.selected.paciente.idPaciente}"/>
+
+
+                        <p:outputLabel value="#{bundle.CreatePacienteLabel_sexo}"/>
+                        <p:inputText  value="#{bundle.CreatePacienteTitle_sexo_male}" rendered="#{estudioController.selected.paciente.sexo eq true}" 
+                                      disabled="#{not empty estudioController.selected.paciente.idPaciente}"/> 
+                        <p:inputText value="#{bundle.CreatePacienteTitle_sexo_female}" rendered="#{estudioController.selected.paciente.sexo eq false}"
+                                     disabled="#{not empty estudioController.selected.paciente.idPaciente}"/> 
 
 
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_especialidad}" for="especialidad" />
-                        <p:selectOneMenu id="especialidad" value="#{estudioController.selected.especialidad}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_especialidad}">
+                        <p:selectOneMenu id="especialidad" value="#{estudioController.selected.especialidad}" required="true" 
+                                         requiredMessage="#{bundle.EditEstudioRequiredMessage_especialidad}">
                             <f:selectItems value="#{especialidadController.itemsAvailableSelectOne}"
                                            var="especialidadItem"
-                                           itemValue="#{especialidadItem}"/>
+                                           itemValue="#{especialidadItem}"
+                                           itemLabel="#{especialidadItem.nombre}"/>
                         </p:selectOneMenu>
 
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_medico}" for="medico" />
-                        <p:selectOneMenu id="medico" value="#{estudioController.selected.medico}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_medico}">
+                        <p:selectOneMenu id="medico" value="#{estudioController.selected.medico}" required="true"
+                                         requiredMessage="#{bundle.EditEstudioRequiredMessage_medico}">
                             <f:selectItems value="#{medicoController.itemsAvailableSelectOne}"
                                            var="medicoItem"
-                                           itemValue="#{medicoItem}"/>
+                                           itemValue="#{medicoItem}"
+                                           itemLabel="#{medicoItem.nombreApellidos}"/>
                         </p:selectOneMenu>
 
 
@@ -78,14 +75,16 @@
                         <p:selectOneMenu id="procedencia" value="#{estudioController.selected.procedencia}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_procedencia}">
                             <f:selectItems value="#{procedenciaController.itemsAvailableSelectOne}"
                                            var="procedenciaItem"
-                                           itemValue="#{procedenciaItem}"/>
+                                           itemValue="#{procedenciaItem}"
+                                           itemLabel="#{procedenciaItem.nombre}"/>
                         </p:selectOneMenu>
 
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_tipoEstudio}" for="tipoEstudio" />
                         <p:selectOneMenu id="tipoEstudio" value="#{estudioController.selected.tipoEstudio}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_tipoEstudio}">
                             <f:selectItems value="#{tipoEstudioController.itemsAvailableSelectOne}"
                                            var="tipoEstudioItem"
-                                           itemValue="#{tipoEstudioItem}"/>
+                                           itemValue="#{tipoEstudioItem}"
+                                           itemLabel="#{tipoEstudioItem.nombre}"/>
                         </p:selectOneMenu>
 
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_impresionDiagnostica}" for="impresionDiagnostica" />
@@ -97,12 +96,17 @@
                         <p:selectOneMenu id="diagnostico" value="#{estudioController.selected.diagnostico}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_diagnostico}">
                             <f:selectItems value="#{diagnosticoController.itemsAvailableSelectOne}"
                                            var="diagnosticoItem"
-                                           itemValue="#{diagnosticoItem}"/>
+                                           itemValue="#{diagnosticoItem}"
+                                           itemLabel="#{diagnosticoItem.nombre}"/>
                         </p:selectOneMenu>
 
-                        <p:outputLabel value="#{bundle.CreateEstudioLabel_positivo}" for="positivo" />
-                        <p:selectBooleanCheckbox id="positivo" value="#{estudioController.selected.positivo}" required="true" 
-                                                 requiredMessage="#{bundle.EditEstudioRequiredMessage_positivo}"/>
+
+                        <p:outputLabel for="positivo" value="#{bundle.CreateEstudioLabel_positivo}" />
+                        <p:selectOneMenu id="positivo" value="#{estudioController.selected.positivo}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_positivo}">
+                            <f:selectItem itemLabel="Seleccione" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="No" itemValue="false" />
+                            <f:selectItem itemLabel="Si" itemValue="true" />                            
+                        </p:selectOneMenu>
 
                     </p:panelGrid>
 

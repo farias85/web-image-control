@@ -35,7 +35,7 @@
                                      required="true" requiredMessage="#{bundle.CreatePacienteRequiredMessage_edad}" />                        
 
                         <p:outputLabel for="sexo" value="Sexo" />
-                        <p:selectOneMenu id="sexo" value="#{pacienteController.selected.sexo}">
+                        <p:selectOneMenu id="sexo" value="#{pacienteController.selected.sexo}" required="true" requiredMessage="#{bundle.EditPacienteRequiredMessage_sexo}">
                             <f:selectItem itemLabel="Seleccione" itemValue="" />
                             <f:selectItem itemLabel="Femenino" itemValue="false" />
                             <f:selectItem itemLabel="Masculino" itemValue="true" />                            

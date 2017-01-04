@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition>
+    <ui:composition> #{bundle.EditPacienteLabel_sexo}
 
         <p:dialog id="PacienteEditDlg" widgetVar="PacienteEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPacienteTitle}">
             <h:form id="PacienteEditForm">
@@ -20,8 +20,11 @@
                         <p:inputText id="apellidos" value="#{pacienteController.selected.apellidos}" title="#{bundle.EditPacienteTitle_apellidos}" required="true" requiredMessage="#{bundle.EditPacienteRequiredMessage_apellidos}"/>
                         <p:outputLabel value="#{bundle.EditPacienteLabel_edad}" for="edad" />
                         <p:inputText id="edad" value="#{pacienteController.selected.edad}" title="#{bundle.EditPacienteTitle_edad}" required="true" requiredMessage="#{bundle.EditPacienteRequiredMessage_edad}"/>
-                        <p:outputLabel value="#{bundle.EditPacienteLabel_sexo}" for="sexo" />
-                        <p:selectBooleanCheckbox id="sexo" value="#{pacienteController.selected.sexo}" required="true" requiredMessage="#{bundle.EditPacienteRequiredMessage_sexo}"/>
+                        <p:outputLabel for="sexo" value="#{bundle.EditPacienteLabel_sexo}" />
+                        <p:selectOneMenu id="sexo" value="#{pacienteController.selected.sexo}">                            
+                            <f:selectItem itemLabel="Femenino" itemValue="false" />
+                            <f:selectItem itemLabel="Masculino" itemValue="true" />                            
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{pacienteController.update}" value="#{bundle.Save}" update="display,:PacienteListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PacienteEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}"  immediate="true" onclick="PacienteEditDialog.hide()"/>

@@ -23,6 +23,7 @@
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  reflow="true"
+                                 widgetVar="dtable"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
@@ -52,12 +53,21 @@
                             </f:facet>
                             <h:outputText value="#{item.edad}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="#{item.sexo}" sortBy="#{item.sexo}" filterMatchMode="equals">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPacienteTitle_sexo}"/>
+                                <h:outputText value="#{bundle.CreatePacienteTitle_sexo}"/>
                             </f:facet>
-                            <p:selectBooleanCheckbox value="#{item.sexo}" disabled="true"/>
-                        </p:column>
+                            <f:facet name="filter">
+                                <p:selectOneButton onchange="PF('dtable').filter()">
+                                    <f:converter converterId="javax.faces.Boolean" />
+                                    <f:selectItem itemLabel="T" itemValue="" />
+                                    <f:selectItem itemLabel="M" itemValue="true" />
+                                    <f:selectItem itemLabel="F" itemValue="false" />
+                                </p:selectOneButton>
+                            </f:facet>
+                            <h:outputText value="#{bundle.CreatePacienteTitle_sexo_male}" rendered="#{item.sexo eq true}" /> 
+                            <h:outputText value="#{bundle.CreatePacienteTitle_sexo_female}" rendered="#{item.sexo eq false}" />                            
+                        </p:column>  
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{pacienteController.prepareCreate}" update=":PacienteCreateForm" oncomplete="PF('PacienteCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PacienteViewForm" oncomplete="PF('PacienteViewDialog').show()" disabled="#{empty pacienteController.selected}"/>

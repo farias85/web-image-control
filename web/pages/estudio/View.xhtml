@@ -17,45 +17,46 @@
             <h:form id="EstudioViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{estudioController.selected != null}">
-                                                
+
                         <h:outputText value="#{bundle.ViewEstudioLabel_rmiId}"/>
                         <h:outputText value="#{estudioController.selected.rmiId}" title="#{bundle.ViewEstudioTitle_rmiId}"/>
-                        
+
                         <h:outputText value="#{bundle.ViewEstudioLabel_fecha}"/>
                         <h:outputText value="#{estudioController.selected.fecha}" title="#{bundle.ViewEstudioTitle_fecha}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                        
+
                         <h:outputText value="#{bundle.ViewEstudioLabel_impresionDiagnostica}"/>
                         <h:outputText value="#{estudioController.selected.impresionDiagnostica}" title="#{bundle.ViewEstudioTitle_impresionDiagnostica}"/>
-                        
+
                         <h:outputText value="#{bundle.ViewEstudioLabel_positivo}"/>
-                        <p:selectBooleanCheckbox value="#{estudioController.selected.positivo}" disabled="true"/>
-                        
+                        <h:outputText value="#{bundle.EstudioPositivoSi}" rendered="#{estudioController.selected.positivo eq true}" /> 
+                        <h:outputText value="#{bundle.EstudioPositivoNo}" rendered="#{estudioController.selected.positivo eq false}" />
+
                         <h:outputText value="#{bundle.ViewEstudioLabel_diagnostico}"/>
                         <h:outputText value="#{estudioController.selected.diagnostico.nombre}" title="#{bundle.ViewEstudioTitle_diagnostico}"/>
-                        
+
                         <h:outputText value="#{bundle.ViewEstudioLabel_especialidad}"/>
                         <h:outputText value="#{estudioController.selected.especialidad.nombre}" title="#{bundle.ViewEstudioTitle_especialidad}"/>
-                        
+
                         <h:outputText value="#{bundle.ViewEstudioLabel_medico}"/>
                         <h:outputText value="#{estudioController.selected.medico.nombreApellidos}" title="#{bundle.ViewEstudioTitle_medico}"/>
-                        
+
                         <h:outputText value="#{bundle.ViewEstudioLabel_paciente}"/>
                         <h:outputText value="#{estudioController.selected.paciente.nombre} #{estudioController.selected.paciente.apellidos}" title="#{bundle.ViewEstudioTitle_paciente}"/>
-                        
+
                         <h:outputText value="#{bundle.ViewPacienteLabel_historiaClinica}"/>
                         <h:outputText value="#{estudioController.selected.paciente.historiaClinica}" title="#{bundle.ViewPacienteTitle_historiaClinica}"/>
-                        
+
                         <h:outputText value="#{bundle.ViewPacienteLabel_edad}"/>
                         <h:outputText value="#{estudioController.selected.paciente.edad}" title="#{bundle.ViewPacienteTitle_edad}"/>
-                        
+
                         <h:outputText value="#{bundle.ViewEstudioLabel_procedencia}"/>
                         <h:outputText value="#{estudioController.selected.procedencia.nombre}" title="#{bundle.ViewEstudioTitle_procedencia}"/>
-                        
+
                         <h:outputText value="#{bundle.ViewEstudioLabel_tipoEstudio}"/>
                         <h:outputText value="#{estudioController.selected.tipoEstudio.nombre}" title="#{bundle.ViewEstudioTitle_tipoEstudio}"/>
-                        
+
                     </p:panelGrid>
                     <p:commandButton immediate="true" action="#{estudioController.actionCancel}" value="#{bundle.Cancel}" />
                 </h:panelGroup>

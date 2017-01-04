@@ -27,7 +27,8 @@
                         <h:outputText value="#{bundle.ViewPacienteLabel_edad}"/>
                         <h:outputText value="#{pacienteController.selected.edad}" title="#{bundle.ViewPacienteTitle_edad}"/>
                         <h:outputText value="#{bundle.ViewPacienteLabel_sexo}"/>
-                        <p:selectBooleanCheckbox value="#{pacienteController.selected.sexo}" disabled="true"/>
+                        <h:outputText value="#{bundle.CreatePacienteTitle_sexo_male}" rendered="#{pacienteController.selected.sexo eq true}" /> 
+                        <h:outputText value="#{bundle.CreatePacienteTitle_sexo_female}" rendered="#{pacienteController.selected.sexo eq false}" />
                     </p:panelGrid>
                     <p:commandButton immediate="true" action="#{pacienteController.actionCancel}" value="#{bundle.Cancel}" />
                 </h:panelGroup>

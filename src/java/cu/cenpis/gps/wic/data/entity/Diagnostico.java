@@ -116,7 +116,7 @@ public class Diagnostico implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%s[id=%d]", getClass().getSimpleName(), getIdDiagnostico());
+        return String.format("%s[id=%d]", getClass().getSimpleName(), getIdDiagnostico());       
     }
     
 }

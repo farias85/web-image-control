@@ -116,7 +116,7 @@ public class TipoEstudio implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%s[id=%d]", getClass().getSimpleName(), getIdTipoEstudio());
+        return String.format("%s[id=%d]", getClass().getSimpleName(), getIdTipoEstudio());        
     }
     
 }
