@@ -43,7 +43,7 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
             super.update(Bundle.getString("DiagnosticoUpdated"));
         } else {
             diagnosticoService.refrescarSelected(selected);
-        }
+        } 
     }
 
     @Override
