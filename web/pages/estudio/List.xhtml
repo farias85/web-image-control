@@ -36,7 +36,21 @@
                                  reflow="true"
                                  widgetVar="dtable"
                                  emptyMessage="#{bundle.TableQueryNotFound}" 
-                                 filteredValue="#{estudioController.filtered}">
+                                 filteredValue="#{estudioController.filtered}"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}">
+                        
+                        <f:facet name="{Exporters}">
+
+                            <h:commandLink>
+                                <p:graphicImage url="#{resource['images/export/pdf256x256.png']}" width="30" />                                
+                                <p:dataExporter type="pdf" target="datalist" fileName="pacientes" />
+                            </h:commandLink>
+                            <h:commandLink>
+                                <p:graphicImage url="#{resource['images/export/excel-icon128x128.png']}" width="30" />                                
+                                <p:dataExporter type="xls" target="datalist" fileName="pacientes" />
+                            </h:commandLink>
+
+                        </f:facet>
 
                         <p:ajax event="rowSelect"   update=":MenuCrud:MenuForm, :EstudioListForm:ContextMenu:context-menu"/>
                         <p:ajax event="rowUnselect" update=":MenuCrud:MenuForm, :EstudioListForm:ContextMenu:context-menu"/>

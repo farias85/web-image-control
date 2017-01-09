@@ -42,7 +42,7 @@ public class PacienteController extends BaseController<Paciente, java.lang.Long>
         if (validarExiste() != (null)) {
             super.update(Bundle.getString("PacienteUpdated"));
         } else {
-            pacienteService.refrescarSelected(selected);            
+            pacienteService.refrescarSelected(selected);
         }
 
         EstudioController estudioController = JsfUtil.getController(EstudioController.class);

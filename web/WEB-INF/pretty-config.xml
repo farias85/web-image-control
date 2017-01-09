@@ -5,11 +5,11 @@
                http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.0.xsd">
 
     <url-mapping id="diagnostico_list">
-        <pattern value="/diagnostico" />
+        <pattern value="/diagnostico-list" />
         <view-id value="/pages/diagnostico/List.jsf" />
     </url-mapping>
     <url-mapping id="diagnosticoAdmin_list">
-        <pattern value="/diagnosticoAdmin" />
+        <pattern value="admin/diagnostico-list" />
         <view-id value="/pages/diagnostico-admin/List.jsf" />
     </url-mapping>
     
