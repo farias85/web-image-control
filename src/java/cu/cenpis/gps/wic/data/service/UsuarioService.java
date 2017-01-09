@@ -13,4 +13,8 @@ public interface UsuarioService extends BaseService<Usuario, java.lang.Long> {
     public List<Rol> getRolListNotIn(Usuario usuario);
     
     public Usuario userAuthentication(Usuario usuario);
+    
+    public boolean existe(Usuario usuario);
+
+    public void refrescarSelected(Usuario usuario);
 }

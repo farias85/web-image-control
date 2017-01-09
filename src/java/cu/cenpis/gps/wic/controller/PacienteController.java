@@ -41,6 +41,8 @@ public class PacienteController extends BaseController<Paciente, java.lang.Long>
     public void update() {
         if (validarExiste() != (null)) {
             super.update(Bundle.getString("PacienteUpdated"));
+        } else {
+            pacienteService.refrescarSelected(selected);            
         }
 
         EstudioController estudioController = JsfUtil.getController(EstudioController.class);
@@ -57,12 +59,12 @@ public class PacienteController extends BaseController<Paciente, java.lang.Long>
     }
 
     @Override
-    public String actionPrepareEdit() {       
+    public String actionPrepareEdit() {
         return super.actionPrepareEdit(); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String actionCancel() {        
+    public String actionCancel() {
         return super.actionCancel(); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -74,8 +76,14 @@ public class PacienteController extends BaseController<Paciente, java.lang.Long>
 
     @Override
     public String actionEdit() {
-        return (validarExiste() != (null)) ? super.actionEdit() : null;
-        //return super.actionEdit();
+        //return (validarExiste() != (null)) ? super.actionEdit() : null;
+        if (validarExiste() != (null)) {
+            return super.actionEdit();
+        } else {
+            pacienteService.refrescarSelected(selected);
+            return null;
+        }
+
     }
 
     private String validarExiste() {

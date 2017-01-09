@@ -30,4 +30,14 @@ public class MedicoServiceImpl extends BaseServiceImpl<Medico, java.lang.Long, M
         }
         return false;
     }
+
+    @Override
+    public void refrescarSelected(Medico medico) {
+        Medico m;
+        m = dao.find(medico.getIdMedico());
+        if (m != null) {
+            medico.setNombreApellidos(m.getNombreApellidos());
+            medico.setDescripcion(m.getDescripcion());
+        }
+    }
 }

@@ -41,6 +41,8 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
     public void update() {
         if (validarExiste() != (null)) {
             super.update(Bundle.getString("DiagnosticoUpdated"));
+        } else {
+            diagnosticoService.refrescarSelected(selected);
         }
     }
 
@@ -68,7 +70,13 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
 
     @Override
     public String actionEdit() {
-        return (validarExiste() != (null)) ? super.actionEdit() : null;        
+        //return (validarExiste() != (null)) ? super.actionEdit() : null;  
+        if (validarExiste() != (null)) {
+            return super.actionEdit();
+        } else {
+            diagnosticoService.refrescarSelected(selected);
+            return null;
+        }
     }
 
     private String validarExiste() {

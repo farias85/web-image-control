@@ -4,7 +4,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"      
       xmlns:p="http://primefaces.org/ui"
-      xmlns:o="http://omnifaces.org/ui">
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition>
 
@@ -19,11 +20,15 @@
 
                         <p:outputLabel value="#{bundle.CreateUsuarioLabel_apellidos}" for="apellidos" />
                         <p:inputText id="apellidos" value="#{usuarioController.selected.apellidos}" title="#{bundle.CreateUsuarioTitle_apellidos}" 
-                                     required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_apellidos}"/>
+                                     required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_apellidos}"/>                            
+                                              
 
                         <p:outputLabel value="#{bundle.CreateUsuarioLabel_email}" for="email" />
                         <p:inputText id="email" value="#{usuarioController.selected.email}" title="#{bundle.CreateUsuarioTitle_email}" 
-                                     required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_email}"/>
+                                     required="true" requiredMessage="#{bundle.CreateUsuarioRequiredMessage_email}" validatorMessage="#{bundle.CreateUsuario_email_incorrecto}">
+                            
+                        <f:validateRegex pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"/>
+                        </p:inputText> 
 
                         <p:outputLabel value="#{bundle.CreateUsuarioLabel_contrasenna}" for="contrasenna" />
                         <p:inputText id="contrasenna" value="#{usuarioController.selected.contrasenna}" title="#{bundle.CreateUsuarioTitle_contrasenna}" 

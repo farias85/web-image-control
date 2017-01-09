@@ -108,7 +108,7 @@ public abstract class BaseController<T, I>
     }
 
     public String actionEdit() {
-        this.update();
+        this.update();        
         return actionCancel();
     }
 

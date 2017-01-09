@@ -15,17 +15,17 @@
         </ui:define>
 
         <ui:define name="body">
-            
+
             <utils:menu-crud id="MenuCrud" controller="#{pacienteController}" 
                              disabledValue="#{pacienteController.selected.idPaciente}"
                              datalist=":PacienteListForm:datalist"/>
-            
+
             <h:form id="PacienteListForm">
-                
+
                 <utils:context-menu-crud id="ContextMenu" controller="#{pacienteController}" 
-                             disabledValue="#{pacienteController.selected.idPaciente}"
-                             datalist=":PacienteListForm:datalist"/>
-                
+                                         disabledValue="#{pacienteController.selected.idPaciente}"
+                                         datalist=":PacienteListForm:datalist"/>
+
                 <p:panel header="#{bundle.ListPacienteTitle}">
                     <p:dataTable id="datalist" value="#{pacienteController.items}" var="item"
                                  selectionMode="single" selection="#{pacienteController.selected}"
@@ -36,11 +36,24 @@
                                  reflow="true"
                                  widgetVar="dtable"
                                  emptyMessage="#{bundle.TableQueryNotFound}" 
-                                 filteredValue="#{pacienteController.filtered}">
+                                 filteredValue="#{pacienteController.filtered}"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}">
+
+                        <f:facet name="{Exporters}">
+
+
+                            <h:commandLink>
+                                <p:graphicImage url="#{resource['images/export/pdf256x256.png']}" width="30" />
+                                <p:dataExporter type="pdf" target="datalist" fileName="pacientes" />
+                            </h:commandLink>
+
+
+                        </f:facet>
 
                         <p:ajax event="rowSelect"   update=":MenuCrud:MenuForm, :PacienteListForm:ContextMenu:context-menu"/>
                         <p:ajax event="rowUnselect" update=":MenuCrud:MenuForm, :PacienteListForm:ContextMenu:context-menu"/>
-                        
+
+
                         <p:column filterBy="#{item.historiaClinica}" sortBy="#{item.historiaClinica}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPacienteTitle_historiaClinica}"/>
@@ -83,7 +96,7 @@
                     </p:dataTable>
                 </p:panel>
             </h:form>
-            
+
         </ui:define>
     </ui:composition>
 

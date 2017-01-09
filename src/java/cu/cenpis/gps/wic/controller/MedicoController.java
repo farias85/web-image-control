@@ -40,7 +40,9 @@ public class MedicoController extends BaseController<Medico, java.lang.Long> {
         if (validarExiste() != (null)) {
             super.update(Bundle.getString("MedicoUpdated"));
         }
-
+        else {
+            medicoService.refrescarSelected(selected);
+        }
     }
 
     @Override

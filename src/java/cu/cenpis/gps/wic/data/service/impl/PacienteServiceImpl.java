@@ -36,4 +36,17 @@ public class PacienteServiceImpl extends BaseServiceImpl<Paciente, java.lang.Lon
         List<Paciente> pacientes = findNamedQuery("Paciente.findByHistoriaClinica", "historiaClinica", paciente.getHistoriaClinica());
         return pacientes.stream().anyMatch((p) -> (p.getHistoriaClinica().equals(paciente.getHistoriaClinica()) && !Objects.equals(paciente.getIdPaciente(), p.getIdPaciente())));
     }
+
+    @Override
+    public void refrescarSelected(Paciente paciente) {
+        Paciente p;
+        p = dao.find(paciente.getIdPaciente());
+        if (p != null) {
+            paciente.setHistoriaClinica(p.getHistoriaClinica());
+            paciente.setNombre(p.getNombre());
+            paciente.setApellidos(p.getApellidos());
+            paciente.setEdad(p.getEdad());
+            paciente.setSexo(p.getSexo());
+        }
+    }
 }

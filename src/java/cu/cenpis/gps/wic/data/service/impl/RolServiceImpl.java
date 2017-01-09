@@ -6,6 +6,7 @@ import cu.cenpis.gps.wic.data.dao.RolDAO;
 import cu.cenpis.gps.wic.data.dao.UsuarioDAO;
 import cu.cenpis.gps.wic.data.entity.Usuario;
 import java.util.List;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -35,4 +36,19 @@ public class RolServiceImpl extends BaseServiceImpl<Rol, java.lang.Long, RolDAO>
         return usuarioDAO.findNamedQuery("Usuario.findByIdRolNotIn", "idRol", rol.getIdRol());
     }
 
+    @Override
+    public boolean existe(Rol rol) {
+        List<Rol> roles = findNamedQuery("Rol.findByNombre", "nombre", rol.getNombre());
+        return roles.stream().anyMatch((d) -> (d.getNombre().equals(rol.getNombre()) && !Objects.equals(rol.getIdRol(), d.getIdRol())));
+    }
+
+    @Override
+    public void refrescarSelected(Rol rol) {
+        Rol r;
+        r = dao.find(rol.getIdRol());
+        if (r != null) {
+            rol.setNombre(r.getNombre());
+            rol.setDescripcion(r.getDescripcion());
+        }
+    }
 }

@@ -29,12 +29,19 @@ public class RolController extends BaseController<Rol, java.lang.Long> {
 
     @Override
     public void create() {
-        super.create(Bundle.getString("RolCreated"));
+        if (validarExiste() != (null)) {
+            super.create(Bundle.getString("RolCreated"));
+        }
     }
 
     @Override
     public void update() {
-        super.update(Bundle.getString("RolUpdated"));
+        //super.update(Bundle.getString("RolUpdated"));
+        if (validarExiste() != (null)) {
+            super.update(Bundle.getString("RolUpdated"));
+        } else {
+            rolService.refrescarSelected(selected);
+        }
     }
 
     @Override
@@ -98,6 +105,14 @@ public class RolController extends BaseController<Rol, java.lang.Long> {
 
     public void setModel(DualListModel<Usuario> model) {
         this.model = model;
+    }
+
+    private String validarExiste() {
+        if (rolService.existe(selected)) {
+            JsfUtil.addErrorMessage(Bundle.getString("ExisteRol"));
+            return null;
+        }
+        return " ";
     }
 }
 

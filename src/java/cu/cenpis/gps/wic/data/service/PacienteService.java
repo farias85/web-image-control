@@ -9,4 +9,6 @@ public interface PacienteService extends BaseService<Paciente, java.lang.Long> {
     public List<Estudio> findEstudiosByPaciente(Paciente diagnostico);    
 
     public boolean existe(Paciente paciente);
+    
+    public void refrescarSelected(Paciente paciente);
 }

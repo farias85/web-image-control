@@ -39,6 +39,8 @@ public class EspecialidadController extends BaseController<Especialidad, java.la
     public void update() {
         if (validarExiste() != (null)) {
             super.update(Bundle.getString("EspecialidadUpdated"));
+        } else {
+            especialidadService.refrescarSelected(selected);
         }
     }
 
@@ -54,7 +56,13 @@ public class EspecialidadController extends BaseController<Especialidad, java.la
 
     @Override
     public String actionEdit() {
-        return (validarExiste() != (null)) ? super.actionEdit() : null;        
+        //return (validarExiste() != (null)) ? super.actionEdit() : null; 
+        if (validarExiste() != (null)) {
+            return super.actionEdit();
+        } else {
+            especialidadService.refrescarSelected(selected);
+            return null;
+        }
     }
 
     private String validarExiste() {

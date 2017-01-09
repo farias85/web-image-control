@@ -7,6 +7,8 @@ import java.util.List;
 public interface DiagnosticoService extends BaseService<Diagnostico, java.lang.Long> {
 
     public List<Estudio> findEstudiosByDiagnostico(Diagnostico diagnostico);
-    
+
     public boolean existe(Diagnostico diagnostico);
+
+    public void refrescarSelected(Diagnostico diagnostico);
 }

@@ -34,12 +34,18 @@ public class UsuarioController extends BaseController<Usuario, java.lang.Long> {
 
     @Override
     public void create() {
-        super.create(Bundle.getString("UsuarioCreated"));
+        if (validarExiste() != (null)) {
+            super.create(Bundle.getString("UsuarioCreated"));
+        }
     }
 
     @Override
     public void update() {
-        super.update(Bundle.getString("UsuarioUpdated"));
+        if (validarExiste() != (null)) {
+            super.update(Bundle.getString("UsuarioUpdated"));
+        } else {
+            usuarioService.refrescarSelected(selected);
+        }
     }
 
     @Override
@@ -69,5 +75,13 @@ public class UsuarioController extends BaseController<Usuario, java.lang.Long> {
         List<Rol> rl = usuarioService.getRolList(selected);
         rolController.setFiltered(rl);
         return true;
+    }
+
+    private String validarExiste() {
+        if (usuarioService.existe(selected)) {
+            JsfUtil.addErrorMessage(Bundle.getString("ExisteUsuario"));
+            return null;
+        }
+        return " ";
     }
 }

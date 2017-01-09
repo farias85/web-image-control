@@ -37,4 +37,14 @@ public class EspecialidadServiceImpl extends BaseServiceImpl<Especialidad, java.
         List<Especialidad> especialidades = findNamedQuery("Especialidad.findByNombre", "nombre", especialidad.getNombre());
         return especialidades.stream().anyMatch((e) -> (e.getNombre().equals(especialidad.getNombre()) && !Objects.equals(especialidad.getIdEspacialidad(), e.getIdEspacialidad())));
     }
+
+    @Override
+    public void refrescarSelected(Especialidad especialidad) {
+        Especialidad e;
+        e = dao.find(especialidad.getIdEspacialidad());
+        if (e != null) {
+            especialidad.setNombre(e.getNombre());
+            especialidad.setDescripcion(e.getDescripcion());
+        }
+    }
 }

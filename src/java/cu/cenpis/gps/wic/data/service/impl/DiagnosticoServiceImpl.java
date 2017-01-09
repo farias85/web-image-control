@@ -36,4 +36,14 @@ public class DiagnosticoServiceImpl extends BaseServiceImpl<Diagnostico, java.la
         List<Diagnostico> diagnosticos = findNamedQuery("Diagnostico.findByNombre", "nombre", diagnostico.getNombre());
         return diagnosticos.stream().anyMatch((d) -> (d.getNombre().equals(diagnostico.getNombre()) && !Objects.equals(diagnostico.getIdDiagnostico(), d.getIdDiagnostico())));
     }
+
+    @Override
+    public void refrescarSelected(Diagnostico diagnostico) {        
+        Diagnostico d;
+        d = dao.find(diagnostico.getIdDiagnostico());
+        if (d != null) {
+            diagnostico.setNombre(d.getNombre());
+            diagnostico.setDescripcion(d.getDescripcion());
+        }
+    }
 }
