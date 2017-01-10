@@ -53,7 +53,13 @@
 	<div>
 		<sec:authorize ifAnyGranted="ROLE_ADMIN">
 			<h4>
-				<a href="admin.xhtml">>> Admin Page</a>
+				Eres un admin
+			</h4>
+		</sec:authorize>
+            
+            <sec:authorize ifAnyGranted="ROLE_USER">
+			<h4>
+				Eres un usuario
 			</h4>
 		</sec:authorize>
 	</div>
