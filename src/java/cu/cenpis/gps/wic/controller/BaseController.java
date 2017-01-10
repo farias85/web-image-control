@@ -108,7 +108,7 @@ public abstract class BaseController<T, I>
     }
 
     public String actionEdit() {
-        this.update();        
+        this.update();
         return actionCancel();
     }
 
@@ -155,8 +155,8 @@ public abstract class BaseController<T, I>
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
-            
-           //filtered.remove(selected);
+
+            //filtered.remove(selected);
 //            getItems().remove(selected);
 //            selected = null;
         }
@@ -219,6 +219,14 @@ public abstract class BaseController<T, I>
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public boolean renderedCreate() {
+        if (selected != null) {
+            return true;
+        }
+        T obj = this.prepareCreate();
+        return obj != null;
     }
 
     public BaseService<T, I> getService() {
@@ -304,8 +312,9 @@ public abstract class BaseController<T, I>
 
     /**
      * Especifica el nombre del método de T (preferiblemente un método get) que
-     * es invocado para la ejecución de otros métodos, principalmente 
+     * es invocado para la ejecución de otros métodos, principalmente
      * autoCompleteQuery() y autoCompleteQueryItems()
+     *
      * @return Cadena de caracteres del método
      * @see autoCompleteQuery
      * @see autoCompleteQueryItems
@@ -319,8 +328,9 @@ public abstract class BaseController<T, I>
     }
 
     /**
-     * Refresca en memoria el objeto enviado por parámetro en la lista de elementos
-     * cargada por defecto.
+     * Refresca en memoria el objeto enviado por parámetro en la lista de
+     * elementos cargada por defecto.
+     *
      * @param object El objeto
      */
     public void refreshItem(T object) {
@@ -329,6 +339,7 @@ public abstract class BaseController<T, I>
 
     /**
      * Busca en los elementos items el objeto con el @param id
+     *
      * @param id Identificador del objeto
      * @return El objeto en la lista items
      */
@@ -348,6 +359,7 @@ public abstract class BaseController<T, I>
 
     /**
      * Devuelve el valor del identificador del objeto T
+     *
      * @param item Objeto del cual se necesita saber el valor del id
      * @return Valor del identificador del objeto
      */

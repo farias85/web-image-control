@@ -18,7 +18,7 @@
             <h:form id="EstudioCreateForm">
 
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{estudioController.selected != null}">                       
+                    <p:panelGrid columns="2" rendered="#{estudioController.renderedCreate}">                       
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_fecha}" for="fecha" />
                         <p:calendar id="fecha" size="#{bundle.InputSize}" pattern="MM/dd/yyyy" value="#{estudioController.selected.fecha}" 
                                     title="#{bundle.EditEstudioTitle_fecha}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_fecha}" 
