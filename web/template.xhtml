@@ -75,10 +75,13 @@
                                         <nav class="navmenu center">
                                             <ul>
                                                 <li class="first scroll_btn"><h:link value="Principal" outcome="/index.xhtml" /></li>
-                                                <li class="scroll_btn"><h:link value="Pacientes" outcome="/pages/paciente/List.xhtml" /></li>
-                                                
+
+                                                <sec:authorize access="isAuthenticated()">
+                                                    <li class="scroll_btn"><h:link value="Pacientes" outcome="/pages/paciente/List.xhtml" /></li>
+                                                </sec:authorize>
+
                                                 <sec:authorize ifAnyGranted="ROLE_USER">
-                                                <li class="scroll_btn last"><h:link value="Estudio" outcome="/pages/estudio/List.xhtml" /></li>
+                                                    <li class="scroll_btn last"><h:link value="Estudio" outcome="/pages/estudio/List.xhtml" /></li>
                                                 </sec:authorize>
 
                                                 <sec:authorize ifAnyGranted="ROLE_ADMIN">
@@ -93,22 +96,26 @@
                                                     </li>
                                                 </sec:authorize>
 
-                                                <li class="sub-menu active">
-                                                    <a href="javascript:void(0);">Usuario</a>
-                                                    <ul>
-                                                        <sec:authorize ifAnyGranted="ROLE_ADMIN">
-                                                            <li class="active"><h:link value="Roles" outcome="/pages/rol/List.xhtml" /></li>                                                        
-                                                            <li class="active"><h:link value="Usuarios" outcome="/pages/usuario/List.xhtml" /></li>
-                                                        </sec:authorize>
-                                                        
-                                                        <li class="active">
-                                                            <h:form prependId="false">
-                                                                <h:commandLink action="#{loginManager.doLogout()}" value="Salir"/>
-                                                            </h:form>       
-                                                        </li>
-                                                    </ul>
-                                                </li>
+                                                <sec:authorize access="isAuthenticated()">
+                                                    <li class="sub-menu active">
+                                                        <a href="javascript:void(0);">Usuario</a>
+                                                        <ul>
+                                                            <sec:authorize ifAnyGranted="ROLE_ADMIN">
+                                                                <li class="active"><h:link value="Roles" outcome="/pages/rol/List.xhtml" /></li>                                                        
+                                                                <li class="active"><h:link value="Usuarios" outcome="/pages/usuario/List.xhtml" /></li>
+                                                            </sec:authorize>
 
+                                                            <li class="active">
+                                                                <h:form prependId="false">
+                                                                    <h:commandLink action="#{loginManager.doLogout()}" value="Salir"/>
+                                                                </h:form>       
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </sec:authorize>
+                                                <sec:authorize access="isAnonymous()">
+                                                    <li class="first scroll_btn"><h:link value="Iniciar sesión" outcome="/static/login.jsf" /></li>
+                                                </sec:authorize>
                                             </ul>
                                         </nav>
                                     </div><!-- //MENU -->
