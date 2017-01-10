@@ -3,10 +3,30 @@
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.0
                http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.0.xsd">
-
+    
+    <url-mapping id="principal">
+        <pattern value="/principal" />
+        <view-id value="/index.jsf" />
+    </url-mapping>
+    
     <url-mapping id="diagnostico_list">
         <pattern value="/diagnosticos" />
         <view-id value="/pages/diagnostico/List.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="create_diagnostico">
+        <pattern value="/crear-diagnostico" />
+        <view-id value="/pages/diagnostico/Create.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="edit_diagnostico">
+        <pattern value="/editar-diagnostico" />
+        <view-id value="/pages/diagnostico/Edit.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="view_diagnostico">
+        <pattern value="/ver-diagnostico" />
+        <view-id value="/pages/diagnostico/View.jsf" />
     </url-mapping>
     
     <url-mapping id="admin_diagnostico_list">
@@ -14,4 +34,179 @@
         <view-id value="/pages/diagnostico-admin/List.jsf" />
     </url-mapping>
     
-</pretty-config>
+    <url-mapping id="especialidad_list">
+        <pattern value="/especialidades" />
+        <view-id value="/pages/especialidad/List.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="create_especialidad">
+        <pattern value="/crear-especialidad" />
+        <view-id value="/pages/especialidad/Create.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="edit_especialidad">
+        <pattern value="/editar-especialidad" />
+        <view-id value="/pages/especialidad/Edit.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="view_especialidad">
+        <pattern value="/ver-especialidad" />
+        <view-id value="/pages/especialidad/View.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="admin_especialidad_list">
+        <pattern value="/admin/especialidades" />
+        <view-id value="/pages/especialidad-admin/List.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="estudio_list">
+        <pattern value="/estudios" />
+        <view-id value="/pages/estudio/List.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="create_estudio">
+        <pattern value="/crear-estudio" />
+        <view-id value="/pages/estudio/Create.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="edit_estudio">
+        <pattern value="/editar-estudio" />
+        <view-id value="/pages/estudio/Edit.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="view_estudio">
+        <pattern value="/ver-estudio" />
+        <view-id value="/pages/estudio/View.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="admin_estudio_list">
+        <pattern value="/admin/estudios" />
+        <view-id value="/pages/estudio-admin/List.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="medico_list">
+        <pattern value="/medicos" />
+        <view-id value="/pages/medico/List.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="create_medico">
+        <pattern value="/crear-medico" />
+        <view-id value="/pages/medico/Create.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="edit_medico">
+        <pattern value="/editar-medico" />
+        <view-id value="/pages/medico/Edit.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="view_medico">
+        <pattern value="/ver-medico" />
+        <view-id value="/pages/medico/View.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="paciente_list">
+        <pattern value="/pacientes" />
+        <view-id value="/pages/paciente/List.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="create_paciente">
+        <pattern value="/crear-paciente" />
+        <view-id value="/pages/paciente/Create.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="edit_paciente">
+        <pattern value="/editar-paciente" />
+        <view-id value="/pages/paciente/Edit.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="view_paciente">
+        <pattern value="/ver-paciente" />
+        <view-id value="/pages/paciente/View.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="admin_paciente_list">
+        <pattern value="/admin/pacientes" />
+        <view-id value="/pages/paciente-admin/List.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="procedencia_list">
+        <pattern value="/procedencias" />
+        <view-id value="/pages/procedencia/List.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="create_procedencia">
+        <pattern value="/crear-procedencia" />
+        <view-id value="/pages/procedencia/Create.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="edit_procedencia">
+        <pattern value="/editar-procedencia" />
+        <view-id value="/pages/procedencia/Edit.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="view_procedencia">
+        <pattern value="/ver-procedencia" />
+        <view-id value="/pages/procedencia/View.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="rol_list">
+        <pattern value="/roles" />
+        <view-id value="/pages/rol/List.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="create_rol">
+        <pattern value="/crear-rol" />
+        <view-id value="/pages/rol/Create.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="edit_rol">
+        <pattern value="/editar-rol" />
+        <view-id value="/pages/rol/Edit.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="view_rol">
+        <pattern value="/ver-rol" />
+        <view-id value="/pages/rol/View.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="tipoEstudio_list">
+        <pattern value="/tiposEstudios" />
+        <view-id value="/pages/tipoEstudio/List.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="create_tipoEstudio">
+        <pattern value="/crear-tipoEstudio" />
+        <view-id value="/pages/tipoEstudio/Create.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="edit_tipoEstudio">
+        <pattern value="/editar-tipoEstudio" />
+        <view-id value="/pages/tipoEstudio/Edit.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="view_tipoEstudio">
+        <pattern value="/ver-tipoEstudio" />
+        <view-id value="/pages/tipoEstudio/View.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="usuario_list">
+        <pattern value="/usuarios" />
+        <view-id value="/pages/usuario/List.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="create_usuarioo">
+        <pattern value="/crear-usuario" />
+        <view-id value="/pages/usuario/Create.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="edit_usuario">
+        <pattern value="/editar-usuario" />
+        <view-id value="/pages/usuario/Edit.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="view_usuario">
+        <pattern value="/ver-usuario" />
+        <view-id value="/pages/usuario/View.jsf" />
+    </url-mapping>
+    
+</pretty-config>   

@@ -3,12 +3,17 @@ package cu.cenpis.gps.wic.controller;
 import cu.cenpis.gps.wic.data.entity.Rol;
 import cu.cenpis.gps.wic.data.service.UsuarioService;
 import cu.cenpis.gps.wic.data.entity.Usuario;
+import cu.cenpis.gps.wic.security.SecuredPassword;
 import cu.cenpis.gps.wic.util.Bundle;
 import cu.cenpis.gps.wic.util.JsfUtil;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UsuarioController extends BaseController<Usuario, java.lang.Long> {
 
@@ -57,6 +62,11 @@ public class UsuarioController extends BaseController<Usuario, java.lang.Long> {
     protected void setEmbeddableKeys() {
         RolController rolController = JsfUtil.getController(RolController.class);
         selected.setRolList(new HashSet<>(rolController.getFiltered()));
+        try {
+            selected.setContrasenna(SecuredPassword.generateStorngPasswordHash(selected.getContrasenna()));
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         super.setEmbeddableKeys(); //To change body of generated methods, choose Tools | Templates.
     }
 
