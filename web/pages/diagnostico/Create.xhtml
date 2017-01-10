@@ -16,7 +16,7 @@
 
             <h:form id="DiagnosticoCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{diagnosticoController.selected != null}">
+                    <p:panelGrid columns="2" rendered="#{diagnosticoController.renderedCreate}">
                         <p:outputLabel value="#{bundle.CreateDiagnosticoLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{diagnosticoController.selected.nombre}" title="#{bundle.CreateDiagnosticoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateDiagnosticoRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateDiagnosticoLabel_descripcion}" for="descripcion" />

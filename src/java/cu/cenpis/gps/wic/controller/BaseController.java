@@ -221,7 +221,7 @@ public abstract class BaseController<T, I>
         return null;
     }
 
-    public boolean renderedCreate() {
+    public boolean getRenderedCreate() {
         if (selected != null) {
             return true;
         }

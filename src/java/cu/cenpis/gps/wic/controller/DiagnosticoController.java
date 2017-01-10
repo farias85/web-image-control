@@ -21,7 +21,7 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
     }
 
     public DiagnosticoController() {
-        super(Diagnostico.class);
+        super(Diagnostico.class);        
     }
 
     @PostConstruct
