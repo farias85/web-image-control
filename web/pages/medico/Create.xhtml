@@ -11,7 +11,7 @@
         <p:dialog id="MedicoCreateDlg" widgetVar="MedicoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMedicoTitle}">
             <h:form id="MedicoCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{medicoController.selected != null}">
+                    <p:panelGrid columns="2" rendered="#{medicoController.renderedCreate}">
                         <p:outputLabel value="#{bundle.CreateMedicoLabel_nombreApellidos}" for="nombreApellidos" />
                         <p:inputText id="nombreApellidos" value="#{medicoController.selected.nombreApellidos}" title="#{bundle.CreateMedicoTitle_nombreApellidos}" required="true" requiredMessage="#{bundle.CreateMedicoRequiredMessage_nombreApellidos}"/>
                         <p:outputLabel value="#{bundle.CreateMedicoLabel_descripcion}" for="descripcion" />

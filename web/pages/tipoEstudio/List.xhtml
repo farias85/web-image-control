@@ -42,9 +42,9 @@
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tipoEstudioController.prepareCreate}" update=":TipoEstudioCreateForm" oncomplete="PF('TipoEstudioCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TipoEstudioViewForm" oncomplete="PF('TipoEstudioViewDialog').show()" disabled="#{empty tipoEstudioController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TipoEstudioEditForm" oncomplete="PF('TipoEstudioEditDialog').show()" disabled="#{empty tipoEstudioController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tipoEstudioController.destroy}" update=":growl,datalist" disabled="#{empty tipoEstudioController.selected}"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TipoEstudioViewForm" oncomplete="PF('TipoEstudioViewDialog').show()" disabled="#{empty tipoEstudioController.selected.idTipoEstudio}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TipoEstudioEditForm" oncomplete="PF('TipoEstudioEditDialog').show()" disabled="#{empty tipoEstudioController.selected.idTipoEstudio}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tipoEstudioController.destroy}" update=":growl,datalist" disabled="#{empty tipoEstudioController.selected.idTipoEstudio}"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>

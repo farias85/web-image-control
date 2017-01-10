@@ -15,7 +15,7 @@
         <ui:define name="body">
             <h:form id="PacienteCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{pacienteController.selected != null}">
+                    <p:panelGrid columns="2" rendered="#{pacienteController.renderedCreate}">
 
                         <p:outputLabel value="#{bundle.CreatePacienteLabel_historiaClinica}" for="historiaClinica" />
                         <p:inputText id="historiaClinica" value="#{pacienteController.selected.historiaClinica}" title="#{bundle.CreatePacienteTitle_historiaClinica}" 

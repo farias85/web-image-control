@@ -11,7 +11,7 @@
         <p:dialog id="TipoEstudioCreateDlg" widgetVar="TipoEstudioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipoEstudioTitle}">
             <h:form id="TipoEstudioCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{tipoEstudioController.selected != null}">
+                    <p:panelGrid columns="2" rendered="#{tipoEstudioController.renderedCreate}">
                         <p:outputLabel value="#{bundle.CreateTipoEstudioLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{tipoEstudioController.selected.nombre}" title="#{bundle.CreateTipoEstudioTitle_nombre}" required="true" requiredMessage="#{bundle.CreateTipoEstudioRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateTipoEstudioLabel_descripcion}" for="descripcion" />

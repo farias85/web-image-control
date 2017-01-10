@@ -11,7 +11,7 @@
         <p:dialog id="ProcedenciaCreateDlg" widgetVar="ProcedenciaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProcedenciaTitle}">
             <h:form id="ProcedenciaCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{procedenciaController.selected != null}">
+                    <p:panelGrid columns="2" rendered="#{procedenciaController.renderedCreate}">
                         <p:outputLabel value="#{bundle.CreateProcedenciaLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{procedenciaController.selected.nombre}" title="#{bundle.CreateProcedenciaTitle_nombre}" required="true" requiredMessage="#{bundle.CreateProcedenciaRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateProcedenciaLabel_descripcion}" for="descripcion" />

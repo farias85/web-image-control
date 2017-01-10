@@ -89,7 +89,7 @@
         <view-id value="/pages/medico/List.jsf" />
     </url-mapping>
     
-    <url-mapping id="create_medico">
+    <!--<url-mapping id="create_medico">
         <pattern value="/crear-medico" />
         <view-id value="/pages/medico/Create.jsf" />
     </url-mapping>
@@ -102,7 +102,7 @@
     <url-mapping id="view_medico">
         <pattern value="/ver-medico" />
         <view-id value="/pages/medico/View.jsf" />
-    </url-mapping>
+    </url-mapping>-->
     
     <url-mapping id="paciente_list">
         <pattern value="/pacientes" />
@@ -134,7 +134,7 @@
         <view-id value="/pages/procedencia/List.jsf" />
     </url-mapping>
     
-    <url-mapping id="create_procedencia">
+    <!--<url-mapping id="create_procedencia">
         <pattern value="/crear-procedencia" />
         <view-id value="/pages/procedencia/Create.jsf" />
     </url-mapping>
@@ -147,14 +147,14 @@
     <url-mapping id="view_procedencia">
         <pattern value="/ver-procedencia" />
         <view-id value="/pages/procedencia/View.jsf" />
-    </url-mapping>
+    </url-mapping>-->
     
     <url-mapping id="rol_list">
         <pattern value="/roles" />
         <view-id value="/pages/rol/List.jsf" />
     </url-mapping>
     
-    <url-mapping id="create_rol">
+    <!--<url-mapping id="create_rol">
         <pattern value="/crear-rol" />
         <view-id value="/pages/rol/Create.jsf" />
     </url-mapping>
@@ -167,14 +167,14 @@
     <url-mapping id="view_rol">
         <pattern value="/ver-rol" />
         <view-id value="/pages/rol/View.jsf" />
-    </url-mapping>
+    </url-mapping>-->
     
     <url-mapping id="tipoEstudio_list">
         <pattern value="/tiposEstudios" />
         <view-id value="/pages/tipoEstudio/List.jsf" />
     </url-mapping>
     
-    <url-mapping id="create_tipoEstudio">
+    <!--<url-mapping id="create_tipoEstudio">
         <pattern value="/crear-tipoEstudio" />
         <view-id value="/pages/tipoEstudio/Create.jsf" />
     </url-mapping>
@@ -187,14 +187,14 @@
     <url-mapping id="view_tipoEstudio">
         <pattern value="/ver-tipoEstudio" />
         <view-id value="/pages/tipoEstudio/View.jsf" />
-    </url-mapping>
+    </url-mapping>-->
     
     <url-mapping id="usuario_list">
         <pattern value="/usuarios" />
         <view-id value="/pages/usuario/List.jsf" />
     </url-mapping>
     
-    <url-mapping id="create_usuarioo">
+    <!--<url-mapping id="create_usuarioo">
         <pattern value="/crear-usuario" />
         <view-id value="/pages/usuario/Create.jsf" />
     </url-mapping>
@@ -207,6 +207,6 @@
     <url-mapping id="view_usuario">
         <pattern value="/ver-usuario" />
         <view-id value="/pages/usuario/View.jsf" />
-    </url-mapping>
+    </url-mapping>-->
     
 </pretty-config>   
