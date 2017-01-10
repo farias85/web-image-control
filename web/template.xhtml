@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"	
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
 
     <h:head>
         <title><ui:insert name="title">Default Title</ui:insert></title>
@@ -75,21 +76,31 @@
                                             <ul>
                                                 <li class="first scroll_btn"><h:link value="Principal" outcome="/index.xhtml" /></li>
                                                 <li class="scroll_btn"><h:link value="Pacientes" outcome="/pages/paciente/List.xhtml" /></li>
+                                                
+                                                <sec:authorize ifAnyGranted="ROLE_USER">
                                                 <li class="scroll_btn last"><h:link value="Estudio" outcome="/pages/estudio/List.xhtml" /></li>
-                                                <li class="sub-menu active">
-                                                    <a href="javascript:void(0);">Nomencladores</a>
-                                                    <ul>
-                                                        <li class="active"><h:link value="Diagnóstico" outcome="/pages/diagnostico/List.xhtml" /></li>
-                                                        <li class="active"><h:link value="Especialidad" outcome="/pages/especialidad/List.xhtml" /></li>                                                
-                                                        <li class="active"><h:link value="Tipo de Estudio" outcome="/pages/tipoEstudio/List.xhtml" /></li>
-                                                        <li class="active"><h:link value="Procedencia" outcome="/pages/procedencia/List.xhtml" /></li>
-                                                    </ul>
-                                                </li>
+                                                </sec:authorize>
+
+                                                <sec:authorize ifAnyGranted="ROLE_ADMIN">
+                                                    <li class="sub-menu active">
+                                                        <a href="javascript:void(0);">Nomencladores</a>
+                                                        <ul>
+                                                            <li class="active"><h:link value="Diagnóstico" outcome="/pages/diagnostico/List.xhtml" /></li>
+                                                            <li class="active"><h:link value="Especialidad" outcome="/pages/especialidad/List.xhtml" /></li>                                                
+                                                            <li class="active"><h:link value="Tipo de Estudio" outcome="/pages/tipoEstudio/List.xhtml" /></li>
+                                                            <li class="active"><h:link value="Procedencia" outcome="/pages/procedencia/List.xhtml" /></li>
+                                                        </ul>
+                                                    </li>
+                                                </sec:authorize>
+
                                                 <li class="sub-menu active">
                                                     <a href="javascript:void(0);">Usuario</a>
                                                     <ul>
-                                                        <li class="active"><h:link value="Roles" outcome="/pages/rol/List.xhtml" /></li>                                                        
-                                                        <li class="active"><h:link value="Usuarios" outcome="/pages/usuario/List.xhtml" /></li>
+                                                        <sec:authorize ifAnyGranted="ROLE_ADMIN">
+                                                            <li class="active"><h:link value="Roles" outcome="/pages/rol/List.xhtml" /></li>                                                        
+                                                            <li class="active"><h:link value="Usuarios" outcome="/pages/usuario/List.xhtml" /></li>
+                                                        </sec:authorize>
+                                                        
                                                         <li class="active">
                                                             <h:form prependId="false">
                                                                 <h:commandLink action="#{loginManager.doLogout()}" value="Salir"/>
@@ -97,6 +108,7 @@
                                                         </li>
                                                     </ul>
                                                 </li>
+
                                             </ul>
                                         </nav>
                                     </div><!-- //MENU -->

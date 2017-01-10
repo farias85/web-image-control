@@ -30,13 +30,33 @@
         <security:intercept-url pattern="/static/logout-success.jsf" access="anonymous" />                 
         <security:intercept-url pattern="/css/**" access="anonymous"/>    
         
-        <security:intercept-url pattern="/*diagnostico*" access="authenticated"/> 
+       
         
-<!--        <security:intercept-url pattern="/pages/**" access="hasRole('ROLE_ADMIN')"/> 
+        
+        <security:intercept-url pattern="/*paciente*" access="authenticated"/>        
+        <security:intercept-url pattern="/*principal*" access="authenticated"/>
+        <security:intercept-url pattern="/*index*" access="authenticated"/> 
+        
+        <!--        <security:intercept-url pattern="/pages/**" access="hasRole('ROLE_ADMIN')"/> 
         <security:intercept-url pattern="/pages/**" access="hasRole('ROLE_USER')"/> -->
         
         <!-- <security:intercept-url pattern="/**" access="anonymous" /> -->
         <!-- <security:intercept-url pattern="/**" access="authenticated" /> -->
+        
+        <security:intercept-url pattern="/*diagnostico*" access="hasRole('ROLE_ADMIN')"/>        
+        <security:intercept-url pattern="/*especialidad*" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/*medico*" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/*procedencia*" access="hasRole('ROLE_ADMIN')"/>        
+        <security:intercept-url pattern="/*rol*" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/*tipoEstudio*" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/*usuario*" access="hasRole('ROLE_ADMIN')"/>
+        
+         
+         
+        <security:intercept-url pattern="/*estudio*" access="hasRole('ROLE_USER')"/>
+        
+        
+        
 
         <security:intercept-url pattern="/protected1.jsf" access="hasRole('ROLE_ADMIN')"/>
 
