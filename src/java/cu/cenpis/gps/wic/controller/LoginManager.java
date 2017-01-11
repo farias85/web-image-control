@@ -1,6 +1,5 @@
 package cu.cenpis.gps.wic.controller;
 
-import cu.cenpis.gps.wic.data.service.UsuarioService;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.context.ExternalContext;
@@ -17,9 +16,13 @@ public class LoginManager implements Serializable {
     }
 
     public String doLogout() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        DestroyController destroyController = context.getApplication().evaluateExpressionGet(context, "#{destroyController}", DestroyController.class);
+        destroyController.destroySession();
+        
         return doSpringRequest("/j_spring_security_logout");
     }
-
+    
     public String doSpringRequest(String url) {
 
         try {
@@ -30,7 +33,7 @@ public class LoginManager implements Serializable {
             dispatcher.forward((ServletRequest) context.getRequest(), (ServletResponse) context.getResponse());
 
             FacesContext.getCurrentInstance().responseComplete();
-            
+
         } catch (ServletException | IOException exception) {
             System.out.println(exception.getMessage());
         }

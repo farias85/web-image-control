@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 public class DestroyController implements Serializable {
 
-    public String destroySession() {
+    public void destroySession() {
         
         destroyVars(DiagnosticoController.class);
         destroyVars(EspecialidadController.class);
@@ -26,7 +26,8 @@ public class DestroyController implements Serializable {
         destroyVars(TipoEstudioController.class);
         destroyVars(UsuarioController.class);
         
-        return "index.jsf";
+        UsuarioController uc = JsfUtil.getController(UsuarioController.class);
+        uc.setActiveUser(null);
     }
 
     private void destroyVars(Class<? extends BaseController> type) {

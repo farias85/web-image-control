@@ -12,7 +12,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
     @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
     @NamedQuery(name = "Usuario.findByApellidos", query = "SELECT u FROM Usuario u WHERE u.apellidos = :apellidos"),
-    @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email"),    
+    @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM Usuario u WHERE u.email = :email"),
     @NamedQuery(name = "Usuario.findByIdRol", query = "SELECT DISTINCT u FROM Usuario u join u.rolList r WHERE r.idRol = :idRol"),
     @NamedQuery(name = "Usuario.findByIdRolNotIn", query = "SELECT u FROM Usuario u WHERE u.idUsuario NOT IN("
             + "SELECT u2 FROM Usuario u2 join u2.rolList r2 WHERE r2.idRol = :idRol)"),
@@ -167,7 +166,7 @@ public class Usuario implements Serializable {
             return false;
         }
         Usuario other = (Usuario) object;
-        return !((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario)));        
+        return !((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario)));
     }
 
     @Override
@@ -175,4 +174,7 @@ public class Usuario implements Serializable {
         return String.format("%s[id=%d]", getClass().getSimpleName(), getIdUsuario());
     }
 
+    public String getNombreApellidos() {
+        return this.nombre + this.apellidos;
+    }
 }
