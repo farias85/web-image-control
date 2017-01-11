@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
 
     <ui:composition template="/template.xhtml">
 
@@ -18,34 +19,40 @@
             <div class="ui-g">
                 <div class="ui-g-12 ui-md-6 ui-lg-4"></div>
                 <div class="ui-g-12 ui-md-6 ui-lg-4">
-                    <h:form id="loginFormId" prependId="false">
 
-                        <ui:fragment rendered="${!empty param['error']}">
-                            <div class="alert alert-warning alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <strong>Advertencia!</strong> Conexión rechazada: email y/o contraseña incorrectos.
-                            </div>
-                        </ui:fragment>
+                    <sec:authorize access="isAnonymous()">
+                        <h:form id="loginFormId" prependId="false">
 
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+                            <ui:fragment rendered="${!empty param['error']}">
+                                <div class="alert alert-warning alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <strong>Advertencia!</strong> Conexión rechazada: email y/o contraseña incorrectos.
+                                </div>
+                            </ui:fragment>
 
-                        <h:panelGroup id="display">
-                            <p:panelGrid columns="1">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
 
-                                <p:outputLabel value="#{bundle.EditUsuarioLabel_email}" for="username" />
-                                <p:inputText id="username" size="100" placeholder="#{bundle.EditUsuarioLabel_email}" title="#{bundle.EditUsuarioLabel_email}" required="true" 
-                                             requiredMessage="#{bundle.EditUsuarioRequiredMessage_email}"/>
+                            <h:panelGroup id="display">
+                                <p:panelGrid columns="1">
 
-                                <p:outputLabel value="#{bundle.CreateUsuarioLabel_contrasenna}" for="password" />
-                                <p:password id="password" size="100" title="#{bundle.CreateUsuarioTitle_contrasenna}" required="true" feedback="false"
-                                             requiredMessage="#{bundle.CreateUsuarioRequiredMessage_contrasenna}"/>
+                                    <p:outputLabel value="#{bundle.EditUsuarioLabel_email}" for="username" />
+                                    <p:inputText id="username" size="100" placeholder="#{bundle.EditUsuarioLabel_email}" title="#{bundle.EditUsuarioLabel_email}" required="true" 
+                                                 requiredMessage="#{bundle.EditUsuarioRequiredMessage_email}"/>
 
-                                <p:commandButton id="btnLoginId" value="Entrar" type="submit" ajax="false"
-                                                 action="#{loginManager.doLogin()}" />
+                                    <p:outputLabel value="#{bundle.CreateUsuarioLabel_contrasenna}" for="password" />
+                                    <p:password id="password" size="100" title="#{bundle.CreateUsuarioTitle_contrasenna}" required="true" feedback="false"
+                                                requiredMessage="#{bundle.CreateUsuarioRequiredMessage_contrasenna}"/>
 
-                            </p:panelGrid>
-                        </h:panelGroup>
-                    </h:form>
+                                    <p:commandButton id="btnLoginId" value="Entrar" type="submit" ajax="false"
+                                                     action="#{loginManager.doLogin()}" />
+
+                                </p:panelGrid>
+                            </h:panelGroup>
+                        </h:form>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">                        
+                        <li class="alert-warnings" style="color: red">Usted tiene una sesión abierta.</li>
+                    </sec:authorize>
                 </div>
                 <div class="ui-g-12 ui-lg-4"></div>
             </div>

@@ -26,7 +26,7 @@
 
     <security:http use-expressions="true">
         <!-- refers to http://docs.spring.io/spring-security/site/docs/3.0.x/reference/el-access.html -->
-        <security:intercept-url pattern="/static/login.jsf" access="anonymous"/>
+        <!--<security:intercept-url pattern="/static/login.jsf" access="anonymous"/>-->
         <security:intercept-url pattern="/static/logout-success.jsf" access="anonymous" />                 
         <security:intercept-url pattern="/css/**" access="anonymous"/>    
         
