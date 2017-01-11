@@ -33,7 +33,7 @@
         <h:outputScript library="js" name="owl.carousel.js"/>
         <h:outputScript library="js" name="superfish.min.js"/>
 
-        <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/wico.png']}"/>
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/body_scan-48.png']}"/>
 
     </h:head>
 
@@ -98,7 +98,7 @@
 
                                                 <sec:authorize access="isAuthenticated()">
                                                     <li class="sub-menu active">
-                                                        <a href="javascript:void(0);">Usuario</a>
+                                                        <a href="javascript:void(0);">#{usuarioController.activeUser.nombreApellidos}</a>
                                                         <ul>
                                                             <sec:authorize ifAnyGranted="ROLE_ADMIN">
                                                                 <li class="active"><h:link value="Roles" outcome="/pages/rol/List.xhtml" /></li>                                                        

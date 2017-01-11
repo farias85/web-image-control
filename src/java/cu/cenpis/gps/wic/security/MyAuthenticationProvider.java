@@ -1,8 +1,10 @@
 package cu.cenpis.gps.wic.security;
 
+import cu.cenpis.gps.wic.controller.UsuarioController;
 import cu.cenpis.gps.wic.data.entity.Rol;
 import cu.cenpis.gps.wic.data.entity.Usuario;
 import cu.cenpis.gps.wic.data.service.UsuarioService;
+import cu.cenpis.gps.wic.util.JsfUtil;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
@@ -56,6 +58,8 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
 
             if (usuario != null && SecuredPassword.validatePassword(password, usuario.getContrasenna())) {
                 result = createSuccessAuthentication(authentication, usuario);
+                UsuarioController uc = JsfUtil.getController(UsuarioController.class);
+                uc.setActiveUser(usuario);
             }
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
             Logger.getLogger(MyAuthenticationProvider.class.getName()).log(Level.SEVERE, null, ex);
