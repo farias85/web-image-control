@@ -51,7 +51,11 @@
                         </h:form>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">                        
-                        <li class="alert-warnings" style="color: red">Usted tiene una sesión abierta.</li>
+                        <div class="container">
+                            <h1>Usted tiene una sesión abierta.</h1>
+                        </div>
+                        
+                        <div class="alert alert-danger">Usted tiene una sesión abierta.</div>
                     </sec:authorize>
                 </div>
                 <div class="ui-g-12 ui-lg-4"></div>
