@@ -175,6 +175,6 @@ public class Usuario implements Serializable {
     }
 
     public String getNombreApellidos() {
-        return this.nombre + this.apellidos;
+        return this.nombre + " " + this.apellidos;
     }
 }
