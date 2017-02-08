@@ -142,7 +142,7 @@ public class EstudioController extends BaseController<Estudio, java.lang.Long> {
 
         ChartSeries series1 = new ChartSeries();
         series1.setLabel("Boys");
-        series1.set("2014-01-01", 51);
+        series1.set("2014-01-01", 52);
         series1.set("2014-01-02", 22);
         series1.set("2014-01-03", 65);
         series1.set("2014-01-04", 74);
