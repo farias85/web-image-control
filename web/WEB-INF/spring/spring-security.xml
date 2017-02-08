@@ -48,7 +48,7 @@
         <security:intercept-url pattern="/*especialidad*" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/*medico*" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/*procedencia*" access="hasRole('ROLE_ADMIN')"/>        
-        <security:intercept-url pattern="/*rol*" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/*rol*" access="hasRole('ROLE_ADMIN4')"/>
         <security:intercept-url pattern="/*tipoEstudio*" access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/*usuario*" access="hasRole('ROLE_ADMIN')"/>
         

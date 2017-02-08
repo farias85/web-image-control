@@ -92,6 +92,7 @@
                                                             <li class="active"><h:link value="Especialidad" outcome="/pages/especialidad/List.xhtml" /></li>                                                
                                                             <li class="active"><h:link value="Tipo de Estudio" outcome="/pages/tipoEstudio/List.xhtml" /></li>
                                                             <li class="active"><h:link value="Procedencia" outcome="/pages/procedencia/List.xhtml" /></li>
+                                                            <li class="active"><h:link value="Médico" outcome="/pages/medico/List.xhtml" /></li>
                                                         </ul>
                                                     </li>
                                                 </sec:authorize>
@@ -101,7 +102,7 @@
                                                         <a href="javascript:void(0);">#{usuarioController.activeUser.nombreApellidos}</a>
                                                         <ul>
                                                             <sec:authorize ifAnyGranted="ROLE_ADMIN">
-                                                                <li class="active"><h:link value="Roles" outcome="/pages/rol/List.xhtml" /></li>                                                        
+                                                                <!--<li class="active"><h:link value="Roles" outcome="/pages/rol/List.xhtml" /></li>-->                                                        
                                                                 <li class="active"><h:link value="Usuarios" outcome="/pages/usuario/List.xhtml" /></li>
                                                             </sec:authorize>
 

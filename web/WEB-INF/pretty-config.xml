@@ -45,10 +45,10 @@
         <view-id value="/pages/diagnostico/View.jsf" />
     </url-mapping>
     
-    <url-mapping id="admin_diagnostico_list">
+    <!--<url-mapping id="admin_diagnostico_list">
         <pattern value="/admin/diagnosticos" />
         <view-id value="/pages/diagnostico-admin/List.jsf" />
-    </url-mapping>
+    </url-mapping>-->
     
     <url-mapping id="especialidad_list">
         <pattern value="/especialidades" />
@@ -70,10 +70,10 @@
         <view-id value="/pages/especialidad/View.jsf" />
     </url-mapping>
     
-    <url-mapping id="admin_especialidad_list">
+    <!--<url-mapping id="admin_especialidad_list">
         <pattern value="/admin/especialidades" />
         <view-id value="/pages/especialidad-admin/List.jsf" />
-    </url-mapping>
+    </url-mapping>-->
     
     <url-mapping id="estudio_list">
         <pattern value="/estudios" />
@@ -95,10 +95,10 @@
         <view-id value="/pages/estudio/View.jsf" />
     </url-mapping>
     
-    <url-mapping id="admin_estudio_list">
+    <!--<url-mapping id="admin_estudio_list">
         <pattern value="/admin/estudios" />
         <view-id value="/pages/estudio-admin/List.jsf" />
-    </url-mapping>
+    </url-mapping>-->
     
     <url-mapping id="medico_list">
         <pattern value="/medicos" />
@@ -140,10 +140,10 @@
         <view-id value="/pages/paciente/View.jsf" />
     </url-mapping>
     
-    <url-mapping id="admin_paciente_list">
+    <!--<url-mapping id="admin_paciente_list">
         <pattern value="/admin/pacientes" />
         <view-id value="/pages/paciente-admin/List.jsf" />
-    </url-mapping>
+    </url-mapping>-->
     
     <url-mapping id="procedencia_list">
         <pattern value="/procedencias" />
