@@ -104,7 +104,7 @@ public abstract class BaseController<T, I>
     }
 
     public String actionPrepareEdit() {
-        return "Edit.jsf?faces-redirect=true";
+        return "Edit.jsf?faces-redirect=trues";
     }
 
     public String actionEdit() {

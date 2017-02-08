@@ -77,6 +77,7 @@
         <location>/static/error404.jsf</location>
     </error-page>
     
+       
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
         <welcome-file>index.xhtml</welcome-file>
@@ -86,4 +87,5 @@
         <param-name>javax.faces.VALIDATE_EMPTY_FIELDS</param-name>
         <param-value>true</param-value>
     </context-param>
+    
 </web-app>

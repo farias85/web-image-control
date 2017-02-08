@@ -21,7 +21,7 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
     }
 
     public DiagnosticoController() {
-        super(Diagnostico.class);        
+        super(Diagnostico.class);
     }
 
     @PostConstruct
@@ -43,7 +43,7 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
             super.update(Bundle.getString("DiagnosticoUpdated"));
         } else {
             diagnosticoService.refrescarSelected(selected);
-        } 
+        }
     }
 
     @Override
@@ -85,5 +85,15 @@ public class DiagnosticoController extends BaseController<Diagnostico, java.lang
             return null;
         }
         return " ";
+    }
+
+    public void setId(long id) {
+        selected = new Diagnostico();
+        selected.setIdDiagnostico(id);
+    }
+
+    public String cargarSelected() {        
+        diagnosticoService.refrescarSelected(selected);
+        return null;
     }
 }

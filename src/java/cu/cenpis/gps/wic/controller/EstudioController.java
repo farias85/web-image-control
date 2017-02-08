@@ -12,6 +12,13 @@ import cu.cenpis.gps.wic.util.Bundle;
 import cu.cenpis.gps.wic.util.JsfUtil;
 import javax.annotation.PostConstruct;
 
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.HorizontalBarChartModel;
+import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.DateAxis;
+
 public class EstudioController extends BaseController<Estudio, java.lang.Long> {
 
     private EstudioService estudioService;
@@ -32,6 +39,7 @@ public class EstudioController extends BaseController<Estudio, java.lang.Long> {
     @Override
     public void init() {
         super.setFacade(estudioService);
+        createBarModel();
     }
 
     @Override
@@ -118,5 +126,48 @@ public class EstudioController extends BaseController<Estudio, java.lang.Long> {
         } else {
             selected.getPaciente().setIdPaciente(null);
         }
+    }
+
+    private BarChartModel barModel;
+
+    public BarChartModel getBarModel() {
+        return barModel;
+    }
+
+    
+
+    private void createBarModel() {        
+        
+         barModel  = new BarChartModel();
+
+        ChartSeries series1 = new ChartSeries();
+        series1.setLabel("Boys");
+        series1.set("2014-01-01", 51);
+        series1.set("2014-01-02", 22);
+        series1.set("2014-01-03", 65);
+        series1.set("2014-01-04", 74);
+        series1.set("2014-01-05", 24);
+        series1.set("2014-01-06", 51);
+        
+        barModel.setBarWidth(10);
+        barModel.addSeries(series1);
+
+        DateAxis axis = new DateAxis("Dates");
+        //axis.setTickAngle(-50);
+        
+        axis.setMax("2014-02-10");
+        axis.setTickFormat("%#d %b , %y");
+        barModel.getAxes().put(AxisType.X, axis);
+
+        barModel.setTitle("Bar Chart");
+        barModel.setLegendPosition("ne");
+
+       /* Axis xAxis = barModel.getAxis(AxisType.X);
+        xAxis.setLabel("Días");
+
+        Axis yAxis = barModel.getAxis(AxisType.Y);
+        yAxis.setLabel("Cantidad");
+        yAxis.setMin(0);
+        yAxis.setMax(200);*/
     }
 }

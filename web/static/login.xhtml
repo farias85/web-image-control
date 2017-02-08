@@ -54,8 +54,13 @@
                         <div class="container">
                             <h1>Usted tiene una sesión abierta.</h1>
                         </div>
-                        
-                        <div class="alert alert-danger">Usted tiene una sesión abierta.</div>
+
+                        <div class="alert alert-danger">
+                            <h:form prependId="false">
+                                <h:commandLink action="#{loginManager.doLogout()}" value="Cerrar sesión"></h:commandLink>
+                            </h:form>  
+                        </div>
+
                     </sec:authorize>
                 </div>
                 <div class="ui-g-12 ui-lg-4"></div>

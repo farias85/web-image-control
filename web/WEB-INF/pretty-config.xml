@@ -9,6 +9,16 @@
         <view-id value="/index.jsf" />
     </url-mapping>
     
+    <url-mapping id="login">
+        <pattern value="/login" />
+        <view-id value="/static/login.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="logout">
+        <pattern value="/logout" />
+        <view-id value="static/logout-success.jsf" />
+    </url-mapping>
+    
     <url-mapping id="diagnostico_list">
         <pattern value="/diagnosticos" />
         <view-id value="/pages/diagnostico/List.jsf" />
@@ -20,8 +30,14 @@
     </url-mapping>
     
     <url-mapping id="edit_diagnostico">
+        <pattern value="/editar-diagnostico/#{diagnosticoController.id}"/>
+        <view-id value="/pages/diagnostico/Edit.jsf" />          
+        <action>#{diagnosticoController.cargarSelected}</action>
+    </url-mapping>
+    
+    <url-mapping id="edit_diagnostico">
         <pattern value="/editar-diagnostico" />
-        <view-id value="/pages/diagnostico/Edit.jsf" />
+        <view-id value="/pages/diagnostico/Edit.jsf" />        
     </url-mapping>
     
     <url-mapping id="view_diagnostico">
