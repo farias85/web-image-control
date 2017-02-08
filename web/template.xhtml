@@ -99,7 +99,7 @@
 
                                                 <sec:authorize access="isAuthenticated()">
                                                     <li class="sub-menu active">
-                                                        <a href="javascript:void(0);">#{usuarioController.activeUser.nombreApellidos}</a>
+                                                        <a href="javascript:void(0);">#{usuarioController.activeUser.nombre}&nbsp;#{usuarioController.activeUser.apellidos}</a>
                                                         <ul>
                                                             <sec:authorize ifAnyGranted="ROLE_ADMIN">
                                                                 <!--<li class="active"><h:link value="Roles" outcome="/pages/rol/List.xhtml" /></li>-->                                                        
