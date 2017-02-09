@@ -38,10 +38,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Estudio.findByIdEstudio", query = "SELECT e FROM Estudio e WHERE e.idEstudio = :idEstudio"),
     @NamedQuery(name = "Estudio.findByRmiId", query = "SELECT e FROM Estudio e WHERE e.rmiId = :rmiId"),
     @NamedQuery(name = "Estudio.findByFecha", query = "SELECT e FROM Estudio e WHERE e.fecha = :fecha"),
-    @NamedQuery(name = "Estudio.findByDiagnostico", query = "SELECT e FROM Estudio e WHERE e.diagnostico.idDiagnostico = :idDiagnostico"),  
+    @NamedQuery(name = "Estudio.findByDiagnostico", query = "SELECT e FROM Estudio e WHERE e.diagnostico.idDiagnostico = :idDiagnostico"),
     @NamedQuery(name = "Estudio.findByPaciente", query = "SELECT e FROM Estudio e WHERE e.paciente.idPaciente = :idPaciente"),
     @NamedQuery(name = "Estudio.findByPositivo", query = "SELECT e FROM Estudio e WHERE e.positivo = :positivo")})
 public class Estudio implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,8 +51,9 @@ public class Estudio implements Serializable {
     private Long idEstudio;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "rmi_id")
-    private Integer rmiId;
+    private String rmiId;
     @Basic(optional = false)
     @NotNull
     @Temporal(TemporalType.DATE)
@@ -86,6 +88,9 @@ public class Estudio implements Serializable {
     @JoinColumn(name = "usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuario usuario;
+    @JoinColumn(name = "modalidad", referencedColumnName = "id_modalidad")
+    @ManyToOne(optional = false)
+    private Modalidad modalidad;
 
     public Estudio() {
     }
@@ -94,7 +99,7 @@ public class Estudio implements Serializable {
         this.idEstudio = idEstudio;
     }
 
-    public Estudio(Long idEstudio, Integer rmiId, Date fecha, String impresionDiagnostica, Boolean positivo) {
+    public Estudio(Long idEstudio, String rmiId, Date fecha, String impresionDiagnostica, Boolean positivo) {
         this.idEstudio = idEstudio;
         this.rmiId = rmiId;
         this.fecha = fecha;
@@ -110,11 +115,11 @@ public class Estudio implements Serializable {
         this.idEstudio = idEstudio;
     }
 
-    public Integer getRmiId() {
+    public String getRmiId() {
         return rmiId;
     }
 
-    public void setRmiId(Integer rmiId) {
+    public void setRmiId(String rmiId) {
         this.rmiId = rmiId;
     }
 
@@ -198,6 +203,14 @@ public class Estudio implements Serializable {
         this.usuario = usuario;
     }
 
+    public Modalidad getModalidad() {
+        return modalidad;
+    }
+
+    public void setModalidad(Modalidad modalidad) {
+        this.modalidad = modalidad;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -219,5 +232,5 @@ public class Estudio implements Serializable {
     public String toString() {
         return String.format("%s[id=%d]", getClass().getSimpleName(), getIdEstudio());
     }
-    
+
 }

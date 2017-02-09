@@ -116,6 +116,11 @@ public class EstudioController extends BaseController<Estudio, java.lang.Long> {
             }
         }
 
+        UsuarioController uc = JsfUtil.getController(UsuarioController.class);
+        if (uc.getActiveUser() != null) {
+            selected.setUsuario(uc.getActiveUser());
+        }
+
         super.setEmbeddableKeys(); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -134,11 +139,9 @@ public class EstudioController extends BaseController<Estudio, java.lang.Long> {
         return barModel;
     }
 
-    
+    private void createBarModel() {
 
-    private void createBarModel() {        
-        
-         barModel  = new BarChartModel();
+        barModel = new BarChartModel();
 
         ChartSeries series1 = new ChartSeries();
         series1.setLabel("Boys");
@@ -148,13 +151,13 @@ public class EstudioController extends BaseController<Estudio, java.lang.Long> {
         series1.set("2014-01-04", 74);
         series1.set("2014-01-05", 24);
         series1.set("2014-01-06", 51);
-        
+
         barModel.setBarWidth(10);
         barModel.addSeries(series1);
 
         DateAxis axis = new DateAxis("Dates");
         //axis.setTickAngle(-50);
-        
+
         axis.setMax("2014-02-10");
         axis.setTickFormat("%#d %b , %y");
         barModel.getAxes().put(AxisType.X, axis);
@@ -162,12 +165,12 @@ public class EstudioController extends BaseController<Estudio, java.lang.Long> {
         barModel.setTitle("Bar Chart");
         barModel.setLegendPosition("ne");
 
-       /* Axis xAxis = barModel.getAxis(AxisType.X);
-        xAxis.setLabel("Días");
+        /* Axis xAxis = barModel.getAxis(AxisType.X);
+         xAxis.setLabel("Días");
 
-        Axis yAxis = barModel.getAxis(AxisType.Y);
-        yAxis.setLabel("Cantidad");
-        yAxis.setMin(0);
-        yAxis.setMax(200);*/
+         Axis yAxis = barModel.getAxis(AxisType.Y);
+         yAxis.setLabel("Cantidad");
+         yAxis.setMin(0);
+         yAxis.setMax(200);*/
     }
 }

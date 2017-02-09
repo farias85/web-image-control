@@ -38,7 +38,7 @@
                                  emptyMessage="#{bundle.TableQueryNotFound}" 
                                  filteredValue="#{estudioController.filtered}"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}">
-                        
+
                         <f:facet name="{Exporters}">
 
                             <h:commandLink>
@@ -68,14 +68,14 @@
                             </p:outputPanel>
                         </f:facet>
 
-                        <p:column filterBy="#{item.fecha}" sortBy="#{item.fecha}"  filterMatchMode="contains">
+<!--                        <p:column filterBy="#{item.fecha}" sortBy="#{item.fecha}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEstudioTitle_fecha}"/>
                             </f:facet>
                             <h:outputText value="#{item.fecha}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
-                        </p:column>
+                        </p:column>-->
 
                         <p:column filterBy="#{item.rmiId}" sortBy="#{item.rmiId}"  filterMatchMode="contains">
                             <f:facet name="header">
@@ -116,17 +116,17 @@
                             <h:outputText value="#{bundle.CreatePacienteTitle_sexo_female}" rendered="#{item.paciente.sexo eq false}" />                            
                         </p:column>
 
-                        <p:column filterBy="#{item.paciente.historiaClinica}" sortBy="#{item.paciente.historiaClinica}"  filterMatchMode="contains">
+<!--                        <p:column filterBy="#{item.paciente.historiaClinica}" sortBy="#{item.paciente.historiaClinica}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.EditPacienteTitle_historiaClinica}"/>
                             </f:facet>
                             <h:outputText value="#{item.paciente.historiaClinica}"/>
-                        </p:column>
+                        </p:column>-->
 
 
                         <p:column filterBy="#{item.tipoEstudio.nombre}" sortBy="#{item.tipoEstudio.nombre}"  filterMatchMode="contains">
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEstudioTitle_tipoEstudio}"/>
+                                <h:outputText value="#{bundle.CreateEstudioLabel_tipoEstudio}"/>
                             </f:facet>
                             <h:outputText value="#{item.tipoEstudio.nombre}"/>
                         </p:column>
@@ -136,6 +136,13 @@
                                 <h:outputText value="#{bundle.ListEstudioTitle_diagnostico}"/>
                             </f:facet>
                             <h:outputText value="#{item.diagnostico.nombre}"/>
+                        </p:column> 
+
+                        <p:column filterBy="#{item.impresionDiagnostica}" sortBy="#{item.impresionDiagnostica}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ViewEstudioLabel_impresionDiagnostica}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.impresionDiagnostica}"/>
                         </p:column> 
 
                         <p:column filterBy="#{item.positivo}" sortBy="#{item.positivo}"  filterMatchMode="equals">

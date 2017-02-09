@@ -92,7 +92,7 @@
                                          title="#{bundle.CreateEstudioTitle_impresionDiagnostica}" required="true" 
                                          requiredMessage="#{bundle.CreateEstudioRequiredMessage_impresionDiagnostica}"/>
 
-                        <p:outputLabel value="#{bundle.CreateEstudioLabel_diagnostico}" for="diagnostico" />
+                        <p:outputLabel value="#{bundle.ListEstudioTitle_diagnostico}" for="diagnostico" />
                         <p:selectOneMenu id="diagnostico" value="#{estudioController.selected.diagnostico}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_diagnostico}">
                             <f:selectItems value="#{diagnosticoController.itemsAvailableSelectOne}"
                                            var="diagnosticoItem"
@@ -101,6 +101,12 @@
                         </p:selectOneMenu>
 
 
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_modalidad}" for="modalidad" />
+                        <p:selectOneMenu id="modalidad" value="#{estudioController.selected.modalidad}" title="#{bundle.CreateEstudioTitle_modalidad}"
+                                         required="true" requiredMessage="#{bundle.Modalidad_requerida}">
+                            <f:selectItems value="#{modalidadController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        
                         <p:outputLabel for="positivo" value="#{bundle.CreateEstudioLabel_positivo}" />
                         <p:selectOneMenu id="positivo" value="#{estudioController.selected.positivo}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_positivo}">
                             <f:selectItem itemLabel="Seleccione" itemValue="" noSelectionOption="true"/>
