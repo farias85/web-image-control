@@ -6,24 +6,29 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition>
+    <ui:composition template="/template.xhtml">
 
-        <p:dialog id="ModalidadEditDlg" widgetVar="ModalidadEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditModalidadTitle}">
-            <h:form id="ModalidadEditForm">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditModalidadTitle}"></h:outputText>
+        </ui:define>
+    
+        <ui:define name="body">   
+
+            <h:form id="DiagnosticoEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{modalidadController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditModalidadLabel_idModalidad}" for="idModalidad" />
-                        <p:inputText id="idModalidad" value="#{modalidadController.selected.idModalidad}" title="#{bundle.EditModalidadTitle_idModalidad}" required="true" requiredMessage="#{bundle.EditModalidadRequiredMessage_idModalidad}"/>
                         <p:outputLabel value="#{bundle.EditModalidadLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{modalidadController.selected.nombre}" title="#{bundle.EditModalidadTitle_nombre}" required="true" requiredMessage="#{bundle.EditModalidadRequiredMessage_nombre}"/>
-                        <p:outputLabel value="#{bundle.EditModalidadLabel_descripcion}" for="descripcion" />
+                        <p:outputLabel value="#{bundle.EditDiagnosticoLabel_descripcion}" for="descripcion" />
                         <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{modalidadController.selected.descripcion}" title="#{bundle.EditModalidadTitle_descripcion}" />
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{modalidadController.update}" value="#{bundle.Save}" update="display,:ModalidadListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ModalidadEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="ModalidadEditDialog.hide()"/>
+                    <p:commandButton action="#{modalidadController.actionEdit}" value="#{bundle.Save}" ajax="false"/>
+                    <p:commandButton action="#{modalidadController.actionCancel}" immediate="true" value="#{bundle.Cancel}" />
+                     <p:outputLabel value="#{id}" />
                 </h:panelGroup>
             </h:form>
-        </p:dialog>
 
+        </ui:define>
+        
     </ui:composition>
 </html>

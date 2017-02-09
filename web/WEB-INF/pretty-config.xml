@@ -225,4 +225,24 @@
         <view-id value="/pages/usuario/View.jsf" />
     </url-mapping>-->
     
+    <url-mapping id="modalidad_list">
+        <pattern value="/modalidades" />
+        <view-id value="/pages/modalidad/List.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="create_modalidad">
+        <pattern value="/crear-modalidad" />
+        <view-id value="/pages/modalidad/Create.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="edit_modalidad">
+        <pattern value="/editar-modalidad" />
+        <view-id value="/pages/modalidad/Edit.jsf" />
+    </url-mapping>
+    
+    <url-mapping id="view_modalidad">
+        <pattern value="/ver-modalidad" />
+        <view-id value="/pages/modalidad/View.jsf" />
+    </url-mapping>
+    
 </pretty-config>   

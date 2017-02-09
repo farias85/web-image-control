@@ -94,7 +94,10 @@
                         <p:outputLabel value="#{bundle.CreateEstudioLabel_modalidad}" for="modalidad" />
                         <p:selectOneMenu id="modalidad" value="#{estudioController.selected.modalidad}" title="#{bundle.CreateEstudioTitle_modalidad}"
                                          required="true" requiredMessage="#{bundle.Modalidad_requerida}">
-                            <f:selectItems value="#{modalidadController.itemsAvailableSelectOne}"/>
+                            <f:selectItems value="#{modalidadController.itemsAvailableSelectOne}"
+                                           var="modalidadItem"
+                                           itemValue="#{modalidadItem}"
+                                           itemLabel="#{modalidadItem.nombre}"/>
                         </p:selectOneMenu>
 
                         <p:outputLabel for="positivo" value="#{bundle.CreateEstudioLabel_positivo}" />

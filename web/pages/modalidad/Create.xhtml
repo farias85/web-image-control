@@ -6,24 +6,31 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition>
+    <ui:composition template="/template.xhtml">
 
-        <p:dialog id="ModalidadCreateDlg" widgetVar="ModalidadCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateModalidadTitle}">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateModalidadTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">            
+
             <h:form id="ModalidadCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{modalidadController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateModalidadLabel_idModalidad}" for="idModalidad" />
-                        <p:inputText id="idModalidad" value="#{modalidadController.selected.idModalidad}" title="#{bundle.CreateModalidadTitle_idModalidad}" required="true" requiredMessage="#{bundle.CreateModalidadRequiredMessage_idModalidad}"/>
+                    <p:panelGrid columns="2" rendered="#{modalidadController.renderedCreate}">
                         <p:outputLabel value="#{bundle.CreateModalidadLabel_nombre}" for="nombre" />
-                        <p:inputText id="nombre" value="#{modalidadController.selected.nombre}" title="#{bundle.CreateModalidadTitle_nombre}" required="true" requiredMessage="#{bundle.CreateModalidadRequiredMessage_nombre}"/>
+                        <p:inputText id="nombre" value="#{modalidadController.selected.nombre}" title="#{bundle.CreateModalidadLabel_nombre}" required="true" requiredMessage="#{bundle.CreateModalidadRequiredMessage_nombre}"/>
                         <p:outputLabel value="#{bundle.CreateModalidadLabel_descripcion}" for="descripcion" />
                         <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{modalidadController.selected.descripcion}" title="#{bundle.CreateModalidadTitle_descripcion}" />
-                    </p:panelGrid>
-                    <p:commandButton actionListener="#{modalidadController.create}" value="#{bundle.Save}" update="display,:ModalidadListForm:datalist,:growl" oncomplete="handleSubmit(args,'ModalidadCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="ModalidadCreateDialog.hide()"/>
+                    </p:panelGrid> 
+                    
+                    <p:commandButton action="#{modalidadController.actionCreate}" value="#{bundle.Save}" ajax="false"/>                    
+                    
+                    <p:commandButton immediate="true" action="#{modalidadController.actionCancel}" value="#{bundle.Cancel}" />
+                    
                 </h:panelGroup>
             </h:form>
-        </p:dialog>
+
+        </ui:define>
 
     </ui:composition>
 </html>

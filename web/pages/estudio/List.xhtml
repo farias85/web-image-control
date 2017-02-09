@@ -124,19 +124,50 @@
                         </p:column>-->
 
 
-                        <p:column filterBy="#{item.tipoEstudio.nombre}" sortBy="#{item.tipoEstudio.nombre}"  filterMatchMode="contains">
+                        <!--<p:column filterBy="#{item.tipoEstudio.nombre}" sortBy="#{item.tipoEstudio.nombre}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.CreateEstudioLabel_tipoEstudio}"/>
                             </f:facet>
                             <h:outputText value="#{item.tipoEstudio.nombre}"/>
+                        </p:column>-->
+                        
+                         <p:column filterBy="#{item.tipoEstudio.nombre}"  filterMatchMode="in">
+                            <f:facet name="filter">
+                                <p:selectCheckboxMenu label="T. Estudios" onchange="PF('dtable').filter()" panelStyle="width:125px" scrollHeight="150">
+                                    <f:selectItems value="#{tipoEstudioController.itemsAvailableSelectOne}"
+                                                   var="tipoEstudioItem"
+                                                   itemValue="#{tipoEstudioItem.nombre}"
+                                                   itemLabel="#{tipoEstudioItem.nombre}"/>
+                                </p:selectCheckboxMenu>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoEstudio.nombre}" />
                         </p:column>
 
-                        <p:column filterBy="#{item.diagnostico.nombre}" sortBy="#{item.diagnostico.nombre}" filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEstudioTitle_diagnostico}"/>
+                                               
+                        <p:column filterBy="#{item.diagnostico.nombre}"  filterMatchMode="in">
+                            <f:facet name="filter">
+                                <p:selectCheckboxMenu label="Diagnósticos" onchange="PF('dtable').filter()" panelStyle="width:125px" scrollHeight="150">
+                                    <f:selectItems value="#{diagnosticoController.itemsAvailableSelectOne}"
+                                                   var="diagnosticoItem"
+                                                   itemValue="#{diagnosticoItem.nombre}"
+                                                   itemLabel="#{diagnosticoItem.nombre}"/>
+                                </p:selectCheckboxMenu>
                             </f:facet>
-                            <h:outputText value="#{item.diagnostico.nombre}"/>
-                        </p:column> 
+                            <h:outputText value="#{item.modalidad.nombre}" />
+                        </p:column>
+                        
+                        
+                        <p:column filterBy="#{item.modalidad.nombre}"  filterMatchMode="in">
+                            <f:facet name="filter">
+                                <p:selectCheckboxMenu label="Modalidades" onchange="PF('dtable').filter()" panelStyle="width:125px" scrollHeight="150">
+                                    <f:selectItems value="#{modalidadController.itemsAvailableSelectOne}"
+                                                   var="modalidadItem"
+                                                   itemValue="#{modalidadItem.nombre}"
+                                                   itemLabel="#{modalidadItem.nombre}"/>
+                                </p:selectCheckboxMenu>
+                            </f:facet>
+                            <h:outputText value="#{item.modalidad.nombre}" />
+                        </p:column>
 
                         <p:column filterBy="#{item.impresionDiagnostica}" sortBy="#{item.impresionDiagnostica}" filterMatchMode="contains">
                             <f:facet name="header">
