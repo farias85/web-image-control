@@ -90,15 +90,20 @@
                         <p:outputLabel value="#{bundle.ListEstudioTitle_diagnostico}" for="diagnostico" />
                         <p:autoComplete id="diagnostico" size="#{bundle.InputSize}" value="#{estudioController.selected.diagnostico.nombre}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_diagnostico}"
                                         completeMethod="#{diagnosticoController.autoCompleteQuery}" />
-                        
-                        
+
+                        <h:outputLabel value="#{bundle.CreateEstudioLabel_modalidad}" for="modalidad" />
+                        <h:selectOneMenu id="modalidad" value="#{estudioController.selected.modalidad}" title="#{bundle.CreateEstudioTitle_modalidad}"
+                                         required="true" requiredMessage="#{bundle.Modalidad_requerida}">
+                            <f:selectItems value="#{modalidadController.itemsAvailableSelectOne}"/>
+                        </h:selectOneMenu>
+
                         <p:outputLabel for="positivo" value="#{bundle.CreateEstudioLabel_positivo}" />
                         <p:selectOneMenu id="positivo" value="#{estudioController.selected.positivo}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_positivo}">
                             <f:selectItem itemLabel="Seleccione" itemValue="" />
                             <f:selectItem itemLabel="No" itemValue="false" />
                             <f:selectItem itemLabel="Si" itemValue="true" />                            
                         </p:selectOneMenu>
-                        
+
 
                     </p:panelGrid>                    
 

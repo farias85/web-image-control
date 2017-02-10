@@ -13,6 +13,7 @@ import cu.cenpis.gps.wic.data.entity.Diagnostico;
 import cu.cenpis.gps.wic.data.entity.Especialidad;
 import cu.cenpis.gps.wic.data.entity.Estudio;
 import cu.cenpis.gps.wic.data.entity.Medico;
+import cu.cenpis.gps.wic.data.entity.Modalidad;
 import cu.cenpis.gps.wic.data.entity.Paciente;
 import cu.cenpis.gps.wic.data.entity.Procedencia;
 import cu.cenpis.gps.wic.data.entity.Rol;
@@ -22,6 +23,7 @@ import cu.cenpis.gps.wic.data.service.DiagnosticoService;
 import cu.cenpis.gps.wic.data.service.EspecialidadService;
 import cu.cenpis.gps.wic.data.service.EstudioService;
 import cu.cenpis.gps.wic.data.service.MedicoService;
+import cu.cenpis.gps.wic.data.service.ModalidadService;
 import cu.cenpis.gps.wic.data.service.PacienteService;
 import cu.cenpis.gps.wic.data.service.ProcedenciaService;
 import cu.cenpis.gps.wic.data.service.RolService;
@@ -68,6 +70,9 @@ public class Main1 {
         RolService rolService = (RolService) context.getBean("rolServiceImpl");
         TipoEstudioService tipoEstudioService = (TipoEstudioService) context.getBean("tipoEstudioServiceImpl");
         UsuarioService usuarioService = (UsuarioService) context.getBean("usuarioServiceImpl");
+        ModalidadService modalidadService = (ModalidadService) context.getBean("modalidadServiceImpl");
+        
+        modalidadService.create(new Modalidad(1L, "Modalidad"));
 
 //        Usuario usuario = new Usuario();
 //        usuario.setEmail("adipiscing@Cum.org");        

@@ -57,6 +57,9 @@
                         <h:outputText value="#{bundle.ViewEstudioLabel_tipoEstudio}"/>
                         <h:outputText value="#{estudioController.selected.tipoEstudio.nombre}" title="#{bundle.ViewEstudioTitle_tipoEstudio}"/>
 
+                        <h:outputText value="#{bundle.ViewEstudioLabel_modalidad}"/>
+                        <h:outputText value="#{estudioController.selected.modalidad.nombre}" title="#{bundle.ViewEstudioLabel_modalidad}"/>
+
                     </p:panelGrid>
                     <p:commandButton immediate="true" action="#{estudioController.actionCancel}" value="#{bundle.Cancel}" />
                 </h:panelGroup>
