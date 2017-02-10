@@ -87,7 +87,7 @@
                                          requiredMessage="#{bundle.CreateEstudioRequiredMessage_impresionDiagnostica}"/>
 
 
-                        <p:outputLabel value="#{bundle.CreateEstudioLabel_diagnostico}" for="diagnostico" />
+                        <p:outputLabel value="#{bundle.ListEstudioTitle_diagnostico}" for="diagnostico" />
                         <p:autoComplete id="diagnostico" size="#{bundle.InputSize}" value="#{estudioController.selected.diagnostico.nombre}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_diagnostico}"
                                         completeMethod="#{diagnosticoController.autoCompleteQuery}" />
                         

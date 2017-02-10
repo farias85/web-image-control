@@ -1,5 +1,11 @@
 package cu.cenpis.gps.wic.data.service.impl;
 
+import cu.cenpis.gps.wic.controller.DiagnosticoController;
+import cu.cenpis.gps.wic.controller.EspecialidadController;
+import cu.cenpis.gps.wic.controller.MedicoController;
+import cu.cenpis.gps.wic.controller.PacienteController;
+import cu.cenpis.gps.wic.controller.ProcedenciaController;
+import cu.cenpis.gps.wic.controller.TipoEstudioController;
 import cu.cenpis.gps.wic.data.dao.DiagnosticoDAO;
 import cu.cenpis.gps.wic.data.dao.EspecialidadDAO;
 import cu.cenpis.gps.wic.data.service.EstudioService;
@@ -11,6 +17,7 @@ import cu.cenpis.gps.wic.data.dao.ProcedenciaDAO;
 import cu.cenpis.gps.wic.data.dao.TipoEstudioDAO;
 import cu.cenpis.gps.wic.data.dao.UsuarioDAO;
 import cu.cenpis.gps.wic.data.entity.Paciente;
+import cu.cenpis.gps.wic.util.JsfUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -53,21 +60,39 @@ public class EstudioServiceImpl extends BaseServiceImpl<Estudio, java.lang.Long,
 
         if (object.getPaciente().getIdPaciente() == null) {
             pacienteDAO.create(object.getPaciente());
+            PacienteController controller = JsfUtil.getController(PacienteController.class);
+            controller.setItems(null);
+            controller.setFiltered(null);
         }
         if (object.getEspecialidad().getIdEspacialidad() == null) {
             especialidadDAO.create(object.getEspecialidad());
+            EspecialidadController controller = JsfUtil.getController(EspecialidadController.class);
+            controller.setItems(null);
+            controller.setFiltered(null);
         }
         if (object.getMedico().getIdMedico() == null) {
             medicoDAO.create(object.getMedico());
+            MedicoController controller = JsfUtil.getController(MedicoController.class);
+            controller.setItems(null);
+            controller.setFiltered(null);
         }
         if (object.getProcedencia().getIdProcedencia() == null) {
             procedenciaDAO.create(object.getProcedencia());
+            ProcedenciaController controller = JsfUtil.getController(ProcedenciaController.class);
+            controller.setItems(null);
+            controller.setFiltered(null);
         }
         if (object.getTipoEstudio().getIdTipoEstudio() == null) {
             tipoEstudioDAO.create(object.getTipoEstudio());
+            TipoEstudioController controller = JsfUtil.getController(TipoEstudioController.class);
+            controller.setItems(null);
+            controller.setFiltered(null);
         }
         if (object.getDiagnostico().getIdDiagnostico() == null) {
             diagnosticoDAO.create(object.getDiagnostico());
+            DiagnosticoController controller = JsfUtil.getController(DiagnosticoController.class);
+            controller.setItems(null);
+            controller.setFiltered(null);
         }
 
         if (object.getUsuario() == null || object.getUsuario().getIdUsuario() == null) {

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditModalidadTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditModalidadLabel_idModalidad}" for="idModalidad" />
+                    <h:inputText id="idModalidad" value="#{modalidadController.selected.idModalidad}" title="#{bundle.EditModalidadTitle_idModalidad}" required="true" requiredMessage="#{bundle.EditModalidadRequiredMessage_idModalidad}"/>
+                    <h:outputLabel value="#{bundle.EditModalidadLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{modalidadController.selected.nombre}" title="#{bundle.EditModalidadTitle_nombre}" required="true" requiredMessage="#{bundle.EditModalidadRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.EditModalidadLabel_descripcion}" for="descripcion" />
+                    <h:inputTextarea rows="4" cols="30" id="descripcion" value="#{modalidadController.selected.descripcion}" title="#{bundle.EditModalidadTitle_descripcion}" />
+                </h:panelGrid>
+                <h:commandLink action="#{modalidadController.update}" value="#{bundle.EditModalidadSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditModalidadViewLink}"/>
+                <br />
+                <h:commandLink action="#{modalidadController.prepareList}" value="#{bundle.EditModalidadShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditModalidadIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
