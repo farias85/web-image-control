@@ -101,11 +101,11 @@
                         </p:selectOneMenu>
 
 
-                        <h:outputLabel value="#{bundle.CreateEstudioLabel_modalidad}" for="modalidad" />
-                        <h:selectOneMenu id="modalidad" value="#{estudioController.selected.modalidad}" title="#{bundle.CreateEstudioTitle_modalidad}"
+                        <p:outputLabel value="#{bundle.CreateEstudioLabel_modalidad}" for="modalidad" />
+                        <p:selectOneMenu id="modalidad" value="#{estudioController.selected.modalidad}" title="#{bundle.CreateEstudioTitle_modalidad}"
                                          required="true" requiredMessage="#{bundle.Modalidad_requerida}">
                             <f:selectItems value="#{modalidadController.itemsAvailableSelectOne}"/>
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
                         
                         <p:outputLabel for="positivo" value="#{bundle.CreateEstudioLabel_positivo}" />
                         <p:selectOneMenu id="positivo" value="#{estudioController.selected.positivo}" required="true" requiredMessage="#{bundle.EditEstudioRequiredMessage_positivo}">
