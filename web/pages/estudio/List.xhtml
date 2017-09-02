@@ -130,8 +130,8 @@
                             </f:facet>
                             <h:outputText value="#{item.tipoEstudio.nombre}"/>
                         </p:column>-->
-                        
-                         <p:column filterBy="#{item.tipoEstudio.nombre}"  filterMatchMode="in">
+
+                        <p:column filterBy="#{item.tipoEstudio.nombre}"  filterMatchMode="in">
                             <f:facet name="filter">
                                 <p:selectCheckboxMenu label="T. Estudios" onchange="PF('dtable').filter()" panelStyle="width:125px" scrollHeight="150">
                                     <f:selectItems value="#{tipoEstudioController.itemsAvailableSelectOne}"
@@ -143,7 +143,7 @@
                             <h:outputText value="#{item.tipoEstudio.nombre}" />
                         </p:column>
 
-                                               
+
                         <p:column filterBy="#{item.diagnostico.nombre}"  filterMatchMode="in">
                             <f:facet name="filter">
                                 <p:selectCheckboxMenu label="Diagnósticos" onchange="PF('dtable').filter()" panelStyle="width:125px" scrollHeight="150">
@@ -155,8 +155,8 @@
                             </f:facet>
                             <h:outputText value="#{item.modalidad.nombre}" />
                         </p:column>
-                        
-                        
+
+
                         <p:column filterBy="#{item.modalidad.nombre}"  filterMatchMode="in">
                             <f:facet name="filter">
                                 <p:selectCheckboxMenu label="Modalidades" onchange="PF('dtable').filter()" panelStyle="width:125px" scrollHeight="150">
